@@ -3,7 +3,7 @@ go
 ----------------------------------------------------------------------------------------
 ---- 1) ThanhTien = (SoLuong * Gia) 
 -- update SoLuong
-create trigger trigger_ThanhTien
+create trigger trigger_ThanhTien_updateSL
 on CHITIETDONHANG
 for insert, update, delete as
 if update (SoLuong) 
@@ -77,7 +77,7 @@ select * from CHITIETDONHANG where MaDH = N'DH0005'
 select * from DONHANG
 
 
--- Cập nhật trước ThanhTien và TongTien trước khi test Trigger
+-- Cập nhật ThanhTien và TongTien trước khi test Trigger
 update CHITIETDONHANG
 set ThanhTien = ctdh.SoLuong * sp.Gia
 from CHITIETDONHANG ctdh, SANPHAM sp
@@ -87,3 +87,4 @@ update DONHANG
 set TongTien = PhiVanChuyen + (select sum(ctdh.ThanhTien)
 								from CHITIETDONHANG ctdh
 								where ctdh.MaDH = DONHANG.MaDH)
+
