@@ -1,4 +1,4 @@
-﻿use DBMS_ThucHanh_Nhom15
+use DBMS_ThucHanh_Nhom15
 go
 ----------------------------------------------------------------------------------------
 ---- LOGIN
@@ -54,14 +54,14 @@ grant select on CHITIETDONHANG	to Driver
 grant select on SANPHAM			to Driver
 grant select on CHINHANH		to Driver
 grant select on TAIXE  to Driver
-grant select on THONGTINCANHAN to Driver
+grant select, update (HoTen, SoDienThoai, DiaChi, Email) on THONGTINCANHAN to Driver
 
 -- for Customer
 grant select, insert, update, delete on DONHANG			to Customer
 grant select, insert, update, delete on CHITIETDONHANG	to Customer
 grant select on SANPHAM		to Customer
 grant select on CHINHANH	to Customer
-grant select, insert, update on THONGTINCANHAN (Hoten, SoDienThoai, DiaChi, Email) to Customer
+grant select, update (HoTen, SoDienThoai, DiaChi, Email) on THONGTINCANHAN to Customer
 
 
 ------------------------------------------------------------------------------
@@ -74,12 +74,17 @@ insert into SANPHAM(MaSP) values (N'DH1000000')
 delete from SANPHAM where MaSP = N'DH1000000'
 select * from SANPHAM where MaSP = N'DH1000000'
 
+select * from THONGTINCANHAN 
+update THONGTINCANHAN set HoTen = N'Le Yen Nhi' where ID = 1
+
+
 -- Test for taixe
 select * from TAIXE
 select * from KHUVUC
 
 insert into TAIXE (MaTX) values (N'TX1000000')
 delete from TAIXE where MaTX = N'TX0007'
+
 
 -- Test for nhanvien
 insert into SANPHAM values (N'sp1001', N'CN662Y', N'Chocolate', 10000, N'Orange')
