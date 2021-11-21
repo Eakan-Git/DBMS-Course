@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace DBMS_G15
 {
-    public partial class LoginForm : Form
+    public partial class OrderForm : Form
     {
-        public LoginForm()
+        public OrderForm()
         {
             InitializeComponent();
         }
