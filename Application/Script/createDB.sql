@@ -1,5 +1,7 @@
 ﻿create database DBMS_ThucHanh_Nhom15
-go
+GO
+USE DBMS_ThucHanh_Nhom15
+GO	
 ------------------------------------------------------------------
 create table THONGTINCANHAN
 (
