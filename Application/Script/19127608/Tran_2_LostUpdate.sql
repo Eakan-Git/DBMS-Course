@@ -20,7 +20,7 @@ BEGIN
 			raiserror(N'Đơn hàng đã giao, không thể cập nhật.', 16, 1)
 		END
 		ELSE
-		IF @TinhTrang = N'Đã hủy' --nếu đã hủy rồi thì không làm gì được nữa
+		IF @TinhTrang2 = N'Đã hủy' --nếu đã hủy rồi thì không làm gì được nữa
 		BEGIN
 			ROLLBACK
 			raiserror(N'Đơn hàng đã hủy, không thể cập nhật.', 16, 1)
