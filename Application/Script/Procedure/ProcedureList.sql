@@ -62,8 +62,13 @@ BEGIN
 			ROLLBACK
 			RAISERROR(N'Chi tiết đơn hàng không tồn tại', 16, 1)
 		END
+    IF (@SLSP <=0)
+    BEGIN
+      ROLLBACK
+      RAISERROR(N'Số lượng sản phẩm không hợp lệ',16,1)
+    END
     UPDATE CHITIETDONHANG 
-	SET SoLuong=@SLSP
+	  SET SoLuong=@SLSP
     WHERE MaSP = @MASP AND MADH = @MADH
 	COMMIT TRAN
 END
@@ -90,6 +95,11 @@ BEGIN
 			ROLLBACK
 			RAISERROR(N'Sản phẩm không tồn tại ', 16, 1)
 		END
+     IF (@GIA <0)
+    BEGIN
+      ROLLBACK
+      RAISERROR(N'Giá Không hợp lệ',16,1)
+    END
     UPDATE SANPHAM
     SET GIA = @GIA
     WHERE MASP = @MASP
