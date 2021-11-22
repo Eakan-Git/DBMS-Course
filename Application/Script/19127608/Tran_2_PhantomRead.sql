@@ -1,4 +1,3 @@
-
 CREATE PROCEDURE NHANVIEN_THEM_HOPDONG
 	@MaHD NVARCHAR(10),
 	@MaDT NVARCHAR(10),
@@ -39,12 +38,12 @@ BEGIN
 			raiserror(N'Ngày bắt đầu phải bé hơn ngày kết thúc.', 16, 1)
 		END
 		INSERT HOPDONG(MaHD, MaDT, MaCN, MaSoThue, NguoiDaiDien, SoChiNhanhDK, HieuLuc, NgayBD, NgayKT, KichHoat, PhiHoaHong) 
-		VALUES (@MaHD, @MaDT, @MaCN, @MaSoThue, @NguoiDaiDien, @SoChiNhanhDK, @HieuLuc, @NgayBD, NgayKT, @KichHoat, @PhiHoaHong)
+		VALUES (@MaHD, @MaDT, @MaCN, @MaSoThue, @NguoiDaiDien, @SoChiNhanhDK, @HieuLuc, @NgayBD, @NgayKT, @KichHoat, @PhiHoaHong)
 	COMMIT TRAN
 END
 GO
 
-EXEC NHANVIEN_THEM_HOPDONG @MaHD = N'HD0004', @MaDT = N'DT7897', @MaCN = N'CN000Y', @MaSoThue = N'IFDA6', @NguoiDaiDien = N'Blais', @SoChiNhanhDK = 2,
-								@HieuLuc = CAST(N'2019-08-12' AS Date), @NgayBD = CAST(N'2019-02-16' AS Date), NgayKT = CAST(N'2021-08-27' AS Date),
-								@KickHoat = 1, @PhiHoaHong = 1000000
+EXEC NHANVIEN_THEM_HOPDONG @MaHD = N'HD0001', @MaDT = N'DT7897', @MaCN = N'CN800Y', @MaSoThue = N'IFDA6', @NguoiDaiDien = N'Blais', @SoChiNhanhDK = 2,
+								@HieuLuc = N'2019-08-12', @NgayBD = N'2019-02-16', @NgayKT = N'2021-08-27',
+								@KichHoat = 1, @PhiHoaHong = 1000000
 GO
