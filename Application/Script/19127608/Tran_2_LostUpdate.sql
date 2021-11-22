@@ -1,4 +1,4 @@
---Tài xế xác nhận đơn hàng của khách hàng để đi giao
+
 CREATE PROCEDURE TAIXE_XACNHAN_DONHANG
 	@MaDH NVARCHAR(10),
 	@TinhTrang NVARCHAR(20)
@@ -32,3 +32,5 @@ BEGIN
 	COMMIT TRAN
 END
 GO
+
+EXEC TAIXE_XACNHAN_DONHANG @MaDH = N'DH4364', @TinhTrang = N'Đang giao hàng'
