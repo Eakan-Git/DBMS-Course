@@ -29,5 +29,10 @@ namespace DBMS_G15
             homeForm.ShowDialog();
             this.Close();
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -40,6 +40,7 @@ namespace DBMS_G15
             this.panelLoginBtn = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.loginBtn = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelLoginBtn.SuspendLayout();
@@ -47,8 +48,8 @@ namespace DBMS_G15
             // 
             // panel1
             // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(435, 76);
@@ -56,6 +57,7 @@ namespace DBMS_G15
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(136, 24);
@@ -66,11 +68,11 @@ namespace DBMS_G15
             // 
             // panel2
             // 
+            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel2.Controls.Add(this.passTxt);
             this.panel2.Controls.Add(this.usernameTxt);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 76);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(435, 106);
@@ -78,6 +80,7 @@ namespace DBMS_G15
             // 
             // passTxt
             // 
+            this.passTxt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.passTxt.Location = new System.Drawing.Point(209, 69);
             this.passTxt.Name = "passTxt";
             this.passTxt.PasswordChar = '*';
@@ -86,6 +89,7 @@ namespace DBMS_G15
             // 
             // usernameTxt
             // 
+            this.usernameTxt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.usernameTxt.Location = new System.Drawing.Point(209, 24);
             this.usernameTxt.MaximumSize = new System.Drawing.Size(168, 20);
             this.usernameTxt.MinimumSize = new System.Drawing.Size(168, 20);
@@ -95,6 +99,7 @@ namespace DBMS_G15
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(57, 69);
@@ -105,6 +110,7 @@ namespace DBMS_G15
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(57, 22);
@@ -115,9 +121,10 @@ namespace DBMS_G15
             // 
             // panelLoginBtn
             // 
+            this.panelLoginBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panelLoginBtn.Controls.Add(this.btnCancel);
             this.panelLoginBtn.Controls.Add(this.button1);
             this.panelLoginBtn.Controls.Add(this.loginBtn);
-            this.panelLoginBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelLoginBtn.Location = new System.Drawing.Point(0, 182);
             this.panelLoginBtn.Name = "panelLoginBtn";
             this.panelLoginBtn.Size = new System.Drawing.Size(435, 59);
@@ -125,7 +132,8 @@ namespace DBMS_G15
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(61, 7);
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.button1.Location = new System.Drawing.Point(30, 9);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(103, 40);
             this.button1.TabIndex = 1;
@@ -134,13 +142,25 @@ namespace DBMS_G15
             // 
             // loginBtn
             // 
-            this.loginBtn.Location = new System.Drawing.Point(274, 7);
+            this.loginBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.loginBtn.Location = new System.Drawing.Point(165, 9);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(103, 40);
             this.loginBtn.TabIndex = 0;
             this.loginBtn.Text = "Đăng Nhập!";
             this.loginBtn.UseVisualStyleBackColor = true;
             this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnCancel.Location = new System.Drawing.Point(300, 9);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(103, 40);
+            this.btnCancel.TabIndex = 2;
+            this.btnCancel.Text = "Thoát";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // LoginForm
             // 
@@ -151,7 +171,6 @@ namespace DBMS_G15
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(451, 280);
             this.MinimumSize = new System.Drawing.Size(451, 280);
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -177,6 +196,7 @@ namespace DBMS_G15
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
 
