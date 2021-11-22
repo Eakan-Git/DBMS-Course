@@ -15,6 +15,8 @@ BEGIN
       ROLLBACK
       RAISERROR(N'Số lượng sản phẩm không hợp lệ',16,1)
     END
+    
+    
     UPDATE CHITIETDONHANG 
 	  SET SoLuong=@SLSP
     WHERE MaSP = @MASP AND MaDH = @MADH
