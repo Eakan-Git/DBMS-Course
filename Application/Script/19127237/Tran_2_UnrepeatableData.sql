@@ -16,7 +16,7 @@ BEGIN
       RAISERROR(N'Số lượng sản phẩm không hợp lệ',16,1)
     END
     
-    
+    WAITFOR DELAY '00:00:5'
     UPDATE CHITIETDONHANG 
 	  SET SoLuong=@SLSP
     WHERE MaSP = @MASP AND MaDH = @MADH
