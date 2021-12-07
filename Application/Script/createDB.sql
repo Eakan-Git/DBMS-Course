@@ -1,7 +1,5 @@
-﻿create database DBMS_ThucHanh_Nhom15
-GO
-USE DBMS_ThucHanh_Nhom15
-GO	
+create database DBMS_ThucHanh_Nhom15
+go
 ------------------------------------------------------------------
 create table THONGTINCANHAN
 (
@@ -67,7 +65,8 @@ create table KHUVUC
 create table CHINHANH
 (
 	MaCN nvarchar(10),
-	DiaChi nvarchar(150)
+	DiaChi nvarchar(150),
+	SLTonKhoa int
 	constraint PK_CHINHANH primary key (MaCN)
 )
 
@@ -113,7 +112,6 @@ create table HOPDONG
 	MaSoThue nvarchar(20),
 	NguoiDaiDien nvarchar(100),
 	SoChiNhanhDK int,
-	HieuLuc date,
 	NgayBD date,
 	NgayKT date,
 	KichHoat int,
