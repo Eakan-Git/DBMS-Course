@@ -5,7 +5,7 @@ create table THONGTINCANHAN
 (
 	ID int primary key,
 	HoTen nvarchar(50),
-	SoDienThoai nvarchar(12),
+	SoDienThoai nvarchar(15),
 	DiaChi nvarchar(150),
 	Email varchar(50)
 )
@@ -44,7 +44,8 @@ create table DONHANG
 	NgayGiao date,
 	TinhTrang nvarchar(20),
 	PhiVanChuyen bigint,
-	TongTien bigint
+	TongTien bigint,
+	MaKV nvarchar(10)
 	constraint PK_DONHANG primary key (MaDH)
 )
 
@@ -58,26 +59,32 @@ create table THUNHAPTAIXE
 create table KHUVUC
 (
 	MaKV nvarchar(10),
-	MaDH nvarchar(10),
+	TenKV nvarchar(50)
 	constraint PK_KHUVUC primary key (MaKV)
 )
 
 create table CHINHANH
 (
 	MaCN nvarchar(10),
-	DiaChi nvarchar(150),
-	SLTonKhoa int
+	DiaChi nvarchar(150)
 	constraint PK_CHINHANH primary key (MaCN)
 )
 
 create table SANPHAM
 (
 	MaSP nvarchar(10),
-	MaCN nvarchar(10),
 	TenSP nvarchar(150), 
 	Gia bigint,
 	MoTa nvarchar(200)
 	constraint PK_SANPHAM primary key (MaSP)
+)
+
+create table CUNGCAP_SP
+(
+	MaCN nvarchar(10),
+	MaSP nvarchar(10),
+	SLTonKho int
+	constraint PK_CUNGCAPSP primary key (MaCN, MaSP)
 )
 
 create table CHITIETDONHANG
@@ -100,7 +107,7 @@ create table DOITAC
 	SLDonHang int,
 	LoaiHang nvarchar(50),
 	DiaChiKinhDoanh nvarchar(150),
-	SoDienThoai nvarchar(12),
+	SoDienThoai nvarchar(12)
 	constraint PK_DOITAC primary key (MaDT)
 )
 
@@ -123,21 +130,20 @@ alter table TAIXE add
 	constraint FK_TAIXE_KHUVUC foreign key (MaKV) references KHUVUC (MaKV)
 
 alter table DONHANG add
-	constraint FK_DONHANG_KHACHHANG foreign key (MaKH) references KHACHHANG (MaKH)
+	constraint FK_DONHANG_KHACHHANG foreign key (MaKH) references KHACHHANG (MaKH),
+	constraint FK_DONHANG_KHUVUC foreign key (MaKV) references KHUVUC (MaKV)
 
 alter table THUNHAPTAIXE add
 	constraint FK_THUNHAPTAIXE_TAIXE	foreign key (MaTX) references TAIXE (MaTX),
 	constraint FK_THUNHAPTAIXE_DONHANG	foreign key (MaDH) references DONHANG (MaDH)
 
-alter table KHUVUC add
-	constraint FK_KHUVUC_DONHANG	foreign key (MaDH) references DONHANG (MaDH)
-
-alter table SANPHAM add
-	constraint FK_SANPHAM_CHINHANH foreign key (MaCN) references CHINHANH (MaCN)
-
 alter table CHITIETDONHANG add
 	constraint FK_CHITIETDONHANG_DONHANG	foreign key (MaDH) references DONHANG (MaDH),
 	constraint FK_CHITIETDONHANG_SANPHAM	foreign key (MaSP) references SANPHAM (MaSP)
+
+alter table CUNGCAP_SP add
+	constraint FK_CUNGCAPSP_CHINHANH	foreign key (MaCN) references CHINHANH (MaCN),
+	constraint FK_CUNGCAPSP_SANPHAM		foreign key (MaSP) references SANPHAM (MaSP)
 
 alter table HOPDONG add
 	constraint FK_HOPDONG_DOITAC	foreign key (MaDT) references DOITAC (MaDT),
