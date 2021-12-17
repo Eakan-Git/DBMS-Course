@@ -34,5 +34,13 @@ namespace DBMS_G15
         {
             this.Close();
         }
+
+        private void signUpBtn_Click(object sender, EventArgs e)
+        {
+            SignUpForm signUpForm = new SignUpForm();
+            this.Hide();
+            signUpForm.ShowDialog();
+            this.Close();
+        }
     }
 }

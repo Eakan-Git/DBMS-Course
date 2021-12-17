@@ -38,9 +38,9 @@ namespace DBMS_G15
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panelLoginBtn = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.loginBtn = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.signUpBtn = new System.Windows.Forms.Button();
+            this.loginBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelLoginBtn.SuspendLayout();
@@ -123,33 +123,12 @@ namespace DBMS_G15
             // 
             this.panelLoginBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelLoginBtn.Controls.Add(this.btnCancel);
-            this.panelLoginBtn.Controls.Add(this.button1);
+            this.panelLoginBtn.Controls.Add(this.signUpBtn);
             this.panelLoginBtn.Controls.Add(this.loginBtn);
             this.panelLoginBtn.Location = new System.Drawing.Point(0, 182);
             this.panelLoginBtn.Name = "panelLoginBtn";
             this.panelLoginBtn.Size = new System.Drawing.Size(435, 59);
             this.panelLoginBtn.TabIndex = 2;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button1.Location = new System.Drawing.Point(30, 9);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(103, 40);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Đăng Ký";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // loginBtn
-            // 
-            this.loginBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.loginBtn.Location = new System.Drawing.Point(165, 9);
-            this.loginBtn.Name = "loginBtn";
-            this.loginBtn.Size = new System.Drawing.Size(103, 40);
-            this.loginBtn.TabIndex = 0;
-            this.loginBtn.Text = "Đăng Nhập!";
-            this.loginBtn.UseVisualStyleBackColor = true;
-            this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
             // 
             // btnCancel
             // 
@@ -162,6 +141,28 @@ namespace DBMS_G15
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // signUpBtn
+            // 
+            this.signUpBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.signUpBtn.Location = new System.Drawing.Point(30, 9);
+            this.signUpBtn.Name = "signUpBtn";
+            this.signUpBtn.Size = new System.Drawing.Size(103, 40);
+            this.signUpBtn.TabIndex = 1;
+            this.signUpBtn.Text = "Đăng Ký";
+            this.signUpBtn.UseVisualStyleBackColor = true;
+            this.signUpBtn.Click += new System.EventHandler(this.signUpBtn_Click);
+            // 
+            // loginBtn
+            // 
+            this.loginBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.loginBtn.Location = new System.Drawing.Point(165, 9);
+            this.loginBtn.Name = "loginBtn";
+            this.loginBtn.Size = new System.Drawing.Size(103, 40);
+            this.loginBtn.TabIndex = 0;
+            this.loginBtn.Text = "Đăng Nhập!";
+            this.loginBtn.UseVisualStyleBackColor = true;
+            this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -170,7 +171,9 @@ namespace DBMS_G15
             this.Controls.Add(this.panelLoginBtn);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(451, 280);
             this.MinimumSize = new System.Drawing.Size(451, 280);
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -195,7 +198,7 @@ namespace DBMS_G15
         private System.Windows.Forms.TextBox usernameTxt;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button signUpBtn;
         private System.Windows.Forms.Button btnCancel;
     }
 }
