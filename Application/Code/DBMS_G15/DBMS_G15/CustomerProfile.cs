@@ -19,19 +19,26 @@ namespace DBMS_G15
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            nameTb.ReadOnly = false;
-            addressTb.ReadOnly = false;
-            phoneNumTb.ReadOnly = false;
-            emailTb.ReadOnly = false;
+            nameTb.Enabled = true;
+            addressTb.Enabled = true;
+            phoneNumTb.Enabled = true;
+            emailTb.Enabled = true;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            nameTb.ReadOnly = true;
-            addressTb.ReadOnly = true;
-            phoneNumTb.ReadOnly = true;
-            emailTb.ReadOnly = true;
+            nameTb.Enabled = false;
+            addressTb.Enabled = false;
+            phoneNumTb.Enabled = false;
+            emailTb.Enabled = false;
         }
 
+        private void CustomerProfile_Load(object sender, EventArgs e)
+        {
+            nameTb.Enabled = false;
+            addressTb.Enabled = false;
+            phoneNumTb.Enabled = false;
+            emailTb.Enabled = false;
+        }
     }
 }

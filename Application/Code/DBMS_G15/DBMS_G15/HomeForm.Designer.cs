@@ -128,7 +128,7 @@ namespace DBMS_G15
             // 
             // greetingLabel
             // 
-            this.greetingLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.greetingLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.greetingLabel.AutoSize = true;
             this.greetingLabel.BackColor = System.Drawing.Color.Transparent;
             this.greetingLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

@@ -12,6 +12,7 @@ namespace DBMS_G15
 {
     public partial class HomeForm : Form
     {
+        string role;
         private Form currentChildForm;
         public HomeForm()
         {
@@ -21,6 +22,7 @@ namespace DBMS_G15
         {
             InitializeComponent();
             greetingLabel.Text = "Xin chào, " + username.Trim();
+            role = username;
             if(username == "customer")
             {
                 btnPartner.Hide();

@@ -28,36 +28,14 @@ namespace DBMS_G15
             {
                 MessageBox.Show("Vui lòng nhập thông tin đăng nhập.");
             }
+            else if(usernameTxt.Text != "customer" && usernameTxt.Text != "developer" && usernameTxt.Text != "partner" && usernameTxt.Text != "staff")
+            {
+                MessageBox.Show("Sai thông tin đăng nhập.");
+            }
             else
             {
                 try
                 {
-                    //string query = "SELECT role from login WHERE username = @username and password=@password";
-                    //string returnValue = "";
-                    //using (SqlConnection connection = new SqlConnection(@"Data Source=(local);Initial Catalog=DBMS_ThucHanh_Nhom15;Integrated Security=True"))
-                    //{
-                    //    using (SqlCommand sqlcmd = new SqlCommand(query, connection))
-                    //    {
-                    //        sqlcmd.Parameters.Add("@username", SqlDbType.VarChar).Value = usernameTxt.Text;
-                    //        sqlcmd.Parameters.Add("@password", SqlDbType.VarChar).Value = passTxt.Text;
-                    //        connection.Open();
-                    //        returnValue = (string)sqlcmd.ExecuteScalar();
-                    //    }
-                    //}
-                    //if (String.IsNullOrEmpty(returnValue))
-                    //{
-                    //    MessageBox.Show("Sai thông tin đăng nhập.");
-                    //    return;
-                    //}
-                    //else
-                    //{
-                    //    returnValue = returnValue.Trim();
-                    //    HomeForm homeForm = new HomeForm(returnValue);
-                    //    this.Hide();
-                    //    homeForm.StartPosition = FormStartPosition.CenterScreen;
-                    //    homeForm.ShowDialog();
-                    //    this.Close();
-                    //}
                     SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
                     builder.UserID = usernameTxt.Text;
                     builder.Password = passTxt.Text;
@@ -75,7 +53,7 @@ namespace DBMS_G15
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Sai thông tin đăng nhập.");
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
