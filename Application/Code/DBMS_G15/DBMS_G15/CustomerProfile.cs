@@ -33,9 +33,5 @@ namespace DBMS_G15
             emailTb.ReadOnly = true;
         }
 
-        private void btnAdd_Click_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }

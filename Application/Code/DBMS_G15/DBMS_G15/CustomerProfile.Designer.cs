@@ -243,6 +243,7 @@ namespace DBMS_G15
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnAdd
             // 
@@ -262,7 +263,7 @@ namespace DBMS_G15
             this.btnAdd.Text = "Sửa";
             this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAdd.UseVisualStyleBackColor = true;
-         
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // CustomerProfile
             // 
