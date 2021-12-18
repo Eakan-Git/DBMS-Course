@@ -35,11 +35,24 @@ namespace DBMS_G15
             this.Close();
         }
 
-        private void signUpBtn_Click(object sender, EventArgs e)
+        private void cbbSignUp_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            SignUpForm signUpForm = new SignUpForm();
+            if (cbbSignUp.SelectedItem == "Tài Xế")
+            {
+                DriverSignUpForm signUpForm = new DriverSignUpForm();
+                signUpForm.ShowDialog();
+            }
+            else if(cbbSignUp.SelectedItem == "Khách Hàng")
+            {
+                CustomerSignUpForm signUpForm = new CustomerSignUpForm();
+                signUpForm.ShowDialog();
+            }
+            else
+            {
+                partnerSignUpForm signUpForm = new partnerSignUpForm();
+                signUpForm.ShowDialog();
+            }
             this.Hide();
-            signUpForm.ShowDialog();
             this.Close();
         }
     }

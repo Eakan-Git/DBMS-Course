@@ -18,8 +18,8 @@ namespace DBMS_G15
             InitializeComponent();
             //panelLogo.BringToFront();
             //Test for hidding from difference role
-            btnProfile.Hide();
-            btnMoney.Hide();
+            //btnProfile.Hide();
+            //btnMoney.Hide();
             //btnContract.Hide();
             //btnDriver.Hide();
             //btnPartner.Hide();
