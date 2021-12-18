@@ -55,7 +55,16 @@ namespace DBMS_G15
             this.nameTb = new System.Windows.Forms.TextBox();
             this.nameLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.cbbCity = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.btnPanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -299,12 +308,82 @@ namespace DBMS_G15
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.textBox6);
+            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.textBox3);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.cbbCity);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(600, 56);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(300, 346);
             this.panel1.TabIndex = 21;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(29, 243);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(70, 16);
+            this.label8.TabIndex = 22;
+            this.label8.Text = "Loại Hàng";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(129, 239);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(142, 20);
+            this.textBox3.TabIndex = 21;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(29, 161);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(89, 16);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "Số Chi Nhánh";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(129, 164);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(142, 20);
+            this.textBox2.TabIndex = 19;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(129, 128);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(142, 20);
+            this.textBox1.TabIndex = 18;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(29, 125);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(40, 16);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Quận";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(29, 92);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(73, 16);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Thành Phố";
             // 
             // cbbCity
             // 
@@ -374,10 +453,27 @@ namespace DBMS_G15
             "Tỉnh Ninh Bình",
             "Tỉnh Hậu Giang",
             "Tỉnh Bắc Ninh"});
-            this.cbbCity.Location = new System.Drawing.Point(87, 127);
+            this.cbbCity.Location = new System.Drawing.Point(129, 87);
             this.cbbCity.Name = "cbbCity";
             this.cbbCity.Size = new System.Drawing.Size(142, 21);
             this.cbbCity.TabIndex = 0;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(29, 205);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(65, 16);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "Số Lượng";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(129, 201);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(142, 20);
+            this.textBox6.TabIndex = 23;
             // 
             // partnerSignUpForm
             // 
@@ -404,6 +500,7 @@ namespace DBMS_G15
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -436,5 +533,14 @@ namespace DBMS_G15
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox cbbCity;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBox6;
     }
 }
