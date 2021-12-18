@@ -140,6 +140,11 @@ namespace DBMS_G15
             navMenu.Height = btnProfile.Height;
             navMenu.Top = btnProfile.Top;
             navMenu.BringToFront();
+            OpenChildForm(new StaffProfile());
         }
+
+        
+
+        
     }
 }
