@@ -30,16 +30,18 @@ namespace DBMS_G15
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(productForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panelNavigator = new System.Windows.Forms.Panel();
+            this.searchBtn = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPrevious = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.productDGV = new System.Windows.Forms.DataGridView();
             this.panelDetails = new System.Windows.Forms.Panel();
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.priceLabel = new System.Windows.Forms.Label();
@@ -48,13 +50,13 @@ namespace DBMS_G15
             this.idLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tbDescription = new System.Windows.Forms.TextBox();
-            this.tbDepartmentID = new System.Windows.Forms.TextBox();
             this.tbPrice = new System.Windows.Forms.TextBox();
             this.tbName = new System.Windows.Forms.TextBox();
             this.tbID = new System.Windows.Forms.TextBox();
+            this.cbbDepartment = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.panelNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productDGV)).BeginInit();
             this.panelDetails.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,6 +89,7 @@ namespace DBMS_G15
             this.btnDelete.Text = "Xóa";
             this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnSave
             // 
@@ -128,6 +131,7 @@ namespace DBMS_G15
             // panelNavigator
             // 
             this.panelNavigator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(67)))), ((int)(((byte)(138)))));
+            this.panelNavigator.Controls.Add(this.searchBtn);
             this.panelNavigator.Controls.Add(this.searchBox);
             this.panelNavigator.Controls.Add(this.btnNext);
             this.panelNavigator.Controls.Add(this.btnPrevious);
@@ -137,13 +141,29 @@ namespace DBMS_G15
             this.panelNavigator.Size = new System.Drawing.Size(736, 70);
             this.panelNavigator.TabIndex = 8;
             // 
+            // searchBtn
+            // 
+            this.searchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.searchBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.searchBtn.Location = new System.Drawing.Point(334, 37);
+            this.searchBtn.Name = "searchBtn";
+            this.searchBtn.Size = new System.Drawing.Size(75, 23);
+            this.searchBtn.TabIndex = 3;
+            this.searchBtn.Text = "Tìm";
+            this.searchBtn.UseVisualStyleBackColor = false;
+            this.searchBtn.Click += new System.EventHandler(this.seacrhBtn_Click);
+            // 
             // searchBox
             // 
             this.searchBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.searchBox.Location = new System.Drawing.Point(293, 25);
+            this.searchBox.Location = new System.Drawing.Point(293, 10);
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(150, 20);
             this.searchBox.TabIndex = 2;
+            this.searchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
+            this.searchBox.Enter += new System.EventHandler(this.searchBox_Enter);
+            this.searchBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchBox_KeyPress);
+            this.searchBox.Leave += new System.EventHandler(this.searchBox_Leave);
             // 
             // btnNext
             // 
@@ -157,6 +177,7 @@ namespace DBMS_G15
             this.btnNext.TabIndex = 1;
             this.btnNext.Text = ">";
             this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnPrevious
             // 
@@ -169,35 +190,50 @@ namespace DBMS_G15
             this.btnPrevious.TabIndex = 0;
             this.btnPrevious.Text = "<";
             this.btnPrevious.UseVisualStyleBackColor = false;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
-            // dataGridView1
+            // productDGV
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.productDGV.AllowUserToAddRows = false;
+            this.productDGV.AllowUserToDeleteRows = false;
+            this.productDGV.AllowUserToResizeColumns = false;
+            this.productDGV.AllowUserToResizeRows = false;
+            this.productDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.productDGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            this.productDGV.BackgroundColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.NullValue = "Không xác định";
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.productDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.productDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView1.GridColor = System.Drawing.Color.Gainsboro;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 190);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(736, 323);
-            this.dataGridView1.TabIndex = 9;
+            this.productDGV.DefaultCellStyle = dataGridViewCellStyle2;
+            this.productDGV.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.productDGV.GridColor = System.Drawing.Color.Gainsboro;
+            this.productDGV.Location = new System.Drawing.Point(0, 190);
+            this.productDGV.Name = "productDGV";
+            this.productDGV.ReadOnly = true;
+            this.productDGV.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+            this.productDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.productDGV.Size = new System.Drawing.Size(736, 323);
+            this.productDGV.TabIndex = 9;
+            this.productDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.productDGV_CellClick);
             // 
             // panelDetails
             // 
             this.panelDetails.BackColor = System.Drawing.Color.Gainsboro;
+            this.panelDetails.Controls.Add(this.cbbDepartment);
             this.panelDetails.Controls.Add(this.descriptionLabel);
             this.panelDetails.Controls.Add(this.priceLabel);
             this.panelDetails.Controls.Add(this.departmentIDLabel);
@@ -205,7 +241,6 @@ namespace DBMS_G15
             this.panelDetails.Controls.Add(this.idLabel);
             this.panelDetails.Controls.Add(this.label1);
             this.panelDetails.Controls.Add(this.tbDescription);
-            this.panelDetails.Controls.Add(this.tbDepartmentID);
             this.panelDetails.Controls.Add(this.tbPrice);
             this.panelDetails.Controls.Add(this.tbName);
             this.panelDetails.Controls.Add(this.tbID);
@@ -282,15 +317,6 @@ namespace DBMS_G15
             this.tbDescription.Size = new System.Drawing.Size(161, 20);
             this.tbDescription.TabIndex = 4;
             // 
-            // tbDepartmentID
-            // 
-            this.tbDepartmentID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.tbDepartmentID.Location = new System.Drawing.Point(287, 119);
-            this.tbDepartmentID.Multiline = true;
-            this.tbDepartmentID.Name = "tbDepartmentID";
-            this.tbDepartmentID.Size = new System.Drawing.Size(161, 20);
-            this.tbDepartmentID.TabIndex = 3;
-            // 
             // tbPrice
             // 
             this.tbPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -311,8 +337,19 @@ namespace DBMS_G15
             // 
             this.tbID.Location = new System.Drawing.Point(53, 119);
             this.tbID.Name = "tbID";
+            this.tbID.ReadOnly = true;
             this.tbID.Size = new System.Drawing.Size(161, 20);
             this.tbID.TabIndex = 0;
+            // 
+            // cbbDepartment
+            // 
+            this.cbbDepartment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.cbbDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbDepartment.FormattingEnabled = true;
+            this.cbbDepartment.Location = new System.Drawing.Point(287, 119);
+            this.cbbDepartment.Name = "cbbDepartment";
+            this.cbbDepartment.Size = new System.Drawing.Size(161, 21);
+            this.cbbDepartment.TabIndex = 11;
             // 
             // productForm
             // 
@@ -321,16 +358,17 @@ namespace DBMS_G15
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(808, 583);
             this.Controls.Add(this.panelDetails);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.productDGV);
             this.Controls.Add(this.panelNavigator);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "productForm";
             this.Text = "productForm";
+            this.Load += new System.EventHandler(this.productForm_Load);
             this.panel2.ResumeLayout(false);
             this.panelNavigator.ResumeLayout(false);
             this.panelNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productDGV)).EndInit();
             this.panelDetails.ResumeLayout(false);
             this.panelDetails.PerformLayout();
             this.ResumeLayout(false);
@@ -347,7 +385,7 @@ namespace DBMS_G15
         private System.Windows.Forms.TextBox searchBox;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnPrevious;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView productDGV;
         private System.Windows.Forms.Panel panelDetails;
         private System.Windows.Forms.Label descriptionLabel;
         private System.Windows.Forms.Label priceLabel;
@@ -356,9 +394,10 @@ namespace DBMS_G15
         private System.Windows.Forms.Label idLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbDescription;
-        private System.Windows.Forms.TextBox tbDepartmentID;
         private System.Windows.Forms.TextBox tbPrice;
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.TextBox tbID;
+        private System.Windows.Forms.Button searchBtn;
+        private System.Windows.Forms.ComboBox cbbDepartment;
     }
 }
