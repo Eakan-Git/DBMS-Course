@@ -16,5 +16,30 @@ namespace DBMS_G15
         {
             InitializeComponent();
         }
+
+        private void panelDetails_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rightSideMenuPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panelNavigator_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
