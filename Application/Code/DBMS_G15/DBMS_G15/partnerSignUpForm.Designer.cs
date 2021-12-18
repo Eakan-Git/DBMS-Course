@@ -55,6 +55,8 @@ namespace DBMS_G15
             this.nameTb = new System.Windows.Forms.TextBox();
             this.nameLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -63,8 +65,6 @@ namespace DBMS_G15
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.cbbCity = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
             this.btnPanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -156,6 +156,7 @@ namespace DBMS_G15
             // 
             this.comfirmPassTb.Location = new System.Drawing.Point(142, 199);
             this.comfirmPassTb.Name = "comfirmPassTb";
+            this.comfirmPassTb.PasswordChar = '*';
             this.comfirmPassTb.Size = new System.Drawing.Size(142, 20);
             this.comfirmPassTb.TabIndex = 30;
             // 
@@ -173,6 +174,7 @@ namespace DBMS_G15
             // 
             this.textBox5.Location = new System.Drawing.Point(142, 144);
             this.textBox5.Name = "textBox5";
+            this.textBox5.PasswordChar = '*';
             this.textBox5.Size = new System.Drawing.Size(142, 20);
             this.textBox5.TabIndex = 28;
             // 
@@ -324,6 +326,23 @@ namespace DBMS_G15
             this.panel1.Size = new System.Drawing.Size(300, 346);
             this.panel1.TabIndex = 21;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(29, 205);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(65, 16);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "Số Lượng";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(129, 201);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(142, 20);
+            this.textBox6.TabIndex = 23;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -457,23 +476,6 @@ namespace DBMS_G15
             this.cbbCity.Name = "cbbCity";
             this.cbbCity.Size = new System.Drawing.Size(142, 21);
             this.cbbCity.TabIndex = 0;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(29, 205);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 16);
-            this.label9.TabIndex = 24;
-            this.label9.Text = "Số Lượng";
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(129, 201);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(142, 20);
-            this.textBox6.TabIndex = 23;
             // 
             // partnerSignUpForm
             // 

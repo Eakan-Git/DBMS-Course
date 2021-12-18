@@ -226,6 +226,7 @@ namespace DBMS_G15
             // 
             this.comfirmPassTb.Location = new System.Drawing.Point(142, 199);
             this.comfirmPassTb.Name = "comfirmPassTb";
+            this.comfirmPassTb.PasswordChar = '*';
             this.comfirmPassTb.Size = new System.Drawing.Size(142, 20);
             this.comfirmPassTb.TabIndex = 30;
             // 
@@ -243,6 +244,7 @@ namespace DBMS_G15
             // 
             this.textBox5.Location = new System.Drawing.Point(142, 144);
             this.textBox5.Name = "textBox5";
+            this.textBox5.PasswordChar = '*';
             this.textBox5.Size = new System.Drawing.Size(142, 20);
             this.textBox5.TabIndex = 28;
             // 

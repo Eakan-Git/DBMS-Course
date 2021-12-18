@@ -12,6 +12,7 @@ namespace DBMS_G15
 {
     public partial class HomeForm : Form
     {
+        string role;
         private Form currentChildForm;
         public HomeForm()
         {
@@ -20,6 +21,7 @@ namespace DBMS_G15
         public HomeForm(string username)
         {
             InitializeComponent();
+            role = username;
             greetingLabel.Text = "Xin chào, " + username.Trim();
             if(username == "customer")
             {
@@ -30,6 +32,11 @@ namespace DBMS_G15
                 btnStaff.Hide();
                 btnContract.Hide();
                 btnCustomer.Hide();
+            }
+            else if(username == "staff")
+            {
+                btnMoney.Hide();
+                btnStaff.Hide();
             }
         }
         private void OpenChildForm(Form childForm)
@@ -152,7 +159,14 @@ namespace DBMS_G15
             navMenu.Height = btnProfile.Height;
             navMenu.Top = btnProfile.Top;
             navMenu.BringToFront();
+<<<<<<< Updated upstream
             
+=======
+            if (role == "customer")
+                OpenChildForm(new CustomerProfile());
+            else if (role == "staff")
+                OpenChildForm(new StaffProfile());
+>>>>>>> Stashed changes
         }
     }
 }

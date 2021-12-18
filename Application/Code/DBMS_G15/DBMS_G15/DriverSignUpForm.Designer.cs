@@ -76,15 +76,25 @@ namespace DBMS_G15
             this.btnPanel.Controls.Add(this.signUpBtn);
             this.btnPanel.Controls.Add(this.backBtn);
             this.btnPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+<<<<<<< Updated upstream
             this.btnPanel.Location = new System.Drawing.Point(0, 402);
             this.btnPanel.Name = "btnPanel";
             this.btnPanel.Size = new System.Drawing.Size(900, 59);
+=======
+            this.btnPanel.Location = new System.Drawing.Point(0, 385);
+            this.btnPanel.Name = "btnPanel";
+            this.btnPanel.Size = new System.Drawing.Size(898, 59);
+>>>>>>> Stashed changes
             this.btnPanel.TabIndex = 3;
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+<<<<<<< Updated upstream
             this.btnCancel.Location = new System.Drawing.Point(519, 9);
+=======
+            this.btnCancel.Location = new System.Drawing.Point(517, 9);
+>>>>>>> Stashed changes
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(103, 40);
             this.btnCancel.TabIndex = 2;
@@ -97,7 +107,11 @@ namespace DBMS_G15
             this.signUpBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.signUpBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.signUpBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< Updated upstream
             this.signUpBtn.Location = new System.Drawing.Point(389, 9);
+=======
+            this.signUpBtn.Location = new System.Drawing.Point(388, 9);
+>>>>>>> Stashed changes
             this.signUpBtn.Name = "signUpBtn";
             this.signUpBtn.Size = new System.Drawing.Size(103, 40);
             this.signUpBtn.TabIndex = 1;
@@ -109,7 +123,11 @@ namespace DBMS_G15
             // 
             this.backBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.backBtn.ForeColor = System.Drawing.SystemColors.ControlText;
+<<<<<<< Updated upstream
             this.backBtn.Location = new System.Drawing.Point(262, 9);
+=======
+            this.backBtn.Location = new System.Drawing.Point(261, 9);
+>>>>>>> Stashed changes
             this.backBtn.Name = "backBtn";
             this.backBtn.Size = new System.Drawing.Size(103, 40);
             this.backBtn.TabIndex = 0;
@@ -123,9 +141,15 @@ namespace DBMS_G15
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+<<<<<<< Updated upstream
             this.panel1.Location = new System.Drawing.Point(0, 56);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(900, 346);
+=======
+            this.panel1.Location = new System.Drawing.Point(0, 39);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(898, 346);
+>>>>>>> Stashed changes
             this.panel1.TabIndex = 4;
             // 
             // panel5
@@ -141,7 +165,11 @@ namespace DBMS_G15
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(600, 0);
             this.panel5.Name = "panel5";
+<<<<<<< Updated upstream
             this.panel5.Size = new System.Drawing.Size(300, 346);
+=======
+            this.panel5.Size = new System.Drawing.Size(298, 346);
+>>>>>>> Stashed changes
             this.panel5.TabIndex = 20;
             // 
             // cbbArea
@@ -315,6 +343,10 @@ namespace DBMS_G15
             // 
             this.comfirmPassTb.Location = new System.Drawing.Point(142, 199);
             this.comfirmPassTb.Name = "comfirmPassTb";
+<<<<<<< Updated upstream
+=======
+            this.comfirmPassTb.PasswordChar = '*';
+>>>>>>> Stashed changes
             this.comfirmPassTb.Size = new System.Drawing.Size(142, 20);
             this.comfirmPassTb.TabIndex = 30;
             // 
@@ -332,6 +364,10 @@ namespace DBMS_G15
             // 
             this.textBox5.Location = new System.Drawing.Point(142, 144);
             this.textBox5.Name = "textBox5";
+<<<<<<< Updated upstream
+=======
+            this.textBox5.PasswordChar = '*';
+>>>>>>> Stashed changes
             this.textBox5.Size = new System.Drawing.Size(142, 20);
             this.textBox5.TabIndex = 28;
             // 
@@ -368,7 +404,11 @@ namespace DBMS_G15
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
+<<<<<<< Updated upstream
             this.panel2.Size = new System.Drawing.Size(900, 56);
+=======
+            this.panel2.Size = new System.Drawing.Size(898, 39);
+>>>>>>> Stashed changes
             this.panel2.TabIndex = 5;
             // 
             // label1
@@ -376,7 +416,11 @@ namespace DBMS_G15
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< Updated upstream
             this.label1.Location = new System.Drawing.Point(315, 14);
+=======
+            this.label1.Location = new System.Drawing.Point(313, 14);
+>>>>>>> Stashed changes
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(273, 29);
             this.label1.TabIndex = 0;
@@ -386,15 +430,24 @@ namespace DBMS_G15
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< Updated upstream
             this.ClientSize = new System.Drawing.Size(900, 461);
+=======
+            this.ClientSize = new System.Drawing.Size(898, 444);
+>>>>>>> Stashed changes
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+<<<<<<< Updated upstream
             this.MaximumSize = new System.Drawing.Size(916, 500);
             this.MinimumSize = new System.Drawing.Size(916, 500);
+=======
+            this.MaximumSize = new System.Drawing.Size(914, 494);
+            this.MinimumSize = new System.Drawing.Size(914, 480);
+>>>>>>> Stashed changes
             this.Name = "DriverSignUpForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tạo Tài Khoản";
