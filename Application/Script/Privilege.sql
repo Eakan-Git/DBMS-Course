@@ -7,7 +7,7 @@ exec sp_addLogin 'developer', 'developer'
 exec sp_addLogin 'nhanvien', 'nhanvien'
 exec sp_addLogin 'taixe', 'taixe'
 exec sp_addLogin 'khachhang', 'khachhang'
-
+exec sp_addLogin 'doitac', 'doitac'
 
 ---- USER
 -- Create User
@@ -15,7 +15,7 @@ create user dev for login developer
 create user nhanvien for login nhanvien
 create user taixe for login taixe
 create user khachhang for login khachhang
-
+create user doitac for login doitac
 
 ---- ROLE
 -- Create Role
@@ -23,13 +23,13 @@ exec sp_addrole 'Developer'
 exec sp_addrole 'Staff'
 exec sp_addrole 'Driver'
 exec sp_addrole 'Customer'
-
+exec sp_addrole 'Partner'
 -- Add role member
 exec sp_addrolemember 'Developer', 'dev'
 exec sp_addrolemember 'Staff', 'nhanvien'
 exec sp_addrolemember 'Driver', 'taixe'
 exec sp_addrolemember 'Customer', 'khachhang'
-
+exec sp_addrolemember 'Partner', 'doitac'
 
 ---- GRANT
 -- for Developer
@@ -63,6 +63,10 @@ grant select on SANPHAM		to Customer
 grant select on CHINHANH	to Customer
 grant select, update (HoTen, SoDienThoai, DiaChi, Email) on THONGTINCANHAN to Customer
 
+--for Partner
+grant select, update (TenDT, NguoiDaiDien, ThanhPho, Quan, SLDonHang, LoaiHang, DiaChiKinhDoanh, SoDienThoai) on DOITAC to Partner
+grant select, update (DiaChi) on CHINHANH to Partner
+grant select, update (SLTonKho) on CUNGCAP_SP to Partner
 
 ------------------------------------------------------------------------------
 ---- Test for khachhang

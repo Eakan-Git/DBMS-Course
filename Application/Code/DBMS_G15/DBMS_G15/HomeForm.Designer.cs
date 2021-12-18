@@ -37,6 +37,7 @@ namespace DBMS_G15
             this.userAvatar = new System.Windows.Forms.PictureBox();
             this.greetingLabel = new System.Windows.Forms.Label();
             this.menuPanel = new System.Windows.Forms.Panel();
+            this.btnMoney = new System.Windows.Forms.Button();
             this.btnContract = new System.Windows.Forms.Button();
             this.btnPartner = new System.Windows.Forms.Button();
             this.btnDriver = new System.Windows.Forms.Button();
@@ -56,7 +57,6 @@ namespace DBMS_G15
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnMoney = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPic)).BeginInit();
@@ -138,6 +138,7 @@ namespace DBMS_G15
             this.greetingLabel.Size = new System.Drawing.Size(244, 29);
             this.greetingLabel.TabIndex = 1;
             this.greetingLabel.Text = "Xin chào, username";
+            this.greetingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // menuPanel
             // 
@@ -160,6 +161,25 @@ namespace DBMS_G15
             this.menuPanel.Name = "menuPanel";
             this.menuPanel.Size = new System.Drawing.Size(265, 583);
             this.menuPanel.TabIndex = 2;
+            // 
+            // btnMoney
+            // 
+            this.btnMoney.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMoney.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMoney.FlatAppearance.BorderSize = 0;
+            this.btnMoney.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMoney.Image = ((System.Drawing.Image)(resources.GetObject("btnMoney.Image")));
+            this.btnMoney.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnMoney.Location = new System.Drawing.Point(0, 560);
+            this.btnMoney.Name = "btnMoney";
+            this.btnMoney.Size = new System.Drawing.Size(246, 70);
+            this.btnMoney.TabIndex = 19;
+            this.btnMoney.Text = "  Thu Nhập";
+            this.btnMoney.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMoney.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnMoney.UseVisualStyleBackColor = true;
+            this.btnMoney.Click += new System.EventHandler(this.btnMoney_Click);
             // 
             // btnContract
             // 
@@ -445,25 +465,6 @@ namespace DBMS_G15
             this.label3.Size = new System.Drawing.Size(84, 29);
             this.label3.TabIndex = 0;
             this.label3.Text = "MSSV";
-            // 
-            // btnMoney
-            // 
-            this.btnMoney.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMoney.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnMoney.FlatAppearance.BorderSize = 0;
-            this.btnMoney.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMoney.Image = ((System.Drawing.Image)(resources.GetObject("btnMoney.Image")));
-            this.btnMoney.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnMoney.Location = new System.Drawing.Point(0, 560);
-            this.btnMoney.Name = "btnMoney";
-            this.btnMoney.Size = new System.Drawing.Size(246, 70);
-            this.btnMoney.TabIndex = 19;
-            this.btnMoney.Text = "  Thu Nhập";
-            this.btnMoney.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMoney.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnMoney.UseVisualStyleBackColor = true;
-            this.btnMoney.Click += new System.EventHandler(this.btnMoney_Click);
             // 
             // HomeForm
             // 

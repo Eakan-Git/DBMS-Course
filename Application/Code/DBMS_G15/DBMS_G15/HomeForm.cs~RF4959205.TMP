@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,7 +29,6 @@ namespace DBMS_G15
                 btnDriver.Hide();
                 btnStaff.Hide();
                 btnContract.Hide();
-                btnCustomer.Hide();
             }
         }
         private void OpenChildForm(Form childForm)
