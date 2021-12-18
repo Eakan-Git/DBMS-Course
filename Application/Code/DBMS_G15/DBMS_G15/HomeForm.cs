@@ -118,7 +118,8 @@ namespace DBMS_G15
         private void logoPic_Click(object sender, EventArgs e)
         {
             navMenu.SendToBack();
-            currentChildForm.Close();
+            if(currentChildForm != null)
+                currentChildForm.Close();
         }
 
         private void logoLabel_Click(object sender, EventArgs e)
