@@ -26,7 +26,11 @@ namespace DBMS_G15
         {
             if(usernameTxt.Text == "" || passTxt.Text == "")
             {
-                MessageBox.Show("Vui lòng nhập thông tin đăng nhập.");
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin đăng nhập.");
+            }
+            else if(usernameTxt.Text != "customer" && usernameTxt.Text != "driver" && usernameTxt.Text != "developer" && usernameTxt.Text != "staff")
+            {
+                MessageBox.Show("Sai thông tin đăng nhập.");
             }
             else
             {
