@@ -1,7 +1,7 @@
 ﻿
 namespace DBMS_G15
 {
-    partial class SignUpForm
+    partial class DriverSignUpForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace DBMS_G15
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignUpForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DriverSignUpForm));
             this.btnPanel = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.signUpBtn = new System.Windows.Forms.Button();
@@ -60,7 +60,6 @@ namespace DBMS_G15
             this.passwordLabel = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.usernameLabel = new System.Windows.Forms.Label();
-            this.checkBoxDriver = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.btnPanel.SuspendLayout();
@@ -306,7 +305,6 @@ namespace DBMS_G15
             this.panel3.Controls.Add(this.passwordLabel);
             this.panel3.Controls.Add(this.textBox4);
             this.panel3.Controls.Add(this.usernameLabel);
-            this.panel3.Controls.Add(this.checkBoxDriver);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
@@ -364,18 +362,6 @@ namespace DBMS_G15
             this.usernameLabel.TabIndex = 25;
             this.usernameLabel.Text = "Tên Đăng Nhập";
             // 
-            // checkBoxDriver
-            // 
-            this.checkBoxDriver.AutoSize = true;
-            this.checkBoxDriver.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxDriver.Location = new System.Drawing.Point(142, 237);
-            this.checkBoxDriver.Name = "checkBoxDriver";
-            this.checkBoxDriver.Size = new System.Drawing.Size(135, 20);
-            this.checkBoxDriver.TabIndex = 24;
-            this.checkBoxDriver.Text = "Đăng ký làm tài xế";
-            this.checkBoxDriver.UseVisualStyleBackColor = true;
-            this.checkBoxDriver.CheckedChanged += new System.EventHandler(this.checkBoxDriver_CheckedChanged);
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.label1);
@@ -392,11 +378,11 @@ namespace DBMS_G15
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(315, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(270, 29);
+            this.label1.Size = new System.Drawing.Size(273, 29);
             this.label1.TabIndex = 0;
-            this.label1.Text = "ĐĂNG KÝ TÀI KHOẢN";
+            this.label1.Text = "ĐĂNG KÝ LÀM TÀI XẾ";
             // 
-            // SignUpForm
+            // DriverSignUpForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -409,7 +395,8 @@ namespace DBMS_G15
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(916, 500);
             this.MinimumSize = new System.Drawing.Size(916, 500);
-            this.Name = "SignUpForm";
+            this.Name = "DriverSignUpForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tạo Tài Khoản";
             this.Load += new System.EventHandler(this.SignUpForm_Load);
             this.btnPanel.ResumeLayout(false);
@@ -460,6 +447,5 @@ namespace DBMS_G15
         private System.Windows.Forms.Label passwordLabel;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label usernameLabel;
-        private System.Windows.Forms.CheckBox checkBoxDriver;
     }
 }

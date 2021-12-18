@@ -39,8 +39,9 @@ namespace DBMS_G15
             this.label2 = new System.Windows.Forms.Label();
             this.panelLoginBtn = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.signUpBtn = new System.Windows.Forms.Button();
             this.loginBtn = new System.Windows.Forms.Button();
+            this.cbbSignUp = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelLoginBtn.SuspendLayout();
@@ -122,8 +123,9 @@ namespace DBMS_G15
             // panelLoginBtn
             // 
             this.panelLoginBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panelLoginBtn.Controls.Add(this.label4);
+            this.panelLoginBtn.Controls.Add(this.cbbSignUp);
             this.panelLoginBtn.Controls.Add(this.btnCancel);
-            this.panelLoginBtn.Controls.Add(this.signUpBtn);
             this.panelLoginBtn.Controls.Add(this.loginBtn);
             this.panelLoginBtn.Location = new System.Drawing.Point(0, 182);
             this.panelLoginBtn.Name = "panelLoginBtn";
@@ -133,7 +135,7 @@ namespace DBMS_G15
             // btnCancel
             // 
             this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnCancel.Location = new System.Drawing.Point(300, 9);
+            this.btnCancel.Location = new System.Drawing.Point(303, 9);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(103, 40);
             this.btnCancel.TabIndex = 2;
@@ -141,27 +143,39 @@ namespace DBMS_G15
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // signUpBtn
-            // 
-            this.signUpBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.signUpBtn.Location = new System.Drawing.Point(30, 9);
-            this.signUpBtn.Name = "signUpBtn";
-            this.signUpBtn.Size = new System.Drawing.Size(103, 40);
-            this.signUpBtn.TabIndex = 1;
-            this.signUpBtn.Text = "Đăng Ký";
-            this.signUpBtn.UseVisualStyleBackColor = true;
-            this.signUpBtn.Click += new System.EventHandler(this.signUpBtn_Click);
-            // 
             // loginBtn
             // 
             this.loginBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.loginBtn.Location = new System.Drawing.Point(165, 9);
+            this.loginBtn.Location = new System.Drawing.Point(166, 9);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(103, 40);
             this.loginBtn.TabIndex = 0;
             this.loginBtn.Text = "Đăng Nhập!";
             this.loginBtn.UseVisualStyleBackColor = true;
             this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
+            // 
+            // cbbSignUp
+            // 
+            this.cbbSignUp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbSignUp.FormattingEnabled = true;
+            this.cbbSignUp.Items.AddRange(new object[] {
+            "Khách Hàng",
+            "Tài Xế",
+            "Đối Tác"});
+            this.cbbSignUp.Location = new System.Drawing.Point(29, 26);
+            this.cbbSignUp.Name = "cbbSignUp";
+            this.cbbSignUp.Size = new System.Drawing.Size(103, 21);
+            this.cbbSignUp.TabIndex = 3;
+            this.cbbSignUp.SelectionChangeCommitted += new System.EventHandler(this.cbbSignUp_SelectionChangeCommitted);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(58, 10);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 13);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Đăng Ký";
             // 
             // LoginForm
             // 
@@ -183,6 +197,7 @@ namespace DBMS_G15
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panelLoginBtn.ResumeLayout(false);
+            this.panelLoginBtn.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -198,8 +213,9 @@ namespace DBMS_G15
         private System.Windows.Forms.TextBox usernameTxt;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button signUpBtn;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cbbSignUp;
     }
 }
 
