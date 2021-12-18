@@ -1,11 +1,13 @@
 create database DBMS_ThucHanh_Nhom15
 go
+use DBMS_ThucHanh_Nhom15
+go
 ------------------------------------------------------------------
 create table THONGTINCANHAN
 (
-	ID int primary key,
+	ID int identity(1,1) primary key,
 	HoTen nvarchar(50),
-	SoDienThoai nvarchar(15),
+	SoDienThoai varchar(15),
 	DiaChi nvarchar(150),
 	Email varchar(50)
 )
@@ -91,7 +93,7 @@ create table CHITIETDONHANG
 (
 	MaDH nvarchar(10),
 	MaSP nvarchar(10),
-	SoLuong bigint,
+	SoLuong int,
 	ThanhTien bigint
 	constraint PK_CHITIETDONHANG primary key (MaDH, MaSP)
 )
