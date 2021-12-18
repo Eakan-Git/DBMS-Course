@@ -33,6 +33,10 @@ namespace DBMS_G15
                 btnContract.Hide();
                 btnCustomer.Hide();
             }
+            else if(username == "staff")
+            {
+                btnMoney.Hide();
+            }
         }
         private void OpenChildForm(Form childForm)
         {

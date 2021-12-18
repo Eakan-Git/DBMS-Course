@@ -105,14 +105,21 @@ namespace DBMS_G15
         }
         private void seacrhBtn_Click(object sender, EventArgs e)
         {
-            command = connection.CreateCommand();
-            command.CommandText = "select * from SANPHAM where MaSp = @MaSP";
-            command.CommandType = CommandType.Text;
-            command.Parameters.AddWithValue("@MaSP", searchBox.Text);
-            adapter.SelectCommand = command;
-            tableProduct.Clear();
-            adapter.Fill(tableProduct);
-            productDGV.DataSource = tableProduct;
+            if (searchBox.Text != placeholder && searchBox.Text != "")
+            {
+                command = connection.CreateCommand();
+                command.CommandText = "select * from SANPHAM where MaSp = @MaSP";
+                command.CommandType = CommandType.Text;
+                command.Parameters.AddWithValue("@MaSP", searchBox.Text);
+                adapter.SelectCommand = command;
+                tableProduct.Clear();
+                adapter.Fill(tableProduct);
+                productDGV.DataSource = tableProduct;
+            }
+            else
+            {
+                MessageBox.Show("Hãy nhập mã sản phẩm.");
+            }
         }
 
         private void searchBox_TextChanged(object sender, EventArgs e)
@@ -136,10 +143,9 @@ namespace DBMS_G15
                     adapter.SelectCommand = command;
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
+                    cbbDepartment.DataSource = dt;
                     cbbDepartment.DisplayMember = "MaCN";
                     cbbDepartment.ValueMember = "MaCN";
-                    cbbDepartment.DataSource = dt;
-
                     cbbDepartment.SelectedItem = null;
                 }
                 catch (Exception ex)
@@ -152,17 +158,34 @@ namespace DBMS_G15
         {
             if(key.KeyChar == (char)13)
             {
-                command = connection.CreateCommand();
-                command.CommandText = "select * from SANPHAM where MaSp = @MaSP";
-                command.CommandType = CommandType.Text;
-                command.Parameters.AddWithValue("@MaSP", searchBox.Text);
-                adapter.SelectCommand = command;
-                tableProduct.Clear();
-                adapter.Fill(tableProduct);
-                productDGV.DataSource = tableProduct;
+                if(searchBox.Text != placeholder && searchBox.Text != "")
+                {
+                    command = connection.CreateCommand();
+                    command.CommandText = "select * from SANPHAM where MaSp = @MaSP";
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.AddWithValue("@MaSP", searchBox.Text);
+                    adapter.SelectCommand = command;
+                    tableProduct.Clear();
+                    adapter.Fill(tableProduct);
+                    productDGV.DataSource = tableProduct;
+                }
+                else
+                {
+                    MessageBox.Show("Hãy nhập mã sản phẩm.");
+                }
             }
         }
-
+        private void loadAfterSave()
+        {
+            command = connection.CreateCommand();
+            command.CommandText = "select * from SANPHAM where MaSp = @MaSP";
+            command.CommandType = CommandType.Text;
+            command.Parameters.AddWithValue("@MaSP", tbID.Text);
+            adapter.SelectCommand = command;
+            tableProduct.Clear();
+            adapter.Fill(tableProduct);
+            productDGV.DataSource = tableProduct;
+        }
         private void btnDelete_Click(object sender, EventArgs e)
         {
             using (SqlConnection connection = new SqlConnection(@"Data Source=(local);Initial Catalog=DBMS_ThucHanh_Nhom15;Integrated Security=True"))
@@ -191,6 +214,44 @@ namespace DBMS_G15
                     }
                 }
                 catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(@"Data Source=(local);Initial Catalog=DBMS_ThucHanh_Nhom15;Integrated Security=True"))
+            {
+                try
+                {
+                    connection.Open();
+                    SqlCommand checkProductExisted = new SqlCommand("select * from SANPHAM where MaSP = @MaSP", connection);
+                    checkProductExisted.Parameters.AddWithValue("@MaSP", tbID.Text);
+                    SqlDataReader reader = checkProductExisted.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        reader.Close();
+                        DialogResult confirm = MessageBox.Show("Xác nhận cập nhật sản phẩm này?", "Cập Nhật Sản Phẩm", MessageBoxButtons.YesNo);
+                        if (confirm == DialogResult.Yes)
+                        {
+                            SqlCommand updateCommand = new SqlCommand("update SANPHAM set TenSP = @TenSP, Gia = @Gia, MoTa = @MoTa where MaSP = @MaSP", connection);
+                            updateCommand.Parameters.AddWithValue("@MaSP", tbID.Text);
+                            updateCommand.Parameters.AddWithValue("@TenSP", tbName.Text);
+                            updateCommand.Parameters.AddWithValue("@Gia", tbPrice.Text);
+                            updateCommand.Parameters.AddWithValue("@MoTa", tbDescription.Text);
+                            updateCommand.ExecuteNonQuery();
+                            //autoLoadProductData();
+                            loadAfterSave();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sản phẩm không tồn tại.");
+                    }
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
