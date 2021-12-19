@@ -18,6 +18,7 @@ namespace DemoLoi
         SqlDataAdapter adapter = new SqlDataAdapter();
         DataTable table = new DataTable();
         DataTable table2 = new DataTable();
+        DataTable tableProduct = new DataTable();
         string str = @"Data Source=(local);Initial Catalog=DBMS_ThucHanh_Nhom15;Integrated Security=True";
         public Form1()
         {
@@ -108,6 +109,7 @@ namespace DemoLoi
             table.Clear();
             adapter.Fill(table2);
             dataGridView1.DataSource = table;
+            LoadNV();
         }
 
         private void KHChayLoi_Click(object sender, EventArgs e)
@@ -120,6 +122,7 @@ namespace DemoLoi
             table2.Clear();
             adapter.Fill(table2);
             dataGridView1.DataSource = table2;
+            LoadKH();
         }
 
         private void KHSuaLoi_Click(object sender, EventArgs e)
