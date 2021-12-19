@@ -15,84 +15,77 @@ create table THONGTINCANHAN
 create table NHANVIEN
 (
 	ID int foreign key references THONGTINCANHAN(ID),
-	MaNV nvarchar(10)
-	constraint PK_NHANVIEN primary key (MaNV)
+	MaNV int identity(1,1) primary key 
 )
 
 create table KHACHHANG
 (
 	ID int foreign key references THONGTINCANHAN(ID),
-	MaKH nvarchar(10)
-	constraint PK_KHACHHANG primary key (MaKH)
+	MaKH int identity(1,1) primary key 
 )
 
 create table TAIXE
 (
 	ID int foreign key references THONGTINCANHAN(ID),
-	MaTX nvarchar(10),
-	MaKV nvarchar(10),
+	MaTX int identity(1,1) primary key,
+	MaKV int,
 	BienSoXe nvarchar(15),
 	CMND nvarchar(15),
 	SoTaiKhoan nvarchar(15),
 	PhiThueChan bigint 
-	constraint PK_TAIXE primary key (MaTX)
 )
 
 create table DONHANG
 (
-	MaDH nvarchar(10),
-	MaKH nvarchar(10),
+	MaDH int identity(1,1) primary key,
+	MaKH int,
 	NgayDat date,
 	NgayGiao date,
 	TinhTrang nvarchar(20),
 	PhiVanChuyen bigint,
 	TongTien bigint,
-	MaKV nvarchar(10)
-	constraint PK_DONHANG primary key (MaDH)
+	MaKV int
 )
 
 create table THUNHAPTAIXE
 (
-	MaTX nvarchar(10),
-	MaDH nvarchar(10)
+	MaTX int,
+	MaDH int
 	constraint PK_THUNHAPTAIXE primary key (MaTX, MaDH)
 )
 
 create table KHUVUC
 (
-	MaKV nvarchar(10),
+	MaKV int identity(1,1) primary key,
 	TenKV nvarchar(50)
-	constraint PK_KHUVUC primary key (MaKV)
 )
 
 create table CHINHANH
 (
-	MaCN nvarchar(10),
+	MaCN int identity(1,1) primary key,
 	DiaChi nvarchar(150)
-	constraint PK_CHINHANH primary key (MaCN)
 )
 
 create table SANPHAM
 (
-	MaSP nvarchar(10),
+	MaSP int identity(1,1) primary key,
 	TenSP nvarchar(150), 
 	Gia bigint,
 	MoTa nvarchar(200)
-	constraint PK_SANPHAM primary key (MaSP)
 )
 
 create table CUNGCAP_SP
 (
-	MaCN nvarchar(10),
-	MaSP nvarchar(10),
+	MaCN int,
+	MaSP int,
 	SLTonKho int
 	constraint PK_CUNGCAPSP primary key (MaCN, MaSP)
 )
 
 create table CHITIETDONHANG
 (
-	MaDH nvarchar(10),
-	MaSP nvarchar(10),
+	MaDH int,
+	MaSP int,
 	SoLuong int,
 	ThanhTien bigint
 	constraint PK_CHITIETDONHANG primary key (MaDH, MaSP)
@@ -100,7 +93,7 @@ create table CHITIETDONHANG
 
 create table DOITAC
 (
-	MaDT nvarchar(10),
+	MaDT int identity(1,1) primary key,
 	TenDT nvarchar(150),
 	NguoiDaiDien nvarchar(100),
 	ThanhPho nvarchar(60),
@@ -110,14 +103,13 @@ create table DOITAC
 	LoaiHang nvarchar(50),
 	DiaChiKinhDoanh nvarchar(150),
 	SoDienThoai nvarchar(12)
-	constraint PK_DOITAC primary key (MaDT)
 )
 
 create table HOPDONG
 (
-	MaHD nvarchar(10),
-	MaDT nvarchar(10),
-	MaCN nvarchar(10),
+	MaHD int identity(1,1) primary key,
+	MaDT int,
+	MaCN int,
 	MaSoThue nvarchar(20),
 	NguoiDaiDien nvarchar(100),
 	SoChiNhanhDK int,
@@ -125,7 +117,6 @@ create table HOPDONG
 	NgayKT date,
 	KichHoat int,
 	PhiHoaHong bigint
-	constraint PK_HOPDONG primary key (MaHD)
 )
 
 alter table TAIXE add
@@ -150,3 +141,4 @@ alter table CUNGCAP_SP add
 alter table HOPDONG add
 	constraint FK_HOPDONG_DOITAC	foreign key (MaDT) references DOITAC (MaDT),
 	constraint FK_HOPDONG_CHINHANH	foreign key (MaCN) references CHINHANH (MaCN)
+	
