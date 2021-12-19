@@ -2,7 +2,7 @@
 go
 ----------------------------------------------
 -- Transaction 1:  Nhân viên giảm giá cho các sản phẩm được cung cấp bởi chi nhánh A
-create procedure NV_giamgia_SP
+alter procedure NV_giamgia_SP
 	@MaCN nvarchar(10),
 	@GiaGiam int
 as
@@ -41,11 +41,11 @@ begin tran
 go
 
 -- Transaction 2: Khách hàng xem các sản phẩm được cung cấp bởi chi nhánh A 
-create procedure XemSP_CuaCN
+alter procedure XemSP_CuaCN
 	@MaCN nvarchar(10)
 as
 begin tran
-	SET TRAN ISOLATION LEVEL READ UNCOMMITTED		
+	SET TRAN ISOLATION LEVEL READ COMMITTED		-- sửa ở đây
 	if not exists (select * from CHINHANH where @MaCN = MaCN)
 	begin
 		raiserror (N'Chi nhánh không tồn tại', 10, 1);
