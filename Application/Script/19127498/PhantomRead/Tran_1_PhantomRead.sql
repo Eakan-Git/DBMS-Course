@@ -1,0 +1,1 @@
+﻿exec Xem_DanhSachHD @NgayBD = '2020-08-05'

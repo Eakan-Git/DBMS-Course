@@ -2,10 +2,11 @@
 go
 -------------------------------------------------------------
 --Transaction 1: Nhân viên A xem danh sách các hợp đồng có ngày bắt đầu trễ hơn 05/08/2020. (n hợp đồng)
-create procedure Xem_DanhSachHD
+alter procedure Xem_DanhSachHD
 	@NgayBD date
 as
 begin tran 
+	SET TRANSACTION ISOLATION LEVEL SERIALIZABLE
     if not exists (select * from HOPDONG where NgayBD > @NgayBD)
     begin
         raiserror (N' Không tồn tại hợp đồng có ngày bắt đầu trễ hơn ngày này.', 10, 1);
@@ -24,8 +25,8 @@ begin tran
 	end
 go
 
---Transaction 2: Nhân viên B thêm một hợp đồng có ngày bắt đầu là 12/04/2021
-create procedure NV_themHD
+--Transaction 2: Nhân viên B thêm một hợp đồng có ngày bắt đầu là 06/08/2021
+alter procedure NV_themHD
     @MaDT nvarchar(10),
 	@MaSoThue nvarchar(20),
 	@NguoiDaiDien nvarchar(100),
@@ -37,7 +38,7 @@ create procedure NV_themHD
 	@NgayBDTieuChuan date
 as
 begin tran
-	SET TRANSACTION ISOLATION LEVEL REPEATABLE READ
+	-- SET TRANSACTION ISOLATION LEVEL REPEATABLE READ
 
 	if not exists (select * from DOITAC where DOITAC.MaDT = @MaDT)
 	begin
