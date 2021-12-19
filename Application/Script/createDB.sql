@@ -63,7 +63,8 @@ create table KHUVUC
 create table CHINHANH
 (
 	MaCN int identity(1,1) primary key,
-	DiaChi nvarchar(150)
+	DiaChi nvarchar(150),
+	MaHD int
 )
 
 create table SANPHAM
@@ -109,7 +110,6 @@ create table HOPDONG
 (
 	MaHD int identity(1,1) primary key,
 	MaDT int,
-	MaCN int,
 	MaSoThue nvarchar(20),
 	NguoiDaiDien nvarchar(100),
 	SoChiNhanhDK int,
@@ -139,6 +139,7 @@ alter table CUNGCAP_SP add
 	constraint FK_CUNGCAPSP_SANPHAM		foreign key (MaSP) references SANPHAM (MaSP)
 
 alter table HOPDONG add
-	constraint FK_HOPDONG_DOITAC	foreign key (MaDT) references DOITAC (MaDT),
-	constraint FK_HOPDONG_CHINHANH	foreign key (MaCN) references CHINHANH (MaCN)
-	
+	constraint FK_HOPDONG_DOITAC	foreign key (MaDT) references DOITAC (MaDT)
+
+alter table CHINHANH add	
+	constraint FK_CHINHANH_HOPDONG	foreign key (MaHD) references HOPDONG (MaHD)
