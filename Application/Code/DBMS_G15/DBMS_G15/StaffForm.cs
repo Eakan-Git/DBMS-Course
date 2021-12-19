@@ -41,7 +41,7 @@ namespace DBMS_G15
             try
             {
                 command = connection.CreateCommand();
-                command.CommandText = "select nv.MaNV,tt.HoTen,tt.SoDienThoai,tt.DiaChi,tt.Email from NHANVIEN nv, THONGTINCANHAN tt where nv.ID=tt.ID Order by nv.MaNV,tt.HoTen,tt.SoDienThoai,tt.DiaChi,tt.Email offset @offset rows fetch next @rows rows only  ";
+                command.CommandText = "Exec ViewStaffListWith_n_Rows @offset ,@rows";
                 command.CommandType = CommandType.Text;
                 command.Parameters.AddWithValue("@offset", offset);
                 command.Parameters.AddWithValue("@rows", maxRowsPerPage);
@@ -73,14 +73,27 @@ namespace DBMS_G15
                 try
                 {
                     connection.Open();
-                    SqlCommand DeleteNVCommand = new SqlCommand("Delete NHANVIEN where MANV=@MANV", connection);
-                    DeleteNVCommand.Parameters.AddWithValue("@MANV", tbID.Text);
-                    DeleteNVCommand.ExecuteNonQuery();
-                    SqlCommand DeleteTTCNCommand = new SqlCommand("Delete THONGTINCANHAN where SoDienThoai = @SDT", connection);
-                    DeleteTTCNCommand.Parameters.AddWithValue("@SDT", tbPhone.Text);
-                    DeleteTTCNCommand.ExecuteNonQuery();
-                    autoLoadStaffData();
-                    MessageBox.Show("Đã xóa Nhân viên!");
+                    SqlCommand checkStaffExisted = new SqlCommand("select * from NHANVIEN where MaNV = @MaNV", connection);
+                    checkStaffExisted.Parameters.AddWithValue("@MaNV", tbID.Text);
+                    SqlDataReader reader = checkStaffExisted.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        reader.Close();
+                        DialogResult confirm = MessageBox.Show("Xác nhận xóa sản phẩm này?", "Xóa Sản Phẩm", MessageBoxButtons.YesNo);
+                        if (confirm == DialogResult.Yes)
+                        {
+                            SqlCommand DeleteNVCommand = new SqlCommand("Exec deleteNV @MANV, @SDT", connection);
+                            DeleteNVCommand.Parameters.AddWithValue("@MANV", tbID.Text);
+                            DeleteNVCommand.Parameters.AddWithValue("@SDT", tbPhone.Text);
+                            DeleteNVCommand.ExecuteNonQuery();
+                            autoLoadStaffData();
+                            MessageBox.Show("Đã xóa Nhân viên!");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sản phẩm không tồn tại.");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -95,15 +108,22 @@ namespace DBMS_G15
             {
                 try
                 {
-                    connection.Open();
-                    SqlCommand InsertCommand = new SqlCommand("EXEC InsertNV @Hoten, @SDT,@DiaChi,@Email", connection);
-                    InsertCommand.Parameters.AddWithValue("@HoTen", tbName.Text);
-                    InsertCommand.Parameters.AddWithValue("@SDT", tbPhone.Text);
-                    InsertCommand.Parameters.AddWithValue("@DiaChi", tbAddress.Text);
-                    InsertCommand.Parameters.AddWithValue("@Email", tbEmail.Text);
-                    InsertCommand.ExecuteNonQuery();
-                    autoLoadStaffData();  
-                    MessageBox.Show("Nhân viên được thêm thành công.");
+                    if (tbName.Text == "" || tbPhone.Text == "" || tbAddress.Text == "" || tbEmail.Text == "")
+                    {
+                        MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
+                    }
+                    else
+                    {
+                        connection.Open();
+                        SqlCommand InsertCommand = new SqlCommand("EXEC InsertNV @HoTen, @SDT,@DiaChi,@Email", connection);
+                        InsertCommand.Parameters.AddWithValue("@HoTen", tbName.Text);
+                        InsertCommand.Parameters.AddWithValue("@SDT", tbPhone.Text);
+                        InsertCommand.Parameters.AddWithValue("@DiaChi", tbAddress.Text);
+                        InsertCommand.Parameters.AddWithValue("@Email", tbEmail.Text);
+                        InsertCommand.ExecuteNonQuery();
+                        autoLoadStaffData();
+                        MessageBox.Show("Nhân viên được thêm thành công.");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -117,7 +137,7 @@ namespace DBMS_G15
             if (searchBox.Text != placeholder && searchBox.Text != "")
             {
                 command = connection.CreateCommand();
-                command.CommandText = "select NV.MANV, TT.HOTEN, TT.SoDienThoai,TT.DIACHI,TT.EMAIL from NHANVIEN NV, THONGTINCANHAN TT where TT.SoDienThoai = @SDT and NV.ID = TT.ID";
+                command.CommandText = "Exec lookupNV_SDT @SDT";
                 command.CommandType = CommandType.Text;
                 command.Parameters.AddWithValue("@SDT", searchBox.Text);
                 adapter.SelectCommand = command;
@@ -145,7 +165,7 @@ namespace DBMS_G15
             if (e.KeyChar == (char)13)
             {
                 command = connection.CreateCommand();
-                command.CommandText = "select NV.MANV, TT.HOTEN, TT.SoDienThoai,TT.DIACHI,TT.EMAIL from NHANVIEN NV, THONGTINCANHAN TT where TT.SoDienThoai = @SDT and NV.ID = TT.ID";
+                command.CommandText = "Exec lookupNV_SDT @SDT";
                 command.CommandType = CommandType.Text;
                 command.Parameters.AddWithValue("@SDT", searchBox.Text);
                 adapter.SelectCommand = command;
@@ -174,16 +194,23 @@ namespace DBMS_G15
             {
                 try
                 {
-                    connection.Open();
-                    SqlCommand SaveCommand = new SqlCommand("UPDATE THONGTINCANHAN set HoTen=@HoTen, SoDienThoai=@SDT, DiaChi=@DiaChi, Email=@Email where ID=(select NV.ID from NHANVIEN NV where NV.MaNV=@MaNV)", connection);
-                    SaveCommand.Parameters.AddWithValue("@MaNV", tbID.Text);
-                    SaveCommand.Parameters.AddWithValue("@HoTen", tbName.Text);
-                    SaveCommand.Parameters.AddWithValue("@SDT", tbPhone.Text);
-                    SaveCommand.Parameters.AddWithValue("@DiaChi", tbAddress.Text);
-                    SaveCommand.Parameters.AddWithValue("@Email", tbEmail.Text);
-                    SaveCommand.ExecuteNonQuery();
-                    autoLoadStaffData();
-                    MessageBox.Show("Chỉnh sửa thông tin thành công.");
+                    if (tbName.Text == "" || tbPhone.Text == "" || tbAddress.Text == "" || tbEmail.Text == "")
+                    {
+                        MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
+                    }
+                    else
+                    {
+                        connection.Open();
+                        SqlCommand SaveCommand = new SqlCommand("exec updateNV @MaNV,@HoTen,@SDT,@DiaChi,@Email", connection);
+                        SaveCommand.Parameters.AddWithValue("@MaNV", tbID.Text);
+                        SaveCommand.Parameters.AddWithValue("@HoTen", tbName.Text);
+                        SaveCommand.Parameters.AddWithValue("@SDT", tbPhone.Text);
+                        SaveCommand.Parameters.AddWithValue("@DiaChi", tbAddress.Text);
+                        SaveCommand.Parameters.AddWithValue("@Email", tbEmail.Text);
+                        SaveCommand.ExecuteNonQuery();
+                        autoLoadStaffData();
+                        MessageBox.Show("Chỉnh sửa thông tin thành công.");
+                    }
                 }
                 catch (Exception ex)
                 {
