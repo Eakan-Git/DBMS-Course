@@ -43,6 +43,8 @@ namespace DBMS_G15
             this.btnPrevious = new System.Windows.Forms.Button();
             this.productDGV = new System.Windows.Forms.DataGridView();
             this.panelDetails = new System.Windows.Forms.Panel();
+            this.checkBoxAdd = new System.Windows.Forms.CheckBox();
+            this.cbbDepartment = new System.Windows.Forms.ComboBox();
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.priceLabel = new System.Windows.Forms.Label();
             this.departmentIDLabel = new System.Windows.Forms.Label();
@@ -53,7 +55,6 @@ namespace DBMS_G15
             this.tbPrice = new System.Windows.Forms.TextBox();
             this.tbName = new System.Windows.Forms.TextBox();
             this.tbID = new System.Windows.Forms.TextBox();
-            this.cbbDepartment = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.panelNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productDGV)).BeginInit();
@@ -109,6 +110,7 @@ namespace DBMS_G15
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnAdd
             // 
@@ -127,6 +129,7 @@ namespace DBMS_G15
             this.btnAdd.Text = "Thêm";
             this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // panelNavigator
             // 
@@ -199,7 +202,7 @@ namespace DBMS_G15
             this.productDGV.AllowUserToResizeColumns = false;
             this.productDGV.AllowUserToResizeRows = false;
             this.productDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.productDGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            this.productDGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.productDGV.BackgroundColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -233,6 +236,7 @@ namespace DBMS_G15
             // panelDetails
             // 
             this.panelDetails.BackColor = System.Drawing.Color.Gainsboro;
+            this.panelDetails.Controls.Add(this.checkBoxAdd);
             this.panelDetails.Controls.Add(this.cbbDepartment);
             this.panelDetails.Controls.Add(this.descriptionLabel);
             this.panelDetails.Controls.Add(this.priceLabel);
@@ -249,6 +253,27 @@ namespace DBMS_G15
             this.panelDetails.Name = "panelDetails";
             this.panelDetails.Size = new System.Drawing.Size(736, 190);
             this.panelDetails.TabIndex = 10;
+            // 
+            // checkBoxAdd
+            // 
+            this.checkBoxAdd.AutoSize = true;
+            this.checkBoxAdd.Location = new System.Drawing.Point(89, 145);
+            this.checkBoxAdd.Name = "checkBoxAdd";
+            this.checkBoxAdd.Size = new System.Drawing.Size(125, 17);
+            this.checkBoxAdd.TabIndex = 12;
+            this.checkBoxAdd.Text = "Thêm Sản Phẩm Mới";
+            this.checkBoxAdd.UseVisualStyleBackColor = true;
+            this.checkBoxAdd.CheckedChanged += new System.EventHandler(this.checkBoxAdd_CheckedChanged);
+            // 
+            // cbbDepartment
+            // 
+            this.cbbDepartment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.cbbDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbDepartment.FormattingEnabled = true;
+            this.cbbDepartment.Location = new System.Drawing.Point(287, 119);
+            this.cbbDepartment.Name = "cbbDepartment";
+            this.cbbDepartment.Size = new System.Drawing.Size(161, 21);
+            this.cbbDepartment.TabIndex = 11;
             // 
             // descriptionLabel
             // 
@@ -341,16 +366,6 @@ namespace DBMS_G15
             this.tbID.Size = new System.Drawing.Size(161, 20);
             this.tbID.TabIndex = 0;
             // 
-            // cbbDepartment
-            // 
-            this.cbbDepartment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.cbbDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbbDepartment.FormattingEnabled = true;
-            this.cbbDepartment.Location = new System.Drawing.Point(287, 119);
-            this.cbbDepartment.Name = "cbbDepartment";
-            this.cbbDepartment.Size = new System.Drawing.Size(161, 21);
-            this.cbbDepartment.TabIndex = 11;
-            // 
             // productForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -399,5 +414,6 @@ namespace DBMS_G15
         private System.Windows.Forms.TextBox tbID;
         private System.Windows.Forms.Button searchBtn;
         private System.Windows.Forms.ComboBox cbbDepartment;
+        private System.Windows.Forms.CheckBox checkBoxAdd;
     }
 }
