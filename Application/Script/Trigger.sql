@@ -2,7 +2,7 @@ use DBMS_ThucHanh_Nhom15
 go
 ----------------------------------------------------------------------------------------
 ---- 1) ThanhTien = (SoLuong * Gia) 
--- update SoLuong CHITIETDONHANG
+-- update SoLuong
 create trigger trigger_ThanhTien_updateSL
 on CHITIETDONHANG
 for insert, update, delete as
@@ -21,7 +21,7 @@ begin
 			ctdh.MaSP = sp.MaSP 
 end
 
--- update Gia SANPHAM
+-- update Gia
 create trigger trigger_ThanhTien_updateSP
 on SANPHAM
 for insert, update, delete as
@@ -42,7 +42,6 @@ end
 
 
 ---- 2) Tổng tiền = PhiVanChuyen + sum(CHITIETHOADON.ThanhTien)
--- update CHITIETDONHANG
 create trigger trigger_TongTien
 on CHITIETDONHANG
 for insert, update, delete as
@@ -56,7 +55,7 @@ begin
 		exists (select * from deleted d where d.MaDH = DONHANG.MaDH) 
 end
 
--- update PhiVanChuyen 
+-- update Phi Van Chuyen
 create trigger trigger_TongTien_updatePVC
 on DONHANG
 for insert, update, delete as
@@ -77,7 +76,7 @@ begin
 end
 
 ----------------------------------------------------------------------------------
--- Test for triggers
+-- Test
 insert into SANPHAM (TenSP, Gia) values (N'Chocolate', 10000)
 insert into CHITIETDONHANG (MaDH, MaSP, SoLuong) values (N'1', N'2001', 10)
 
