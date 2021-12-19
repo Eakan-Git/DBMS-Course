@@ -2,7 +2,7 @@
 go
 ----------------------------------------------------------------
 --Transaction 1: Nhân viên giảm giá phí vận chuyển cho các đơn hàng ở khu vực A
-create procedure PhiShipDH 
+alter procedure PhiShipDH 
 	@MaKV nvarchar(10),
 	@PhiShipGiamGia int
 as
@@ -32,11 +32,11 @@ begin tran
 go
 
 --Transaction 2: Khách hàng có đơn hàng ở khu vực A xem phí vận chuyển
-create procedure XemDH_TaiKV
+alter procedure XemDH_TaiKV
 	@MaDH nvarchar(10)
 as
 begin tran
-	SET TRAN ISOLATION LEVEL READ UNCOMMITTED		
+	SET TRAN ISOLATION LEVEL READ COMMITTED		-- sửa ở đây
 	if not exists (select * from DONHANG where @MaDH = MaDH)
 	begin
 		raiserror (N'Đơn hàng không tồn tại', 10, 1);
