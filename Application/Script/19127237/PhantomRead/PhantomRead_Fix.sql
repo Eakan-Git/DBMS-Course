@@ -1,12 +1,12 @@
 ﻿use DBMS_ThucHanh_Nhom15
 go
 --------------------------------------------
---Tình huống 5 - Phantom Read
 --Transaction 1: Khách hàng xem danh sách các sản phẩm giá lớn hơn 9tr đồng. (n sản phẩm)
-create procedure Xem_SP_voigia
+alter procedure Xem_SP_voigia
 	@Gia int
 as
 begin tran 
+	SET TRANSACTION ISOLATION LEVEL SERIALIZABLE
     if not exists (select * from SANPHAM where Gia > @Gia)
     begin
         raiserror (N' Không tồn tại sản phẩm có giá lớn hơn giá này.', 10, 1);
@@ -26,16 +26,16 @@ begin tran
 go
 
 --Transaction 2: Nhân viên thêm một sản phẩm có giá lon hon 9tr đồng 
-create procedure NV_themSP
+alter procedure NV_themSP
     @TenSP nvarchar(150),
 	@Gia bigint,
     @MoTa nvarchar(200),
 	@GiaTieuChuan int
 as
 begin tran
-	SET TRANSACTION ISOLATION LEVEL REPEATABLE READ
+	--SET TRANSACTION ISOLATION LEVEL REPEATABLE READ
 	insert SANPHAM (TenSP, MoTa, Gia) values (@TenSP, @MoTa, @Gia)
-
+	
 	if @Gia <= @GiaTieuChuan 
 	begin 
 		raiserror (N'Sản phẩm được thêm phải có giá lớn hơn giá tiêu chuẩn', 10, 1)
