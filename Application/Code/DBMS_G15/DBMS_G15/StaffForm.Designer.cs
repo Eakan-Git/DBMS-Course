@@ -30,16 +30,17 @@ namespace DBMS_G15
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panelNavigator = new System.Windows.Forms.Panel();
+            this.searchBtn = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPrevious = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.StaffDGV = new System.Windows.Forms.DataGridView();
             this.panelDetails = new System.Windows.Forms.Panel();
             this.customerEmailLabel = new System.Windows.Forms.Label();
             this.customerPhoneLabel = new System.Windows.Forms.Label();
@@ -54,7 +55,7 @@ namespace DBMS_G15
             this.tbID = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             this.panelNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StaffDGV)).BeginInit();
             this.panelDetails.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,9 +66,10 @@ namespace DBMS_G15
             this.panel2.Controls.Add(this.btnSave);
             this.panel2.Controls.Add(this.btnAdd);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(736, 0);
+            this.panel2.Location = new System.Drawing.Point(1104, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(72, 583);
+            this.panel2.Size = new System.Drawing.Size(108, 897);
             this.panel2.TabIndex = 5;
             // 
             // btnDelete
@@ -80,13 +82,15 @@ namespace DBMS_G15
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(0, 380);
+            this.btnDelete.Location = new System.Drawing.Point(0, 584);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(72, 190);
+            this.btnDelete.Size = new System.Drawing.Size(108, 292);
             this.btnDelete.TabIndex = 21;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnSave
             // 
@@ -98,14 +102,16 @@ namespace DBMS_G15
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
-            this.btnSave.Location = new System.Drawing.Point(0, 190);
+            this.btnSave.Location = new System.Drawing.Point(0, 292);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(72, 190);
+            this.btnSave.Size = new System.Drawing.Size(108, 292);
             this.btnSave.TabIndex = 20;
             this.btnSave.Text = "Lưu";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnAdd
             // 
@@ -118,32 +124,54 @@ namespace DBMS_G15
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
             this.btnAdd.Location = new System.Drawing.Point(0, 0);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(72, 190);
+            this.btnAdd.Size = new System.Drawing.Size(108, 292);
             this.btnAdd.TabIndex = 19;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // panelNavigator
             // 
             this.panelNavigator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(67)))), ((int)(((byte)(138)))));
+            this.panelNavigator.Controls.Add(this.searchBtn);
             this.panelNavigator.Controls.Add(this.searchBox);
             this.panelNavigator.Controls.Add(this.btnNext);
             this.panelNavigator.Controls.Add(this.btnPrevious);
             this.panelNavigator.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelNavigator.Location = new System.Drawing.Point(0, 513);
+            this.panelNavigator.Location = new System.Drawing.Point(0, 789);
+            this.panelNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelNavigator.Name = "panelNavigator";
-            this.panelNavigator.Size = new System.Drawing.Size(736, 70);
+            this.panelNavigator.Size = new System.Drawing.Size(1104, 108);
             this.panelNavigator.TabIndex = 7;
+            // 
+            // searchBtn
+            // 
+            this.searchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.searchBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.searchBtn.Location = new System.Drawing.Point(495, 68);
+            this.searchBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.searchBtn.Name = "searchBtn";
+            this.searchBtn.Size = new System.Drawing.Size(112, 35);
+            this.searchBtn.TabIndex = 4;
+            this.searchBtn.Text = "Tìm";
+            this.searchBtn.UseVisualStyleBackColor = false;
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
             // searchBox
             // 
             this.searchBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.searchBox.Location = new System.Drawing.Point(293, 25);
+            this.searchBox.Location = new System.Drawing.Point(440, 38);
+            this.searchBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(150, 20);
+            this.searchBox.Size = new System.Drawing.Size(223, 26);
             this.searchBox.TabIndex = 2;
+            this.searchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
+            this.searchBox.Enter += new System.EventHandler(this.searchBox_Enter);
+            this.searchBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchBox_KeyPress);
+            this.searchBox.Leave += new System.EventHandler(this.searchBox_Leave);
             // 
             // btnNext
             // 
@@ -151,49 +179,58 @@ namespace DBMS_G15
             this.btnNext.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnNext.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNext.Location = new System.Drawing.Point(522, 11);
+            this.btnNext.Location = new System.Drawing.Point(783, 17);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(100, 50);
+            this.btnNext.Size = new System.Drawing.Size(150, 77);
             this.btnNext.TabIndex = 1;
             this.btnNext.Text = ">";
             this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnPrevious
             // 
             this.btnPrevious.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnPrevious.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPrevious.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrevious.Location = new System.Drawing.Point(114, 10);
+            this.btnPrevious.Location = new System.Drawing.Point(171, 15);
+            this.btnPrevious.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(100, 50);
+            this.btnPrevious.Size = new System.Drawing.Size(150, 77);
             this.btnPrevious.TabIndex = 0;
             this.btnPrevious.Text = "<";
             this.btnPrevious.UseVisualStyleBackColor = false;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
-            // dataGridView1
+            // StaffDGV
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView1.GridColor = System.Drawing.Color.Gainsboro;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 190);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(736, 323);
-            this.dataGridView1.TabIndex = 8;
+            this.StaffDGV.AllowUserToAddRows = false;
+            this.StaffDGV.AllowUserToDeleteRows = false;
+            this.StaffDGV.AllowUserToResizeColumns = false;
+            this.StaffDGV.AllowUserToResizeRows = false;
+            this.StaffDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.StaffDGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.StaffDGV.BackgroundColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.StaffDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.StaffDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.StaffDGV.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.StaffDGV.GridColor = System.Drawing.Color.Gainsboro;
+            this.StaffDGV.Location = new System.Drawing.Point(0, 292);
+            this.StaffDGV.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.StaffDGV.Name = "StaffDGV";
+            this.StaffDGV.ReadOnly = true;
+            this.StaffDGV.RowHeadersWidth = 62;
+            this.StaffDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.StaffDGV.Size = new System.Drawing.Size(1104, 497);
+            this.StaffDGV.TabIndex = 8;
+            this.StaffDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.StaffDGV_CellClick);
             // 
             // panelDetails
             // 
@@ -211,17 +248,19 @@ namespace DBMS_G15
             this.panelDetails.Controls.Add(this.tbID);
             this.panelDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDetails.Location = new System.Drawing.Point(0, 0);
+            this.panelDetails.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelDetails.Name = "panelDetails";
-            this.panelDetails.Size = new System.Drawing.Size(736, 190);
+            this.panelDetails.Size = new System.Drawing.Size(1104, 292);
             this.panelDetails.TabIndex = 9;
             // 
             // customerEmailLabel
             // 
             this.customerEmailLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.customerEmailLabel.AutoSize = true;
-            this.customerEmailLabel.Location = new System.Drawing.Point(521, 100);
+            this.customerEmailLabel.Location = new System.Drawing.Point(782, 154);
+            this.customerEmailLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.customerEmailLabel.Name = "customerEmailLabel";
-            this.customerEmailLabel.Size = new System.Drawing.Size(32, 13);
+            this.customerEmailLabel.Size = new System.Drawing.Size(48, 20);
             this.customerEmailLabel.TabIndex = 10;
             this.customerEmailLabel.Text = "Email";
             // 
@@ -229,9 +268,10 @@ namespace DBMS_G15
             // 
             this.customerPhoneLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.customerPhoneLabel.AutoSize = true;
-            this.customerPhoneLabel.Location = new System.Drawing.Point(522, 40);
+            this.customerPhoneLabel.Location = new System.Drawing.Point(783, 62);
+            this.customerPhoneLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.customerPhoneLabel.Name = "customerPhoneLabel";
-            this.customerPhoneLabel.Size = new System.Drawing.Size(75, 13);
+            this.customerPhoneLabel.Size = new System.Drawing.Size(109, 20);
             this.customerPhoneLabel.TabIndex = 9;
             this.customerPhoneLabel.Text = "Số Điện Thoại";
             // 
@@ -239,9 +279,10 @@ namespace DBMS_G15
             // 
             this.customerAddressLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.customerAddressLabel.AutoSize = true;
-            this.customerAddressLabel.Location = new System.Drawing.Point(287, 100);
+            this.customerAddressLabel.Location = new System.Drawing.Point(430, 154);
+            this.customerAddressLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.customerAddressLabel.Name = "customerAddressLabel";
-            this.customerAddressLabel.Size = new System.Drawing.Size(41, 13);
+            this.customerAddressLabel.Size = new System.Drawing.Size(60, 20);
             this.customerAddressLabel.TabIndex = 8;
             this.customerAddressLabel.Text = "Địa Chỉ";
             // 
@@ -249,18 +290,20 @@ namespace DBMS_G15
             // 
             this.customerNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.customerNameLabel.AutoSize = true;
-            this.customerNameLabel.Location = new System.Drawing.Point(287, 40);
+            this.customerNameLabel.Location = new System.Drawing.Point(430, 62);
+            this.customerNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.customerNameLabel.Name = "customerNameLabel";
-            this.customerNameLabel.Size = new System.Drawing.Size(59, 13);
+            this.customerNameLabel.Size = new System.Drawing.Size(85, 20);
             this.customerNameLabel.TabIndex = 7;
             this.customerNameLabel.Text = "Họ Và Tên";
             // 
             // idLabel
             // 
             this.idLabel.AutoSize = true;
-            this.idLabel.Location = new System.Drawing.Point(53, 100);
+            this.idLabel.Location = new System.Drawing.Point(80, 154);
+            this.idLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.idLabel.Name = "idLabel";
-            this.idLabel.Size = new System.Drawing.Size(75, 13);
+            this.idLabel.Size = new System.Drawing.Size(109, 20);
             this.idLabel.TabIndex = 6;
             this.idLabel.Text = "Mã Nhân Viên";
             // 
@@ -268,69 +311,78 @@ namespace DBMS_G15
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(48, 21);
+            this.label1.Location = new System.Drawing.Point(72, 32);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 58);
+            this.label1.Size = new System.Drawing.Size(194, 80);
             this.label1.TabIndex = 5;
             this.label1.Text = "Thông Tin\r\nNhân Viên";
             // 
             // tbEmail
             // 
             this.tbEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbEmail.Location = new System.Drawing.Point(521, 119);
+            this.tbEmail.Location = new System.Drawing.Point(782, 183);
+            this.tbEmail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbEmail.Name = "tbEmail";
-            this.tbEmail.Size = new System.Drawing.Size(161, 20);
+            this.tbEmail.Size = new System.Drawing.Size(240, 26);
             this.tbEmail.TabIndex = 4;
             // 
             // tbAddress
             // 
             this.tbAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.tbAddress.Location = new System.Drawing.Point(287, 119);
+            this.tbAddress.Location = new System.Drawing.Point(430, 183);
+            this.tbAddress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbAddress.Multiline = true;
             this.tbAddress.Name = "tbAddress";
-            this.tbAddress.Size = new System.Drawing.Size(161, 20);
+            this.tbAddress.Size = new System.Drawing.Size(240, 29);
             this.tbAddress.TabIndex = 3;
             // 
             // tbPhone
             // 
             this.tbPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbPhone.Location = new System.Drawing.Point(522, 59);
+            this.tbPhone.Location = new System.Drawing.Point(783, 91);
+            this.tbPhone.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbPhone.Name = "tbPhone";
-            this.tbPhone.Size = new System.Drawing.Size(161, 20);
+            this.tbPhone.Size = new System.Drawing.Size(240, 26);
             this.tbPhone.TabIndex = 2;
             // 
             // tbName
             // 
             this.tbName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.tbName.Location = new System.Drawing.Point(287, 59);
+            this.tbName.Location = new System.Drawing.Point(430, 91);
+            this.tbName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(161, 20);
+            this.tbName.Size = new System.Drawing.Size(240, 26);
             this.tbName.TabIndex = 1;
             // 
             // tbID
             // 
-            this.tbID.Location = new System.Drawing.Point(53, 119);
+            this.tbID.Location = new System.Drawing.Point(80, 183);
+            this.tbID.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbID.Name = "tbID";
-            this.tbID.Size = new System.Drawing.Size(161, 20);
+            this.tbID.ReadOnly = true;
+            this.tbID.Size = new System.Drawing.Size(240, 26);
             this.tbID.TabIndex = 0;
             // 
             // StaffForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(808, 583);
+            this.ClientSize = new System.Drawing.Size(1212, 897);
             this.Controls.Add(this.panelDetails);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.StaffDGV);
             this.Controls.Add(this.panelNavigator);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "StaffForm";
             this.Text = "StaffForm";
+            this.Load += new System.EventHandler(this.StaffForm_Load);
             this.panel2.ResumeLayout(false);
             this.panelNavigator.ResumeLayout(false);
             this.panelNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StaffDGV)).EndInit();
             this.panelDetails.ResumeLayout(false);
             this.panelDetails.PerformLayout();
             this.ResumeLayout(false);
@@ -347,7 +399,7 @@ namespace DBMS_G15
         private System.Windows.Forms.TextBox searchBox;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnPrevious;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView StaffDGV;
         private System.Windows.Forms.Panel panelDetails;
         private System.Windows.Forms.Label customerEmailLabel;
         private System.Windows.Forms.Label customerPhoneLabel;
@@ -360,5 +412,6 @@ namespace DBMS_G15
         private System.Windows.Forms.TextBox tbPhone;
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.TextBox tbID;
+        private System.Windows.Forms.Button searchBtn;
     }
 }
