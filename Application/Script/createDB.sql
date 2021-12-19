@@ -141,3 +141,4 @@ alter table CUNGCAP_SP add
 alter table HOPDONG add
 	constraint FK_HOPDONG_DOITAC	foreign key (MaDT) references DOITAC (MaDT),
 	constraint FK_HOPDONG_CHINHANH	foreign key (MaCN) references CHINHANH (MaCN)
+	
