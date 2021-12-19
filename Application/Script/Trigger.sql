@@ -2,7 +2,7 @@ use DBMS_ThucHanh_Nhom15
 go
 ----------------------------------------------------------------------------------------
 ---- 1) ThanhTien = (SoLuong * Gia) 
--- update SoLuong
+-- update SoLuong CHITIETDONHANG
 create trigger trigger_ThanhTien_updateSL
 on CHITIETDONHANG
 for insert, update, delete as
@@ -21,7 +21,7 @@ begin
 			ctdh.MaSP = sp.MaSP 
 end
 
--- update Gia
+-- update Gia SANPHAM
 create trigger trigger_ThanhTien_updateSP
 on SANPHAM
 for insert, update, delete as
@@ -42,6 +42,7 @@ end
 
 
 ---- 2) Tổng tiền = PhiVanChuyen + sum(CHITIETHOADON.ThanhTien)
+-- update CHITIETDONHANG
 create trigger trigger_TongTien
 on CHITIETDONHANG
 for insert, update, delete as
@@ -55,7 +56,7 @@ begin
 		exists (select * from deleted d where d.MaDH = DONHANG.MaDH) 
 end
 
--- update Phi Van Chuyen
+-- update PhiVanChuyen DONHANG
 create trigger trigger_TongTien_updatePVC
 on DONHANG
 for insert, update, delete as
@@ -76,20 +77,20 @@ begin
 end
 
 ----------------------------------------------------------------------------------
--- Test
+-- Test for triggers
 insert into SANPHAM (TenSP, Gia) values (N'Chocolate', 10000)
 insert into CHITIETDONHANG (MaDH, MaSP, SoLuong) values (N'1', N'2001', 10)
 
 delete from CHITIETDONHANG where MaDH = N'1' and MaSP = N'2001'
 delete from SANPHAM where MaSP = N'2001'
 
-update CHITIETDONHANG set SoLuong = -3 where MaDH = N'1' and MaSP = N'2001'
+update CHITIETDONHANG set SoLuong = -3 where MaDH = N'1' and MaSP = N'2001'	-- fail
 
-update SANPHAM set Gia = 20000  where MaSP = N'2001' 
+update SANPHAM set Gia = 20000  where MaSP = N'2001' 		-- success
 
-update SANPHAM set Gia = -10000 where MaSP = N'2001'
+update SANPHAM set Gia = -10000 where MaSP = N'2001'		-- fail
 
-update DONHANG set PhiVanChuyen = -10 where MaDH = N'1'
+update DONHANG set PhiVanChuyen = -10 where MaDH = N'1'		-- fail
 
 select * from CHITIETDONHANG where MaDH = '1'
 select * from DONHANG where MaDH = '1'
