@@ -1,4 +1,4 @@
-﻿use DBMS_ThucHanh_Nhom15 
+use DBMS_ThucHanh_Nhom15 
 go
 -----------------------------------------------------------------------------------------
 -- Thêm nhân viên mới
@@ -26,13 +26,13 @@ go
 --exec insertNV @HoTen = 'LYN', @SoDT = '0918319976', @DiaChi = 'Le Loi', @Email = Null
 --go
 
--- update ttcn cua nv
+-- Update thông tin cá nhân của nhân viên
 create procedure updateNV
-@MaNV int,
-@HoTen nvarchar(50),
-@SoDienThoai varchar(15),
-@DiaChi nvarchar(150),
-@Email varchar(50)
+	@MaNV int,
+	@HoTen nvarchar(50),
+	@SoDienThoai varchar(15),
+	@DiaChi nvarchar(150),
+	@Email varchar(50)
 as
 begin tran
 	UPDATE THONGTINCANHAN set HoTen=@HoTen, SoDienThoai=@SoDienThoai, DiaChi=@DiaChi, Email=@Email 
@@ -42,23 +42,26 @@ go
 
 --select * from THONGTINCANHAN tt, NHANVIEN nv where nv.id = tt.id and nv.MaNV = 278974
 --exec updateNV 278974, N'Quang Trường', '0854693777', 'Test', 'aaa'
-go
--- tìm nv vs SDT cho trc 
+--go
+
+-- Tìm nhân viên với số điện thoại cho trước
 create procedure lookupNV_SDT
-@SDT varchar(15)
+	@SDT varchar(15)
 as
 begin tran
-	select NV.MANV, TT.HOTEN, TT.SoDienThoai,TT.DIACHI,TT.EMAIL from NHANVIEN NV, THONGTINCANHAN TT 
+	select NV.MANV, TT.HOTEN, TT.SoDienThoai,TT.DIACHI,TT.EMAIL 
+	from NHANVIEN NV, THONGTINCANHAN TT 
 	where TT.SoDienThoai = @SDT and NV.ID = TT.ID
 	commit tran
 go
 
 --exec lookupNV_SDT N'07624466063'
 --go
--- Xóa 1 nv vs mã NV và SĐT cho trc
+
+-- Xóa 1 nhân viên với mã NV và số điện thoại cho trước
 create procedure deleteNV
-@MaNV int,
-@SoDienThoai nvarchar(50)
+	@MaNV int,
+	@SoDienThoai nvarchar(50)
 as
 begin tran
 	Delete NHANVIEN where MANV=@MaNV
@@ -68,10 +71,11 @@ go
 
 --exec deleteNV 278974, '0854693777'
 --go
--- xem ds NV với n dòng 
-Create proc ViewStaffListWith_n_Rows
-@offset int,
-@rows int
+
+-- Xem danh sách NV với n dòng 
+create proc ViewStaffListWith_n_Rows
+	@offset int,
+	@rows int
 As
 begin tran
 	begin
@@ -81,15 +85,12 @@ begin tran
 		Order by nv.MaNV,tt.HoTen,tt.SoDienThoai,tt.DiaChi,tt.Email offset @offset rows fetch next @rows rows only
 		commit tran
 	end
-
 go
--- xem ds sp với n dòng 
---select * from SANPHAM 
---order by MaSP offset @offset rows fetch next @rows rows only
---go
+
+-- Xem danh sách SP với n dòng  
 create proc ViewProductListWith_n_Rows
-@offset int,
-@rows int
+	@offset int,
+	@rows int
 As
 begin tran
 	begin
@@ -101,43 +102,43 @@ go
 --exec ViewProductListWith_n_Rows 0,10
 --go
 
--- xem sp vs mã cho trc
+-- Xem SP với mã sản phẩm cho trước
 create procedure lookupSP
-@MaSP int
+	@MaSP int
 as
 begin tran
 	select * from SANPHAM where MaSp = @MaSP
 commit tran
 go
--- xóa sp vs mã cho trc 
+
+-- Xóa SP với mã sản phẩm cho trước
 create procedure deleteSP
-@MaSP int
+	@MaSP int
 as
 begin tran
 	delete from SANPHAM where MaSP = @MaSP
 commit tran
 go
 
--- update sp
+-- Update SP
 create procedure updateSP
-@MaSP int,
-@TenSP nvarchar(150),
-@Gia bigint,
-@MoTa nvarchar(200)
+	@MaSP int,
+	@TenSP nvarchar(150),
+	@Gia bigint,
+	@MoTa nvarchar(200)
 as
 begin tran
 	update SANPHAM set TenSP = @TenSP, Gia = @Gia, MoTa = @MoTa where MaSP = @MaSP
 commit tran
 go
 
--- them sp 
---create procedure addSP
---@TenSP nvarchar(150),
---@Gia bigint,
---@MoTa nvarchar(200)
---as
---begin tran
---	insert into SANPHAM values (@TenSP, @Gia, @MoTa)
---	commit tran
---go
-
+-- Thêm SP
+create procedure addSP
+	@TenSP nvarchar(150),
+	@Gia bigint,
+	@MoTa nvarchar(200)
+as
+begin tran
+	insert into SANPHAM (TenSP, Gia, MoTa) values (@TenSP, @Gia, @MoTa)
+	commit tran
+go
