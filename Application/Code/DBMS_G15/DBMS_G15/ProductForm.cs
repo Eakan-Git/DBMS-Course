@@ -304,5 +304,10 @@ namespace DBMS_G15
         {
             
         }
+
+        private void tbID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

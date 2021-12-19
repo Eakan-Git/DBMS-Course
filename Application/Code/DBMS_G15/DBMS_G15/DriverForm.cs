@@ -17,7 +17,7 @@ namespace DBMS_G15
         SqlDataAdapter adapter = new SqlDataAdapter();
         DataTable tableProduct = new DataTable();
         string str = @"Data Source=(local);Initial Catalog=DBMS_ThucHanh_Nhom15;Integrated Security=True";
-        string placeholder = "Nhập mã sản phâm...";
+        string placeholder = "Nhập mã CMND...";
 
         private int offset;
         const int maxRowsPerPage = 15;
