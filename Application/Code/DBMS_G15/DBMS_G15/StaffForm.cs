@@ -18,7 +18,7 @@ namespace DBMS_G15
         SqlDataAdapter adapter = new SqlDataAdapter();
         DataTable tableStaff = new DataTable();
         string str = @"Data Source=(local);Initial Catalog=DBMS_ThucHanh_Nhom15;Integrated Security=True";
-        string placeholder = "Nhập mã nhân viên...";
+        string placeholder = "Nhập số điện thoại...";
         private int offset;
         const int maxRowsPerPage = 15;
         public StaffForm()
@@ -114,14 +114,22 @@ namespace DBMS_G15
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            command = connection.CreateCommand();
-            command.CommandText = "select NV.MANV, TT.HOTEN,TT.DIACHI,TT.EMAIL from NHANVIEN NV, THONGTINCANHAN TT where NV.MANV = @MANV and NV.ID = TT.ID";
-            command.CommandType = CommandType.Text;
-            command.Parameters.AddWithValue("@MANV", searchBox.Text);
-            adapter.SelectCommand = command;
-            tableStaff.Clear();
-            adapter.Fill(tableStaff);
-            StaffDGV.DataSource = tableStaff;
+            if (searchBox.Text != placeholder && searchBox.Text != "")
+            {
+                command = connection.CreateCommand();
+                command.CommandText = "select NV.MANV, TT.HOTEN, TT.SoDienThoai,TT.DIACHI,TT.EMAIL from NHANVIEN NV, THONGTINCANHAN TT where TT.SoDienThoai = @SDT and NV.ID = TT.ID";
+                command.CommandType = CommandType.Text;
+                command.Parameters.AddWithValue("@SDT", searchBox.Text);
+                adapter.SelectCommand = command;
+                tableStaff.Clear();
+                adapter.Fill(tableStaff);
+                StaffDGV.DataSource = tableStaff;
+                searchBox.Text = placeholder;
+            }
+            else
+            {
+                MessageBox.Show("Hãy nhập số điện thoại.");
+            }
         }
 
         private void searchBox_TextChanged(object sender, EventArgs e)
@@ -137,13 +145,14 @@ namespace DBMS_G15
             if (e.KeyChar == (char)13)
             {
                 command = connection.CreateCommand();
-                command.CommandText = "select NV.MANV, TT.HOTEN,TT.DIACHI,TT.EMAIL from NHANVIEN NV, THONGTINCANHAN TT where NV.MANV = @MANV and NV.ID = TT.ID";
+                command.CommandText = "select NV.MANV, TT.HOTEN, TT.SoDienThoai,TT.DIACHI,TT.EMAIL from NHANVIEN NV, THONGTINCANHAN TT where TT.SoDienThoai = @SDT and NV.ID = TT.ID";
                 command.CommandType = CommandType.Text;
-                command.Parameters.AddWithValue("@MANV", searchBox.Text);
+                command.Parameters.AddWithValue("@SDT", searchBox.Text);
                 adapter.SelectCommand = command;
                 tableStaff.Clear();
                 adapter.Fill(tableStaff);
                 StaffDGV.DataSource = tableStaff;
+                searchBox.Text = placeholder;
             }
         }
 
