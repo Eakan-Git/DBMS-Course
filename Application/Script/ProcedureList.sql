@@ -27,14 +27,46 @@ go
 --go
 
 -- update ttcn cua nv
-UPDATE THONGTINCANHAN set HoTen=@HoTen, SoDienThoai=@SDT, DiaChi=@DiaChi, Email=@Email where ID=(select NV.ID from NHANVIEN NV where NV.MaNV=@MaNV
+create procedure updateNV
+@MaNV int,
+@HoTen nvarchar(50),
+@SoDienThoai varchar(15),
+@DiaChi nvarchar(150),
+@Email varchar(50)
+as
+begin tran
+	UPDATE THONGTINCANHAN set HoTen=@HoTen, SoDienThoai=@SoDienThoai, DiaChi=@DiaChi, Email=@Email 
+	where ID=(select NV.ID from NHANVIEN NV where NV.MaNV=@MaNV)
+	commit tran
+go
 
--- tìm nv vs ID cho trc 
-select NV.MANV, TT.HOTEN,TT.DIACHI,TT.EMAIL from NHANVIEN NV, THONGTINCANHAN TT where NV.MANV = @MANV and NV.ID = TT.ID
+--select * from THONGTINCANHAN tt, NHANVIEN nv where nv.id = tt.id and nv.MaNV = 278974
+--exec updateNV 278974, N'Quang Trường', '0854693777', 'Test', 'aaa'
+go
+-- tìm nv vs SDT cho trc 
+create procedure lookupNV_SDT
+@SDT varchar(15)
+as
+begin tran
+	select NV.MANV, TT.HOTEN, TT.SoDienThoai,TT.DIACHI,TT.EMAIL from NHANVIEN NV, THONGTINCANHAN TT 
+	where TT.SoDienThoai = @SDT and NV.ID = TT.ID
+	commit tran
+go
 
--- Xóa 1 nv vs mã NV cho trc
-Delete NHANVIEN where MANV=@MANV
-Delete THONGTINCANHAN where SoDienThoai = @SDT
+--exec lookupNV_SDT N'07624466063'
+--go
+-- Xóa 1 nv vs mã NV và SĐT cho trc
+create procedure deleteNV
+@MaNV int,
+@SoDienThoai nvarchar(50)
+as
+begin tran
+	Delete NHANVIEN where MANV=@MaNV
+	Delete THONGTINCANHAN where SoDienThoai = @SoDienThoai
+commit tran
+go
+
+exec deleteNV 278974, '0854693777'
 
 -- xem ds NV với n dòng 
 select nv.MaNV,tt.HoTen,tt.SoDienThoai,tt.DiaChi,tt.Email 
@@ -54,7 +86,16 @@ delete from SANPHAM where MaSP = @MaSP
 
 -- update sp
 update SANPHAM set TenSP = @TenSP, Gia = @Gia, MoTa = @MoTa where MaSP = @MaSP
-
+go
 -- them sp 
-insert into SANPHAM values (@MaSP, @TenSP, @Gia, @MoTa)
+--create procedure addSP
+--@TenSP nvarchar(150),
+--@Gia bigint,
+--@MoTa nvarchar(200)
+--as
+--begin tran
+--	insert into SANPHAM values (@TenSP, @Gia, @MoTa)
+--	commit tran
+--go
+
 
