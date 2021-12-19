@@ -7,3 +7,5 @@ Application/Code/DemoLoi/.vs/*
 *.cache
 *.docx
 *.pdf
+Application/Code/DemoLoi/DemoLoi/DemoLoi/obj/*
+Application/Code/DemoLoi/DemoLoi/DemoLoi/bin/*
