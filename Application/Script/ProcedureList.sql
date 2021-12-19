@@ -85,16 +85,36 @@ begin tran
 -- xem ds sp với n dòng 
 select * from SANPHAM 
 order by MaSP offset @offset rows fetch next @rows rows only
-
+go
 -- xem sp vs mã cho trc
-select * from SANPHAM where MaSp = @MaSP
-
+create procedure lookupSP
+@MaSP int
+as
+begin tran
+	select * from SANPHAM where MaSp = @MaSP
+commit tran
+go
 -- xóa sp vs mã cho trc 
-delete from SANPHAM where MaSP = @MaSP
+create procedure deleteSP
+@MaSP int
+as
+begin tran
+	delete from SANPHAM where MaSP = @MaSP
+commit tran
+go
 
 -- update sp
-update SANPHAM set TenSP = @TenSP, Gia = @Gia, MoTa = @MoTa where MaSP = @MaSP
+create procedure updateSP
+@MaSP int,
+@TenSP nvarchar(150),
+@Gia bigint,
+@MoTa nvarchar(200)
+as
+begin tran
+	update SANPHAM set TenSP = @TenSP, Gia = @Gia, MoTa = @MoTa where MaSP = @MaSP
+commit tran
 go
+
 -- them sp 
 --create procedure addSP
 --@TenSP nvarchar(150),
