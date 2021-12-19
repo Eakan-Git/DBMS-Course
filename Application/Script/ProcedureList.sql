@@ -67,12 +67,20 @@ commit tran
 go
 
 exec deleteNV 278974, '0854693777'
-
+go
 -- xem ds NV với n dòng 
-select nv.MaNV,tt.HoTen,tt.SoDienThoai,tt.DiaChi,tt.Email 
-from NHANVIEN nv, THONGTINCANHAN tt 
-where nv.ID=tt.ID 
-Order by nv.MaNV,tt.HoTen,tt.SoDienThoai,tt.DiaChi,tt.Email offset @offset rows fetch next @rows rows only
+create proc ViewStaffListWith_n_Rows
+@offset int,
+@rows int
+As
+begin tran
+	begin
+		select nv.MaNV,tt.HoTen,tt.SoDienThoai,tt.DiaChi,tt.Email 
+		from NHANVIEN nv, THONGTINCANHAN tt 
+		where nv.ID=tt.ID 
+		Order by nv.MaNV,tt.HoTen,tt.SoDienThoai,tt.DiaChi,tt.Email offset @offset rows fetch next @rows rows only
+		commit tran
+	end
 
 -- xem ds sp với n dòng 
 select * from SANPHAM 
@@ -97,5 +105,4 @@ go
 --	insert into SANPHAM values (@TenSP, @Gia, @MoTa)
 --	commit tran
 --go
-
 
