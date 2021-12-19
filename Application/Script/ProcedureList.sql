@@ -66,10 +66,10 @@ begin tran
 commit tran
 go
 
-exec deleteNV 278974, '0854693777'
-go
+--exec deleteNV 278974, '0854693777'
+--go
 -- xem ds NV với n dòng 
-create proc ViewStaffListWith_n_Rows
+Create proc ViewStaffListWith_n_Rows
 @offset int,
 @rows int
 As
@@ -82,10 +82,25 @@ begin tran
 		commit tran
 	end
 
--- xem ds sp với n dòng 
-select * from SANPHAM 
-order by MaSP offset @offset rows fetch next @rows rows only
 go
+-- xem ds sp với n dòng 
+--select * from SANPHAM 
+--order by MaSP offset @offset rows fetch next @rows rows only
+--go
+create proc ViewProductListWith_n_Rows
+@offset int,
+@rows int
+As
+begin tran
+	begin
+		select * from SANPHAM 
+		order by MaSP offset @offset rows fetch next @rows rows only
+		commit tran
+	end
+go
+--exec ViewProductListWith_n_Rows 0,10
+--go
+
 -- xem sp vs mã cho trc
 create procedure lookupSP
 @MaSP int
