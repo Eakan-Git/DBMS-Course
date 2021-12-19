@@ -1,12 +1,12 @@
 ﻿use DBMS_ThucHanh_Nhom15
 go
 ----------------------------
---Transaction 1: Tài xế cập nhật trạng thái đơn hàng “Đã nhận”
-create procedure TX_danhan_DH 
+alter procedure TX_danhan_DH 
 	@MaDH nvarchar(10),
 	@TinhTrang nvarchar(20)
 as
 begin tran 
+	SET TRANSACTION ISOLATION LEVEL REPEATABLE READ
     if not exists (select * from DONHANG where @MaDH = MaDH)
     begin
         raiserror (N'Đơn hàng không tồn tại', 10, 1);
@@ -45,12 +45,12 @@ begin tran
 go
 
 --Transaction 2: Khách hủy đơn hàng đó
-create procedure KH_huyDH
+alter procedure KH_huyDH
 	@MaDH nvarchar(10),
 	@TinhTrang nvarchar(20)
 as
 begin tran
-	SET TRAN ISOLATION LEVEL READ COMMITTED	
+	-- SET TRANSACTION ISOLATION LEVEL REPEATABLE READ
 	if not exists (select * from DONHANG where @MaDH = MaDH)
     begin
         raiserror (N'Đơn hàng không tồn tại', 10, 1);
