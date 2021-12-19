@@ -33,7 +33,9 @@ namespace DemoLoi
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panelCustomer = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.tbChiNhanhKH = new System.Windows.Forms.TextBox();
             this.KHSuaLoi = new System.Windows.Forms.Button();
             this.KHChayLoi = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -46,8 +48,8 @@ namespace DemoLoi
             this.tbGiaGiam = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tbChiNhanhKH = new System.Windows.Forms.TextBox();
+            this.btnLoadNV = new System.Windows.Forms.Button();
+            this.btnLoadKH = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panelCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -87,6 +89,7 @@ namespace DemoLoi
             // 
             // panelCustomer
             // 
+            this.panelCustomer.Controls.Add(this.btnLoadKH);
             this.panelCustomer.Controls.Add(this.label5);
             this.panelCustomer.Controls.Add(this.dataGridView2);
             this.panelCustomer.Controls.Add(this.tbChiNhanhKH);
@@ -99,6 +102,15 @@ namespace DemoLoi
             this.panelCustomer.Size = new System.Drawing.Size(825, 203);
             this.panelCustomer.TabIndex = 1;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(640, 12);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(57, 13);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Chi Nhánh";
+            // 
             // dataGridView2
             // 
             this.dataGridView2.AllowUserToAddRows = false;
@@ -110,9 +122,16 @@ namespace DemoLoi
             this.dataGridView2.Size = new System.Drawing.Size(642, 150);
             this.dataGridView2.TabIndex = 8;
             // 
+            // tbChiNhanhKH
+            // 
+            this.tbChiNhanhKH.Location = new System.Drawing.Point(609, 28);
+            this.tbChiNhanhKH.Name = "tbChiNhanhKH";
+            this.tbChiNhanhKH.Size = new System.Drawing.Size(118, 20);
+            this.tbChiNhanhKH.TabIndex = 8;
+            // 
             // KHSuaLoi
             // 
-            this.KHSuaLoi.Location = new System.Drawing.Point(652, 16);
+            this.KHSuaLoi.Location = new System.Drawing.Point(738, 174);
             this.KHSuaLoi.Name = "KHSuaLoi";
             this.KHSuaLoi.Size = new System.Drawing.Size(75, 23);
             this.KHSuaLoi.TabIndex = 8;
@@ -122,7 +141,7 @@ namespace DemoLoi
             // 
             // KHChayLoi
             // 
-            this.KHChayLoi.Location = new System.Drawing.Point(564, 16);
+            this.KHChayLoi.Location = new System.Drawing.Point(738, 120);
             this.KHChayLoi.Name = "KHChayLoi";
             this.KHChayLoi.Size = new System.Drawing.Size(75, 23);
             this.KHChayLoi.TabIndex = 7;
@@ -142,6 +161,7 @@ namespace DemoLoi
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnLoadNV);
             this.panel2.Controls.Add(this.NVSuaLoi);
             this.panel2.Controls.Add(this.NVChayLoi);
             this.panel2.Controls.Add(this.label4);
@@ -158,7 +178,7 @@ namespace DemoLoi
             // 
             // NVSuaLoi
             // 
-            this.NVSuaLoi.Location = new System.Drawing.Point(652, 72);
+            this.NVSuaLoi.Location = new System.Drawing.Point(738, 221);
             this.NVSuaLoi.Name = "NVSuaLoi";
             this.NVSuaLoi.Size = new System.Drawing.Size(75, 23);
             this.NVSuaLoi.TabIndex = 7;
@@ -168,7 +188,7 @@ namespace DemoLoi
             // 
             // NVChayLoi
             // 
-            this.NVChayLoi.Location = new System.Drawing.Point(564, 72);
+            this.NVChayLoi.Location = new System.Drawing.Point(738, 161);
             this.NVChayLoi.Name = "NVChayLoi";
             this.NVChayLoi.Size = new System.Drawing.Size(75, 23);
             this.NVChayLoi.TabIndex = 6;
@@ -179,7 +199,7 @@ namespace DemoLoi
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(445, 58);
+            this.label4.Location = new System.Drawing.Point(640, 58);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 13);
             this.label4.TabIndex = 5;
@@ -188,7 +208,7 @@ namespace DemoLoi
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(301, 59);
+            this.label3.Location = new System.Drawing.Point(496, 59);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 4;
@@ -196,14 +216,14 @@ namespace DemoLoi
             // 
             // tbChiNhanhNV
             // 
-            this.tbChiNhanhNV.Location = new System.Drawing.Point(272, 75);
+            this.tbChiNhanhNV.Location = new System.Drawing.Point(467, 75);
             this.tbChiNhanhNV.Name = "tbChiNhanhNV";
             this.tbChiNhanhNV.Size = new System.Drawing.Size(118, 20);
             this.tbChiNhanhNV.TabIndex = 3;
             // 
             // tbGiaGiam
             // 
-            this.tbGiaGiam.Location = new System.Drawing.Point(414, 74);
+            this.tbGiaGiam.Location = new System.Drawing.Point(609, 74);
             this.tbGiaGiam.Name = "tbGiaGiam";
             this.tbGiaGiam.Size = new System.Drawing.Size(118, 20);
             this.tbGiaGiam.TabIndex = 2;
@@ -229,21 +249,25 @@ namespace DemoLoi
             this.dataGridView1.Size = new System.Drawing.Size(642, 150);
             this.dataGridView1.TabIndex = 0;
             // 
-            // label5
+            // btnLoadNV
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(351, 23);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 13);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Chi Nhánh";
+            this.btnLoadNV.Location = new System.Drawing.Point(738, 100);
+            this.btnLoadNV.Name = "btnLoadNV";
+            this.btnLoadNV.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadNV.TabIndex = 8;
+            this.btnLoadNV.Text = "Xem";
+            this.btnLoadNV.UseVisualStyleBackColor = true;
+            this.btnLoadNV.Click += new System.EventHandler(this.btnLoadNV_Click);
             // 
-            // tbChiNhanhKH
+            // btnLoadKH
             // 
-            this.tbChiNhanhKH.Location = new System.Drawing.Point(414, 19);
-            this.tbChiNhanhKH.Name = "tbChiNhanhKH";
-            this.tbChiNhanhKH.Size = new System.Drawing.Size(118, 20);
-            this.tbChiNhanhKH.TabIndex = 8;
+            this.btnLoadKH.Location = new System.Drawing.Point(738, 54);
+            this.btnLoadKH.Name = "btnLoadKH";
+            this.btnLoadKH.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadKH.TabIndex = 9;
+            this.btnLoadKH.Text = "Xem";
+            this.btnLoadKH.UseVisualStyleBackColor = true;
+            this.btnLoadKH.Click += new System.EventHandler(this.btnLoadKH_Click);
             // 
             // Form1
             // 
@@ -291,6 +315,8 @@ namespace DemoLoi
         private System.Windows.Forms.Button NVChayLoi;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbChiNhanhKH;
+        private System.Windows.Forms.Button btnLoadKH;
+        private System.Windows.Forms.Button btnLoadNV;
     }
 }
 
