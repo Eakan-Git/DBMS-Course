@@ -4,3 +4,7 @@ Application/Code/DBMS_G15/.vs/*
 *.cache
 *.docx
 *.pdf
+*.exe
+Application/Code/DemoLoi/DemoLoi/DemoLoi/obj/*
+Application/Code/DemoLoi/DemoLoi/DemoLoi/bin/*
+Application/Code/DemoLoi/DemoLoi/.vs/*
