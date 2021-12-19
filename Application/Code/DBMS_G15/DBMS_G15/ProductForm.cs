@@ -35,7 +35,6 @@ namespace DBMS_G15
             autoLoadProductData();
             btnPrevious.Enabled = false;
             searchBox.Text = placeholder;
-            btnAdd.Enabled = false;
         }
         private void autoLoadProductData()
         {
@@ -260,27 +259,9 @@ namespace DBMS_G15
             }
         }
 
-        private void checkBoxAdd_CheckedChanged(object sender, EventArgs e)
-        {
-            if(checkBoxAdd.Checked == true)
-            {
-                tbID.ReadOnly = false;
-                tbID.Text = "";
-                tbName.Text = "";
-                tbPrice.Text = "";
-                tbDescription.Text = "";
-                btnAdd.Enabled = true;
-            }
-            else
-            {
-                tbID.ReadOnly = true;
-                btnAdd.Enabled = false;
-            }
-        }
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if(tbID.Text == "" || tbName.Text == "" || tbPrice.Text == "" || tbDescription.Text == "")
+            if(tbName.Text == "" || tbPrice.Text == "" || tbDescription.Text == "")
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
             }
@@ -291,8 +272,7 @@ namespace DBMS_G15
                 {
                     try
                     {
-                        SqlCommand updateCommand = new SqlCommand("insert into SANPHAM values (@MaSP, @TenSP, @Gia, @MoTa)", connection);
-                        updateCommand.Parameters.AddWithValue("@MaSP", tbID.Text);
+                        SqlCommand updateCommand = new SqlCommand("insert into SANPHAM (TenSP, Gia, MoTa) values (@TenSP, @Gia, @MoTa)", connection);
                         updateCommand.Parameters.AddWithValue("@TenSP", tbName.Text);
                         updateCommand.Parameters.AddWithValue("@Gia", tbPrice.Text);
                         updateCommand.Parameters.AddWithValue("@MoTa", tbDescription.Text);
@@ -306,6 +286,11 @@ namespace DBMS_G15
                     }
                 }
             }
+        }
+
+        private void cbbDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
