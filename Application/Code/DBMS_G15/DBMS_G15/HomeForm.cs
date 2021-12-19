@@ -36,6 +36,7 @@ namespace DBMS_G15
             else if(username == "staff")
             {
                 btnMoney.Hide();
+                btnStaff.Hide();
             }
             else if(username == "partner")
             {
