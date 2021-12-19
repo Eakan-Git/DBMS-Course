@@ -104,6 +104,7 @@ namespace DBMS_G15
             // 
             // emailTb
             // 
+            this.emailTb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.emailTb.Location = new System.Drawing.Point(353, 224);
             this.emailTb.Name = "emailTb";
             this.emailTb.Size = new System.Drawing.Size(142, 20);
@@ -111,6 +112,7 @@ namespace DBMS_G15
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(213, 218);
@@ -121,6 +123,7 @@ namespace DBMS_G15
             // 
             // addressTb
             // 
+            this.addressTb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.addressTb.Location = new System.Drawing.Point(353, 184);
             this.addressTb.Name = "addressTb";
             this.addressTb.Size = new System.Drawing.Size(142, 20);
@@ -128,6 +131,7 @@ namespace DBMS_G15
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(213, 177);
@@ -138,6 +142,7 @@ namespace DBMS_G15
             // 
             // phoneNumTb
             // 
+            this.phoneNumTb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.phoneNumTb.Location = new System.Drawing.Point(353, 143);
             this.phoneNumTb.Name = "phoneNumTb";
             this.phoneNumTb.Size = new System.Drawing.Size(142, 20);
@@ -145,6 +150,7 @@ namespace DBMS_G15
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(211, 136);
@@ -155,6 +161,7 @@ namespace DBMS_G15
             // 
             // nameTb
             // 
+            this.nameTb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.nameTb.Location = new System.Drawing.Point(353, 103);
             this.nameTb.Name = "nameTb";
             this.nameTb.Size = new System.Drawing.Size(142, 20);
@@ -162,6 +169,7 @@ namespace DBMS_G15
             // 
             // nameLabel
             // 
+            this.nameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.nameLabel.AutoSize = true;
             this.nameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nameLabel.Location = new System.Drawing.Point(213, 96);
@@ -190,7 +198,7 @@ namespace DBMS_G15
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(207, 39);

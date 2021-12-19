@@ -35,6 +35,7 @@ namespace DBMS_G15
             autoLoadProductData();
             btnPrevious.Enabled = false;
             searchBox.Text = placeholder;
+            btnAdd.Enabled = false;
         }
         private void autoLoadProductData()
         {
@@ -242,8 +243,9 @@ namespace DBMS_G15
                             updateCommand.Parameters.AddWithValue("@Gia", tbPrice.Text);
                             updateCommand.Parameters.AddWithValue("@MoTa", tbDescription.Text);
                             updateCommand.ExecuteNonQuery();
-                            //autoLoadProductData();
-                            loadAfterSave();
+                            autoLoadProductData();
+                            MessageBox.Show("Cập nhật sản phẩm thành công");
+                            //loadAfterSave();
                         }
                     }
                     else
@@ -254,6 +256,54 @@ namespace DBMS_G15
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void checkBoxAdd_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBoxAdd.Checked == true)
+            {
+                tbID.ReadOnly = false;
+                tbID.Text = "";
+                tbName.Text = "";
+                tbPrice.Text = "";
+                tbDescription.Text = "";
+                btnAdd.Enabled = true;
+            }
+            else
+            {
+                tbID.ReadOnly = true;
+                btnAdd.Enabled = false;
+            }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if(tbID.Text == "" || tbName.Text == "" || tbPrice.Text == "" || tbDescription.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
+            }
+            else
+            {
+                DialogResult confirm = MessageBox.Show("Xác nhận thêm sản phẩm này?", "Thêm Sản Phẩm", MessageBoxButtons.YesNo);
+                if (confirm == DialogResult.Yes)
+                {
+                    try
+                    {
+                        SqlCommand updateCommand = new SqlCommand("insert into SANPHAM values (@MaSP, @TenSP, @Gia, @MoTa)", connection);
+                        updateCommand.Parameters.AddWithValue("@MaSP", tbID.Text);
+                        updateCommand.Parameters.AddWithValue("@TenSP", tbName.Text);
+                        updateCommand.Parameters.AddWithValue("@Gia", tbPrice.Text);
+                        updateCommand.Parameters.AddWithValue("@MoTa", tbDescription.Text);
+                        updateCommand.ExecuteNonQuery();
+                        autoLoadProductData();
+                        MessageBox.Show("Thêm sản phẩm thành công");
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Lỗi kết nối.");
+                    }
                 }
             }
         }

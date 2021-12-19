@@ -28,7 +28,7 @@ namespace DBMS_G15
             {
                 MessageBox.Show("Vui lòng nhập thông tin đăng nhập.");
             }
-            else if(usernameTxt.Text != "customer" && usernameTxt.Text != "developer" && usernameTxt.Text != "partner" && usernameTxt.Text != "staff")
+            else if(usernameTxt.Text != "customer" && usernameTxt.Text != "developer" && usernameTxt.Text != "partner" && usernameTxt.Text != "staff" && usernameTxt.Text != "driver")
             {
                 MessageBox.Show("Sai thông tin đăng nhập.");
             }

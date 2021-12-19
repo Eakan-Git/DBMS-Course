@@ -30,8 +30,8 @@ namespace DBMS_G15
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(productForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -43,6 +43,8 @@ namespace DBMS_G15
             this.btnPrevious = new System.Windows.Forms.Button();
             this.productDGV = new System.Windows.Forms.DataGridView();
             this.panelDetails = new System.Windows.Forms.Panel();
+            this.checkBoxAdd = new System.Windows.Forms.CheckBox();
+            this.cbbDepartment = new System.Windows.Forms.ComboBox();
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.priceLabel = new System.Windows.Forms.Label();
             this.departmentIDLabel = new System.Windows.Forms.Label();
@@ -53,7 +55,6 @@ namespace DBMS_G15
             this.tbPrice = new System.Windows.Forms.TextBox();
             this.tbName = new System.Windows.Forms.TextBox();
             this.tbID = new System.Windows.Forms.TextBox();
-            this.cbbDepartment = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.panelNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productDGV)).BeginInit();
@@ -128,6 +129,7 @@ namespace DBMS_G15
             this.btnAdd.Text = "Thêm";
             this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // panelNavigator
             // 
@@ -200,26 +202,26 @@ namespace DBMS_G15
             this.productDGV.AllowUserToResizeColumns = false;
             this.productDGV.AllowUserToResizeRows = false;
             this.productDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.productDGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            this.productDGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.productDGV.BackgroundColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.NullValue = "Không xác định";
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.productDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.NullValue = "Không xác định";
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.productDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.productDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.productDGV.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.productDGV.DefaultCellStyle = dataGridViewCellStyle2;
             this.productDGV.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.productDGV.GridColor = System.Drawing.Color.Gainsboro;
             this.productDGV.Location = new System.Drawing.Point(0, 190);
@@ -234,6 +236,7 @@ namespace DBMS_G15
             // panelDetails
             // 
             this.panelDetails.BackColor = System.Drawing.Color.Gainsboro;
+            this.panelDetails.Controls.Add(this.checkBoxAdd);
             this.panelDetails.Controls.Add(this.cbbDepartment);
             this.panelDetails.Controls.Add(this.descriptionLabel);
             this.panelDetails.Controls.Add(this.priceLabel);
@@ -250,6 +253,27 @@ namespace DBMS_G15
             this.panelDetails.Name = "panelDetails";
             this.panelDetails.Size = new System.Drawing.Size(736, 190);
             this.panelDetails.TabIndex = 10;
+            // 
+            // checkBoxAdd
+            // 
+            this.checkBoxAdd.AutoSize = true;
+            this.checkBoxAdd.Location = new System.Drawing.Point(89, 145);
+            this.checkBoxAdd.Name = "checkBoxAdd";
+            this.checkBoxAdd.Size = new System.Drawing.Size(125, 17);
+            this.checkBoxAdd.TabIndex = 12;
+            this.checkBoxAdd.Text = "Thêm Sản Phẩm Mới";
+            this.checkBoxAdd.UseVisualStyleBackColor = true;
+            this.checkBoxAdd.CheckedChanged += new System.EventHandler(this.checkBoxAdd_CheckedChanged);
+            // 
+            // cbbDepartment
+            // 
+            this.cbbDepartment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.cbbDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbDepartment.FormattingEnabled = true;
+            this.cbbDepartment.Location = new System.Drawing.Point(287, 119);
+            this.cbbDepartment.Name = "cbbDepartment";
+            this.cbbDepartment.Size = new System.Drawing.Size(161, 21);
+            this.cbbDepartment.TabIndex = 11;
             // 
             // descriptionLabel
             // 
@@ -342,16 +366,6 @@ namespace DBMS_G15
             this.tbID.Size = new System.Drawing.Size(161, 20);
             this.tbID.TabIndex = 0;
             // 
-            // cbbDepartment
-            // 
-            this.cbbDepartment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.cbbDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbbDepartment.FormattingEnabled = true;
-            this.cbbDepartment.Location = new System.Drawing.Point(287, 119);
-            this.cbbDepartment.Name = "cbbDepartment";
-            this.cbbDepartment.Size = new System.Drawing.Size(161, 21);
-            this.cbbDepartment.TabIndex = 11;
-            // 
             // productForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -400,5 +414,6 @@ namespace DBMS_G15
         private System.Windows.Forms.TextBox tbID;
         private System.Windows.Forms.Button searchBtn;
         private System.Windows.Forms.ComboBox cbbDepartment;
+        private System.Windows.Forms.CheckBox checkBoxAdd;
     }
 }

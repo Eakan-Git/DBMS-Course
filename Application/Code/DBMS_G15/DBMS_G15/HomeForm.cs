@@ -37,6 +37,24 @@ namespace DBMS_G15
             {
                 btnMoney.Hide();
             }
+            else if(username == "partner")
+            {
+                btnCustomer.Hide();
+                btnDriver.Hide();
+                btnPartner.Hide();
+                btnStaff.Hide();
+                btnProduct.Hide();
+                btnOrder.Hide();
+            }
+            else if(username == "driver")
+            {
+                btnContract.Hide();
+                btnCustomer.Hide();
+                btnDriver.Hide();
+                btnPartner.Hide();
+                btnStaff.Hide();
+                btnProduct.Hide();
+            }
         }
         private void OpenChildForm(Form childForm)
         {
@@ -158,7 +176,18 @@ namespace DBMS_G15
             navMenu.Height = btnProfile.Height;
             navMenu.Top = btnProfile.Top;
             navMenu.BringToFront();
-            OpenChildForm(new CustomerProfile());
+            if (role == "customer")
+            {
+                OpenChildForm(new CustomerProfile());
+            }
+            else if(role == "staff" || role == "developer")
+            {
+                OpenChildForm(new StaffProfile());
+            }
+            else if(role == "driver")
+            {
+                OpenChildForm(new DriverProfile());
+            }
         }
     }
 }
