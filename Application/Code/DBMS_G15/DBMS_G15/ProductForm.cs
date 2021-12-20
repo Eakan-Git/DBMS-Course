@@ -59,7 +59,7 @@ namespace DBMS_G15
         private void btnNext_Click(object sender, EventArgs e)
         {
             btnPrevious.Enabled = true;
-            offset += 10;
+            offset += maxRowsPerPage;
             try
             {
                 autoLoadProductData();
@@ -67,13 +67,12 @@ namespace DBMS_G15
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
             }
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
         {
-            offset -= 10;
+            offset -= maxRowsPerPage;
             if (offset <= 0)
             {
                 offset = 0;
@@ -176,16 +175,20 @@ namespace DBMS_G15
                 }
             }
         }
-        private void loadAfterSave()
+        private void loadAfterAdd()
         {
+            DataTable tb = new DataTable();
             command = connection.CreateCommand();
-            command.CommandText = "exec lookupSP @MaSP";
+            command.CommandText = "select * from SANPHAM where TenSP = @TenSP";
             command.CommandType = CommandType.Text;
-            command.Parameters.AddWithValue("@MaSP", tbID.Text);
+            command.Parameters.AddWithValue("@TenSP", tbName.Text);
             adapter.SelectCommand = command;
-            tableProduct.Clear();
-            adapter.Fill(tableProduct);
-            productDGV.DataSource = tableProduct;
+            tb.Clear();
+            adapter.Fill(tb);
+            tbID.Text = tb.Rows[0]["MaSP"].ToString();
+            tbName.Text = tb.Rows[0]["TenSP"].ToString();
+            tbPrice.Text = tb.Rows[0]["Gia"].ToString();
+            tbDescription.Text = tb.Rows[0]["MoTa"].ToString();
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -212,6 +215,10 @@ namespace DBMS_G15
                                 SqlCommand deleteCommand = new SqlCommand("exec deleteSP @MaSP", connection);
                                 deleteCommand.Parameters.AddWithValue("@MaSP", tbID.Text);
                                 deleteCommand.ExecuteNonQuery();
+                                tbID.Text = "";
+                                tbDescription.Text = "";
+                                tbName.Text = "";
+                                tbPrice.Text = "";
                                 autoLoadProductData();
                                 MessageBox.Show("Xóa sản phẩm thành công.");
                             }
@@ -295,6 +302,7 @@ namespace DBMS_G15
                             updateCommand.ExecuteNonQuery();
                             autoLoadProductData();
                             MessageBox.Show("Thêm sản phẩm thành công");
+                            loadAfterAdd();
                         }
                         else
                         {
