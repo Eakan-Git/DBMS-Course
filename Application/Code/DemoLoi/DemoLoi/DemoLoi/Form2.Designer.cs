@@ -34,26 +34,27 @@ namespace DemoLoi
             this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.SoLuong = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.capNhat = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.DHKH = new System.Windows.Forms.TextBox();
-            this.SPKH = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panelCustomer = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.DHTX = new System.Windows.Forms.TextBox();
-            this.SPTX = new System.Windows.Forms.TextBox();
-            this.button5 = new System.Windows.Forms.Button();
+            this.suaLoi = new System.Windows.Forms.Button();
+            this.chayLoi = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.DHTX = new System.Windows.Forms.ComboBox();
+            this.SPTX = new System.Windows.Forms.ComboBox();
+            this.DHKH = new System.Windows.Forms.ComboBox();
+            this.SPKH = new System.Windows.Forms.ComboBox();
+            this.soLuong = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.soLuong)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -88,13 +89,13 @@ namespace DemoLoi
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.soLuong);
+            this.panel2.Controls.Add(this.SPKH);
+            this.panel2.Controls.Add(this.DHKH);
             this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.SoLuong);
-            this.panel2.Controls.Add(this.button3);
+            this.panel2.Controls.Add(this.capNhat);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.DHKH);
-            this.panel2.Controls.Add(this.SPKH);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -111,21 +112,15 @@ namespace DemoLoi
             this.label5.TabIndex = 9;
             this.label5.Text = "Số Lượng";
             // 
-            // SoLuong
+            // capNhat
             // 
-            this.SoLuong.Location = new System.Drawing.Point(571, 71);
-            this.SoLuong.Name = "SoLuong";
-            this.SoLuong.Size = new System.Drawing.Size(118, 20);
-            this.SoLuong.TabIndex = 8;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(596, 97);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Cập Nhật";
-            this.button3.UseVisualStyleBackColor = true;
+            this.capNhat.Location = new System.Drawing.Point(596, 97);
+            this.capNhat.Name = "capNhat";
+            this.capNhat.Size = new System.Drawing.Size(75, 23);
+            this.capNhat.TabIndex = 6;
+            this.capNhat.Text = "Cập Nhật";
+            this.capNhat.UseVisualStyleBackColor = true;
+            this.capNhat.Click += new System.EventHandler(this.capNhat_Click);
             // 
             // label4
             // 
@@ -145,20 +140,6 @@ namespace DemoLoi
             this.label3.TabIndex = 4;
             this.label3.Text = "Mã Đơn Hàng";
             // 
-            // DHKH
-            // 
-            this.DHKH.Location = new System.Drawing.Point(281, 71);
-            this.DHKH.Name = "DHKH";
-            this.DHKH.Size = new System.Drawing.Size(118, 20);
-            this.DHKH.TabIndex = 3;
-            // 
-            // SPKH
-            // 
-            this.SPKH.Location = new System.Drawing.Point(436, 71);
-            this.SPKH.Name = "SPKH";
-            this.SPKH.Size = new System.Drawing.Size(118, 20);
-            this.SPKH.TabIndex = 2;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -171,13 +152,13 @@ namespace DemoLoi
             // 
             // panelCustomer
             // 
+            this.panelCustomer.Controls.Add(this.SPTX);
+            this.panelCustomer.Controls.Add(this.DHTX);
             this.panelCustomer.Controls.Add(this.label6);
             this.panelCustomer.Controls.Add(this.dataGridView2);
             this.panelCustomer.Controls.Add(this.label7);
-            this.panelCustomer.Controls.Add(this.button6);
-            this.panelCustomer.Controls.Add(this.DHTX);
-            this.panelCustomer.Controls.Add(this.SPTX);
-            this.panelCustomer.Controls.Add(this.button5);
+            this.panelCustomer.Controls.Add(this.suaLoi);
+            this.panelCustomer.Controls.Add(this.chayLoi);
             this.panelCustomer.Controls.Add(this.label2);
             this.panelCustomer.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelCustomer.Location = new System.Drawing.Point(0, 154);
@@ -198,6 +179,7 @@ namespace DemoLoi
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(85, 54);
             this.dataGridView2.Name = "dataGridView2";
@@ -214,37 +196,25 @@ namespace DemoLoi
             this.label7.TabIndex = 12;
             this.label7.Text = "Mã Đơn Hàng";
             // 
-            // button6
+            // suaLoi
             // 
-            this.button6.Location = new System.Drawing.Point(652, 25);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 8;
-            this.button6.Text = "Sửa Lỗi";
-            this.button6.UseVisualStyleBackColor = true;
+            this.suaLoi.Location = new System.Drawing.Point(652, 25);
+            this.suaLoi.Name = "suaLoi";
+            this.suaLoi.Size = new System.Drawing.Size(75, 23);
+            this.suaLoi.TabIndex = 8;
+            this.suaLoi.Text = "Sửa Lỗi";
+            this.suaLoi.UseVisualStyleBackColor = true;
+            this.suaLoi.Click += new System.EventHandler(this.suaLoi_Click);
             // 
-            // DHTX
+            // chayLoi
             // 
-            this.DHTX.Location = new System.Drawing.Point(281, 28);
-            this.DHTX.Name = "DHTX";
-            this.DHTX.Size = new System.Drawing.Size(118, 20);
-            this.DHTX.TabIndex = 11;
-            // 
-            // SPTX
-            // 
-            this.SPTX.Location = new System.Drawing.Point(436, 28);
-            this.SPTX.Name = "SPTX";
-            this.SPTX.Size = new System.Drawing.Size(118, 20);
-            this.SPTX.TabIndex = 10;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(571, 25);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 7;
-            this.button5.Text = "Chạy Lỗi";
-            this.button5.UseVisualStyleBackColor = true;
+            this.chayLoi.Location = new System.Drawing.Point(571, 25);
+            this.chayLoi.Name = "chayLoi";
+            this.chayLoi.Size = new System.Drawing.Size(75, 23);
+            this.chayLoi.TabIndex = 7;
+            this.chayLoi.Text = "Chạy Lỗi";
+            this.chayLoi.UseVisualStyleBackColor = true;
+            this.chayLoi.Click += new System.EventHandler(this.chayLoi_Click);
             // 
             // label2
             // 
@@ -256,6 +226,55 @@ namespace DemoLoi
             this.label2.TabIndex = 2;
             this.label2.Text = "Thao Tác Tài Xế";
             // 
+            // DHTX
+            // 
+            this.DHTX.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DHTX.FormattingEnabled = true;
+            this.DHTX.Location = new System.Drawing.Point(281, 28);
+            this.DHTX.Name = "DHTX";
+            this.DHTX.Size = new System.Drawing.Size(118, 21);
+            this.DHTX.TabIndex = 10;
+            this.DHTX.SelectionChangeCommitted += new System.EventHandler(this.DHTX_SelectionChangeCommitted);
+            // 
+            // SPTX
+            // 
+            this.SPTX.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SPTX.FormattingEnabled = true;
+            this.SPTX.Location = new System.Drawing.Point(436, 28);
+            this.SPTX.Name = "SPTX";
+            this.SPTX.Size = new System.Drawing.Size(118, 21);
+            this.SPTX.TabIndex = 14;
+            // 
+            // DHKH
+            // 
+            this.DHKH.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DHKH.FormattingEnabled = true;
+            this.DHKH.Location = new System.Drawing.Point(281, 71);
+            this.DHKH.Name = "DHKH";
+            this.DHKH.Size = new System.Drawing.Size(118, 21);
+            this.DHKH.TabIndex = 15;
+            this.DHKH.SelectionChangeCommitted += new System.EventHandler(this.DHKH_SelectionChangeCommitted);
+            this.DHKH.Click += new System.EventHandler(this.DHKH_Click);
+            // 
+            // SPKH
+            // 
+            this.SPKH.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SPKH.FormattingEnabled = true;
+            this.SPKH.Location = new System.Drawing.Point(436, 71);
+            this.SPKH.Name = "SPKH";
+            this.SPKH.Size = new System.Drawing.Size(118, 21);
+            this.SPKH.TabIndex = 16;
+            this.SPKH.SelectionChangeCommitted += new System.EventHandler(this.SPKH_SelectionChangeCommitted);
+            this.SPKH.Click += new System.EventHandler(this.SPKH_Click);
+            // 
+            // soLuong
+            // 
+            this.soLuong.Location = new System.Drawing.Point(596, 71);
+            this.soLuong.Name = "soLuong";
+            this.soLuong.Size = new System.Drawing.Size(75, 20);
+            this.soLuong.TabIndex = 17;
+            this.soLuong.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -264,15 +283,19 @@ namespace DemoLoi
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelCustomer);
             this.Controls.Add(this.panel1);
+            this.MaximumSize = new System.Drawing.Size(841, 549);
+            this.MinimumSize = new System.Drawing.Size(841, 549);
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Unrepeatable Read";
+            this.Load += new System.EventHandler(this.Form2_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panelCustomer.ResumeLayout(false);
             this.panelCustomer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.soLuong)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -284,21 +307,21 @@ namespace DemoLoi
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox SoLuong;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button capNhat;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox DHKH;
-        private System.Windows.Forms.TextBox SPKH;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelCustomer;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button suaLoi;
+        private System.Windows.Forms.Button chayLoi;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox DHTX;
-        private System.Windows.Forms.TextBox SPTX;
+        private System.Windows.Forms.NumericUpDown soLuong;
+        private System.Windows.Forms.ComboBox SPKH;
+        private System.Windows.Forms.ComboBox DHKH;
+        private System.Windows.Forms.ComboBox SPTX;
+        private System.Windows.Forms.ComboBox DHTX;
     }
 }
