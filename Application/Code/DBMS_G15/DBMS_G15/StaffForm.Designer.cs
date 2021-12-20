@@ -30,7 +30,7 @@ namespace DBMS_G15
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -53,6 +53,7 @@ namespace DBMS_G15
             this.tbPhone = new System.Windows.Forms.TextBox();
             this.tbName = new System.Windows.Forms.TextBox();
             this.tbID = new System.Windows.Forms.TextBox();
+            this.btnReload = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panelNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StaffDGV)).BeginInit();
@@ -202,14 +203,14 @@ namespace DBMS_G15
             this.StaffDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.StaffDGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.StaffDGV.BackgroundColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.StaffDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.StaffDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.StaffDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.StaffDGV.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.StaffDGV.GridColor = System.Drawing.Color.Gainsboro;
@@ -225,6 +226,7 @@ namespace DBMS_G15
             // panelDetails
             // 
             this.panelDetails.BackColor = System.Drawing.Color.Gainsboro;
+            this.panelDetails.Controls.Add(this.btnReload);
             this.panelDetails.Controls.Add(this.customerEmailLabel);
             this.panelDetails.Controls.Add(this.customerPhoneLabel);
             this.panelDetails.Controls.Add(this.customerAddressLabel);
@@ -341,6 +343,17 @@ namespace DBMS_G15
             this.tbID.Size = new System.Drawing.Size(161, 20);
             this.tbID.TabIndex = 0;
             // 
+            // btnReload
+            // 
+            this.btnReload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReload.Image = global::DBMS_G15.Properties.Resources.reload;
+            this.btnReload.Location = new System.Drawing.Point(707, 166);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(29, 24);
+            this.btnReload.TabIndex = 13;
+            this.btnReload.UseVisualStyleBackColor = true;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            // 
             // StaffForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -389,5 +402,6 @@ namespace DBMS_G15
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.TextBox tbID;
         private System.Windows.Forms.Button searchBtn;
+        private System.Windows.Forms.Button btnReload;
     }
 }

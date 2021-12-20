@@ -29,7 +29,7 @@ namespace DBMS_G15
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerForm));
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelDetails = new System.Windows.Forms.Panel();
@@ -51,6 +51,7 @@ namespace DBMS_G15
             this.searchBox = new System.Windows.Forms.TextBox();
             this.panelNavigator = new System.Windows.Forms.Panel();
             this.searchBtn = new System.Windows.Forms.Button();
+            this.btnReload = new System.Windows.Forms.Button();
             this.btnUnlock = new System.Windows.Forms.Button();
             this.btnLock = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -75,6 +76,7 @@ namespace DBMS_G15
             // panelDetails
             // 
             this.panelDetails.BackColor = System.Drawing.Color.Gainsboro;
+            this.panelDetails.Controls.Add(this.btnReload);
             this.panelDetails.Controls.Add(this.customerEmailLabel);
             this.panelDetails.Controls.Add(this.customerPhoneLabel);
             this.panelDetails.Controls.Add(this.customerAddressLabel);
@@ -199,14 +201,14 @@ namespace DBMS_G15
             this.customerDGV.AllowUserToResizeRows = false;
             this.customerDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.customerDGV.BackgroundColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.customerDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.customerDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.customerDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.customerDGV.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.customerDGV.GridColor = System.Drawing.Color.Gainsboro;
@@ -294,6 +296,17 @@ namespace DBMS_G15
             this.searchBtn.Text = "Tìm";
             this.searchBtn.UseVisualStyleBackColor = false;
             this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
+            // 
+            // btnReload
+            // 
+            this.btnReload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReload.Image = global::DBMS_G15.Properties.Resources.reload;
+            this.btnReload.Location = new System.Drawing.Point(707, 133);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(29, 24);
+            this.btnReload.TabIndex = 11;
+            this.btnReload.UseVisualStyleBackColor = true;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
             // btnUnlock
             // 
@@ -419,5 +432,6 @@ namespace DBMS_G15
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnUnlock;
+        private System.Windows.Forms.Button btnReload;
     }
 }
