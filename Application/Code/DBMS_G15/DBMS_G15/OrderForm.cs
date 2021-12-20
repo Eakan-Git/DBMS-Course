@@ -17,7 +17,8 @@ namespace DBMS_G15
         SqlCommand command;
         SqlDataAdapter adapter = new SqlDataAdapter();
         string PhivanChuyen = "25000";
-        string TinhTrang = "Đang xử lí";
+        string DangXuLi = "Đang xử lí";
+        string DaHuy = "Đã hủy";
         DateTime now = DateTime.Now;
 
         public OrderForm()
@@ -128,7 +129,7 @@ namespace DBMS_G15
 
         private void bttADD_CT_Click(object sender, EventArgs e)
         {
-            if (cbbProduct.SelectedValue.ToString() == "" || numericUpDown1.Value == 0)
+            if (cbbProduct.SelectedValue == null || numericUpDown1.Value == 0)
             {
                 MessageBox.Show("Vui lòng chọn đủ thông tin.");
             }
@@ -149,6 +150,7 @@ namespace DBMS_G15
                             updateCommand.ExecuteNonQuery();
                             LoadDetailOrder();
                             LoadOrder();
+                            OrderDGV.CurrentCell = OrderDGV[0, OrderDGV.Rows.Count - 1];
                             MessageBox.Show("Thêm Sản phẩm vào giỏ hàng thành công");
                         }
                         catch (Exception ex)
@@ -157,6 +159,8 @@ namespace DBMS_G15
                         }
                     }
                 }
+                cbbProduct.SelectedItem = null;
+                numericUpDown1.Value = 0;
             }
         }
 
@@ -179,6 +183,11 @@ namespace DBMS_G15
         {
             using (SqlConnection connection = new SqlConnection(@"Data Source=(local);Initial Catalog=DBMS_ThucHanh_Nhom15;Integrated Security=True"))
             {
+                btnCancelOrder.Enabled = false;
+                cbbProduct.Enabled = false;
+                btnAddProduct.Enabled = false;
+                btnDeleteProduct.Enabled = false;
+                numericUpDown1.Enabled = false;
                 try
                 {
                     connection.Open();
@@ -229,12 +238,13 @@ namespace DBMS_G15
                             SqlCommand updateCommand = new SqlCommand("Insert into DONHANG(MaKH,NgayDat,TinhTrang,PhiVanChuyen,MaKV) values (@MaKH,@NgayDat,@TinhTrang,@PhiVanChuyen,@MaKV)", connection);
                             updateCommand.Parameters.AddWithValue("@MaKH", cbbIDCustomer.SelectedValue);
                             updateCommand.Parameters.AddWithValue("@NgayDat", now);
-                            updateCommand.Parameters.AddWithValue("@TinhTrang", TinhTrang);
+                            updateCommand.Parameters.AddWithValue("@TinhTrang", DangXuLi);
                             updateCommand.Parameters.AddWithValue("@PhiVanChuyen", PhivanChuyen);
                             updateCommand.Parameters.AddWithValue("@MaKV", cbbArea.SelectedValue);
                             updateCommand.ExecuteNonQuery();
                             LoadOrder();
-                            MessageBox.Show("Thêm Đơn hàng thành công");
+                            OrderDGV.CurrentCell = OrderDGV[0, OrderDGV.Rows.Count - 1];
+                            MessageBox.Show("Thêm đơn hàng thành công");
                         }
                         catch (Exception ex)
                         {
@@ -272,6 +282,8 @@ namespace DBMS_G15
 
         private void OrderDGV_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            cbbProduct.SelectedItem = null;
+            numericUpDown1.Value = 0;
             LoadDetailOrder();
             checkTinhTrang();
         }
@@ -301,9 +313,9 @@ namespace DBMS_G15
             }
         }
 
-        private void btnDeleteOrder_Click(object sender, EventArgs e)
+        private void btnCancelOrder_Click(object sender, EventArgs e)
         {
-            DialogResult confirm = MessageBox.Show("Xác nhận xóa đơn hàng?", "Xóa Đơn hàng", MessageBoxButtons.YesNo);
+            DialogResult confirm = MessageBox.Show("Xác nhận hủy đơn hàng?", "Hủy Đơn hàng", MessageBoxButtons.YesNo);
             if (confirm == DialogResult.Yes)
             {
                 using (SqlConnection connection = new SqlConnection(@"Data Source=(local);Initial Catalog=DBMS_ThucHanh_Nhom15;Integrated Security=True"))
@@ -311,12 +323,12 @@ namespace DBMS_G15
                     try
                     {
                         connection.Open();
-                        SqlCommand DeleteCommand = new SqlCommand("exec Delete_Order @MaDH", connection);
+                        SqlCommand DeleteCommand = new SqlCommand("exec Cancel_Order @MaDH", connection);
                         DeleteCommand.Parameters.AddWithValue("@MaDH", OrderDGV.CurrentRow.Cells[0].Value);
                         DeleteCommand.ExecuteNonQuery();
                         LoadDetailOrder();
                         LoadOrder();
-                        MessageBox.Show("Xóa đơn hàng thành công");
+                        MessageBox.Show("Hủy đơn hàng thành công");
                     }
                     catch (Exception ex)
                     {
@@ -328,20 +340,30 @@ namespace DBMS_G15
 
         void checkTinhTrang()
         {
-            if (OrderDGV.CurrentRow.Cells[3].Value.ToString() != TinhTrang)
+            if (OrderDGV.CurrentRow.Cells[3].Value.ToString() != DangXuLi)
             {
                 cbbProduct.Enabled = false;
                 numericUpDown1.Enabled = false;
                 btnAddProduct.Enabled = false;
                 btnDeleteProduct.Enabled = false;
+                btnCancelOrder.Enabled = false;
             }
-            else if (OrderDGV.CurrentRow.Cells[3].Value.ToString() == TinhTrang)
+            else if (OrderDGV.CurrentRow.Cells[3].Value.ToString() == DangXuLi)
             {
                 cbbProduct.Enabled = true;
                 numericUpDown1.Enabled = true;
                 btnAddProduct.Enabled = true;
                 btnDeleteProduct.Enabled = true;
+                btnCancelOrder.Enabled = true;
             }
+        }
+        private void OrderForm_Load(object sender, EventArgs e)
+        {
+            btnCancelOrder.Enabled = false;
+            cbbProduct.Enabled = false;
+            numericUpDown1.Enabled = false;
+            btnDeleteProduct.Enabled = false;
+            btnAddProduct.Enabled = false;
         }
     }
 }
