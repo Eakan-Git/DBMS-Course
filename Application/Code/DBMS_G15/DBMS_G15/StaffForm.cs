@@ -72,28 +72,41 @@ namespace DBMS_G15
             {
                 try
                 {
-                    connection.Open();
-                    SqlCommand checkStaffExisted = new SqlCommand("select * from NHANVIEN where MaNV = @MaNV", connection);
-                    checkStaffExisted.Parameters.AddWithValue("@MaNV", tbID.Text);
-                    SqlDataReader reader = checkStaffExisted.ExecuteReader();
-                    if (reader.HasRows)
+                    if(tbID.Text == "")
                     {
-                        reader.Close();
-                        DialogResult confirm = MessageBox.Show("Xác nhận xóa sản phẩm này?", "Xóa Sản Phẩm", MessageBoxButtons.YesNo);
-                        if (confirm == DialogResult.Yes)
-                        {
-                            SqlCommand DeleteNVCommand = new SqlCommand("Exec deleteNV @MANV, @SDT", connection);
-                            DeleteNVCommand.Parameters.AddWithValue("@MANV", tbID.Text);
-                            DeleteNVCommand.Parameters.AddWithValue("@SDT", tbPhone.Text);
-                            DeleteNVCommand.ExecuteNonQuery();
-                            autoLoadStaffData();
-                            MessageBox.Show("Đã xóa Nhân viên!");
-                        }
-                    }
+                        MessageBox.Show("Hãy chọn nhân viên để xóa.");
+                    }   
                     else
                     {
-                        MessageBox.Show("Sản phẩm không tồn tại.");
-                    }
+
+                        connection.Open();
+                        SqlCommand checkStaffExisted = new SqlCommand("select * from NHANVIEN where MaNV = @MaNV", connection);
+                        checkStaffExisted.Parameters.AddWithValue("@MaNV", tbID.Text);
+                        SqlDataReader reader = checkStaffExisted.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            reader.Close();
+                            DialogResult confirm = MessageBox.Show("Xác nhận xóa nhân viên này?", "Xóa Nhân Viên", MessageBoxButtons.YesNo);
+                            if (confirm == DialogResult.Yes)
+                            {
+                                SqlCommand DeleteNVCommand = new SqlCommand("Exec deleteNV @MANV, @SDT", connection);
+                                DeleteNVCommand.Parameters.AddWithValue("@MANV", tbID.Text);
+                                DeleteNVCommand.Parameters.AddWithValue("@SDT", tbPhone.Text);
+                                DeleteNVCommand.ExecuteNonQuery();
+                                tbID.Text = "";
+                                tbName.Text = "";
+                                tbPhone.Text = "";
+                                tbEmail.Text = "";
+                                tbAddress.Text = "";
+                                autoLoadStaffData();
+                                MessageBox.Show("Đã xóa Nhân viên!");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Nhân viên không tồn tại.");
+                        }
+                    }    
                 }
                 catch (Exception ex)
                 {
@@ -115,14 +128,33 @@ namespace DBMS_G15
                     else
                     {
                         connection.Open();
-                        SqlCommand InsertCommand = new SqlCommand("EXEC InsertNV @HoTen, @SDT,@DiaChi,@Email", connection);
-                        InsertCommand.Parameters.AddWithValue("@HoTen", tbName.Text);
-                        InsertCommand.Parameters.AddWithValue("@SDT", tbPhone.Text);
-                        InsertCommand.Parameters.AddWithValue("@DiaChi", tbAddress.Text);
-                        InsertCommand.Parameters.AddWithValue("@Email", tbEmail.Text);
-                        InsertCommand.ExecuteNonQuery();
-                        autoLoadStaffData();
-                        MessageBox.Show("Nhân viên được thêm thành công.");
+                        SqlCommand checkStaffIfExisted = new SqlCommand("select MaNV from THONGTINCANHAN tt, NHANVIEN nv where tt.ID = nv.ID and tt.SoDienThoai = @SoDienThoai", connection);
+                        checkStaffIfExisted.Parameters.AddWithValue("@SoDienThoai", tbPhone.Text);
+                        SqlDataReader reader = checkStaffIfExisted.ExecuteReader();
+                        if (!reader.HasRows)
+                        {
+                            reader.Close();
+                            DialogResult confirm = MessageBox.Show("Xác nhận thêm nhân viên này?", "Thêm Nhân Viên", MessageBoxButtons.YesNo);
+                            if (confirm == DialogResult.Yes)
+                            {
+                                //connection.Open();
+                                SqlCommand InsertCommand = new SqlCommand("EXEC InsertNV @HoTen, @SDT,@DiaChi,@Email", connection);
+                                InsertCommand.Parameters.AddWithValue("@HoTen", tbName.Text);
+                                InsertCommand.Parameters.AddWithValue("@SDT", tbPhone.Text);
+                                InsertCommand.Parameters.AddWithValue("@DiaChi", tbAddress.Text);
+                                InsertCommand.Parameters.AddWithValue("@Email", tbEmail.Text);
+                                InsertCommand.ExecuteNonQuery();
+                                autoLoadStaffData();
+                                MessageBox.Show("Nhân viên được thêm thành công.");
+                                SqlDataReader reader2 = checkStaffIfExisted.ExecuteReader();
+                                tbID.Text = reader2.GetString(0);
+                                reader2.Close();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Nhân viên đã tồn tại.");
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -200,16 +232,20 @@ namespace DBMS_G15
                     }
                     else
                     {
-                        connection.Open();
-                        SqlCommand SaveCommand = new SqlCommand("exec updateNV @MaNV,@HoTen,@SDT,@DiaChi,@Email", connection);
-                        SaveCommand.Parameters.AddWithValue("@MaNV", tbID.Text);
-                        SaveCommand.Parameters.AddWithValue("@HoTen", tbName.Text);
-                        SaveCommand.Parameters.AddWithValue("@SDT", tbPhone.Text);
-                        SaveCommand.Parameters.AddWithValue("@DiaChi", tbAddress.Text);
-                        SaveCommand.Parameters.AddWithValue("@Email", tbEmail.Text);
-                        SaveCommand.ExecuteNonQuery();
-                        autoLoadStaffData();
-                        MessageBox.Show("Chỉnh sửa thông tin thành công.");
+                        DialogResult confirm = MessageBox.Show("Xác nhận thêm nhân viên này?", "Thêm Nhân Viên", MessageBoxButtons.YesNo);
+                        if (confirm == DialogResult.Yes)
+                        {
+                            connection.Open();
+                            SqlCommand SaveCommand = new SqlCommand("exec updateNV @MaNV,@HoTen,@SDT,@DiaChi,@Email", connection);
+                            SaveCommand.Parameters.AddWithValue("@MaNV", tbID.Text);
+                            SaveCommand.Parameters.AddWithValue("@HoTen", tbName.Text);
+                            SaveCommand.Parameters.AddWithValue("@SDT", tbPhone.Text);
+                            SaveCommand.Parameters.AddWithValue("@DiaChi", tbAddress.Text);
+                            SaveCommand.Parameters.AddWithValue("@Email", tbEmail.Text);
+                            SaveCommand.ExecuteNonQuery();
+                            autoLoadStaffData();
+                            MessageBox.Show("Chỉnh sửa thông tin thành công.");
+                        }
                     }
                 }
                 catch (Exception ex)
