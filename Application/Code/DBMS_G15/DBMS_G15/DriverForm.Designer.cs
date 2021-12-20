@@ -40,6 +40,14 @@ namespace DBMS_G15
             this.btnPrevious = new System.Windows.Forms.Button();
             this.driverDGV = new System.Windows.Forms.DataGridView();
             this.panelDetails = new System.Windows.Forms.Panel();
+            this.cbbMoney = new System.Windows.Forms.ComboBox();
+            this.labelEmail = new System.Windows.Forms.Label();
+            this.tbEmail = new System.Windows.Forms.TextBox();
+            this.labelAddress = new System.Windows.Forms.Label();
+            this.labelMoney = new System.Windows.Forms.Label();
+            this.labelBank = new System.Windows.Forms.Label();
+            this.tbAddress = new System.Windows.Forms.TextBox();
+            this.tbBank = new System.Windows.Forms.TextBox();
             this.cbbDepartment = new System.Windows.Forms.ComboBox();
             this.IDNumLabel = new System.Windows.Forms.Label();
             this.numLabel = new System.Windows.Forms.Label();
@@ -51,15 +59,8 @@ namespace DBMS_G15
             this.tbNum = new System.Windows.Forms.TextBox();
             this.tbName = new System.Windows.Forms.TextBox();
             this.tbID = new System.Windows.Forms.TextBox();
-            this.labelAddress = new System.Windows.Forms.Label();
-            this.labelMoney = new System.Windows.Forms.Label();
-            this.labelBank = new System.Windows.Forms.Label();
-            this.tbAddress = new System.Windows.Forms.TextBox();
-            this.tbBank = new System.Windows.Forms.TextBox();
-            this.labelEmail = new System.Windows.Forms.Label();
-            this.tbEmail = new System.Windows.Forms.TextBox();
-            this.cbbMoney = new System.Windows.Forms.ComboBox();
-            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnUnlock = new System.Windows.Forms.Button();
+            this.btnLock = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
@@ -71,7 +72,8 @@ namespace DBMS_G15
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Controls.Add(this.btnDelete);
+            this.panel1.Controls.Add(this.btnUnlock);
+            this.panel1.Controls.Add(this.btnLock);
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
@@ -202,6 +204,79 @@ namespace DBMS_G15
             this.panelDetails.Size = new System.Drawing.Size(736, 190);
             this.panelDetails.TabIndex = 11;
             // 
+            // cbbMoney
+            // 
+            this.cbbMoney.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbbMoney.FormattingEnabled = true;
+            this.cbbMoney.Location = new System.Drawing.Point(522, 88);
+            this.cbbMoney.Name = "cbbMoney";
+            this.cbbMoney.Size = new System.Drawing.Size(161, 21);
+            this.cbbMoney.TabIndex = 20;
+            // 
+            // labelEmail
+            // 
+            this.labelEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelEmail.AutoSize = true;
+            this.labelEmail.Location = new System.Drawing.Point(522, 151);
+            this.labelEmail.Name = "labelEmail";
+            this.labelEmail.Size = new System.Drawing.Size(32, 13);
+            this.labelEmail.TabIndex = 19;
+            this.labelEmail.Text = "Email";
+            // 
+            // tbEmail
+            // 
+            this.tbEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbEmail.Location = new System.Drawing.Point(522, 170);
+            this.tbEmail.Name = "tbEmail";
+            this.tbEmail.Size = new System.Drawing.Size(161, 20);
+            this.tbEmail.TabIndex = 18;
+            // 
+            // labelAddress
+            // 
+            this.labelAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelAddress.AutoSize = true;
+            this.labelAddress.Location = new System.Drawing.Point(522, 112);
+            this.labelAddress.Name = "labelAddress";
+            this.labelAddress.Size = new System.Drawing.Size(41, 13);
+            this.labelAddress.TabIndex = 17;
+            this.labelAddress.Text = "Địa Chỉ";
+            // 
+            // labelMoney
+            // 
+            this.labelMoney.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelMoney.AutoSize = true;
+            this.labelMoney.Location = new System.Drawing.Point(522, 71);
+            this.labelMoney.Name = "labelMoney";
+            this.labelMoney.Size = new System.Drawing.Size(80, 13);
+            this.labelMoney.TabIndex = 16;
+            this.labelMoney.Text = "Phí Thuế Chân";
+            // 
+            // labelBank
+            // 
+            this.labelBank.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelBank.AutoSize = true;
+            this.labelBank.Location = new System.Drawing.Point(522, 32);
+            this.labelBank.Name = "labelBank";
+            this.labelBank.Size = new System.Drawing.Size(72, 13);
+            this.labelBank.TabIndex = 15;
+            this.labelBank.Text = "Số Tài Khoản";
+            // 
+            // tbAddress
+            // 
+            this.tbAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbAddress.Location = new System.Drawing.Point(522, 128);
+            this.tbAddress.Name = "tbAddress";
+            this.tbAddress.Size = new System.Drawing.Size(161, 20);
+            this.tbAddress.TabIndex = 14;
+            // 
+            // tbBank
+            // 
+            this.tbBank.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbBank.Location = new System.Drawing.Point(522, 48);
+            this.tbBank.Name = "tbBank";
+            this.tbBank.Size = new System.Drawing.Size(161, 20);
+            this.tbBank.TabIndex = 12;
+            // 
             // cbbDepartment
             // 
             this.cbbDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -301,96 +376,41 @@ namespace DBMS_G15
             this.tbID.Size = new System.Drawing.Size(161, 20);
             this.tbID.TabIndex = 0;
             // 
-            // labelAddress
+            // btnUnlock
             // 
-            this.labelAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelAddress.AutoSize = true;
-            this.labelAddress.Location = new System.Drawing.Point(522, 112);
-            this.labelAddress.Name = "labelAddress";
-            this.labelAddress.Size = new System.Drawing.Size(41, 13);
-            this.labelAddress.TabIndex = 17;
-            this.labelAddress.Text = "Địa Chỉ";
+            this.btnUnlock.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUnlock.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnUnlock.FlatAppearance.BorderSize = 0;
+            this.btnUnlock.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnUnlock.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnUnlock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUnlock.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUnlock.Image = global::DBMS_G15.Properties.Resources.unlock;
+            this.btnUnlock.Location = new System.Drawing.Point(0, 435);
+            this.btnUnlock.Name = "btnUnlock";
+            this.btnUnlock.Size = new System.Drawing.Size(72, 145);
+            this.btnUnlock.TabIndex = 29;
+            this.btnUnlock.Text = "Mở Khóa";
+            this.btnUnlock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnUnlock.UseVisualStyleBackColor = true;
             // 
-            // labelMoney
+            // btnLock
             // 
-            this.labelMoney.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelMoney.AutoSize = true;
-            this.labelMoney.Location = new System.Drawing.Point(522, 71);
-            this.labelMoney.Name = "labelMoney";
-            this.labelMoney.Size = new System.Drawing.Size(80, 13);
-            this.labelMoney.TabIndex = 16;
-            this.labelMoney.Text = "Phí Thuế Chân";
-            // 
-            // labelBank
-            // 
-            this.labelBank.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelBank.AutoSize = true;
-            this.labelBank.Location = new System.Drawing.Point(522, 32);
-            this.labelBank.Name = "labelBank";
-            this.labelBank.Size = new System.Drawing.Size(72, 13);
-            this.labelBank.TabIndex = 15;
-            this.labelBank.Text = "Số Tài Khoản";
-            // 
-            // tbAddress
-            // 
-            this.tbAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbAddress.Location = new System.Drawing.Point(522, 128);
-            this.tbAddress.Name = "tbAddress";
-            this.tbAddress.Size = new System.Drawing.Size(161, 20);
-            this.tbAddress.TabIndex = 14;
-            // 
-            // tbBank
-            // 
-            this.tbBank.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbBank.Location = new System.Drawing.Point(522, 48);
-            this.tbBank.Name = "tbBank";
-            this.tbBank.Size = new System.Drawing.Size(161, 20);
-            this.tbBank.TabIndex = 12;
-            // 
-            // labelEmail
-            // 
-            this.labelEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelEmail.AutoSize = true;
-            this.labelEmail.Location = new System.Drawing.Point(522, 151);
-            this.labelEmail.Name = "labelEmail";
-            this.labelEmail.Size = new System.Drawing.Size(32, 13);
-            this.labelEmail.TabIndex = 19;
-            this.labelEmail.Text = "Email";
-            // 
-            // tbEmail
-            // 
-            this.tbEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbEmail.Location = new System.Drawing.Point(522, 170);
-            this.tbEmail.Name = "tbEmail";
-            this.tbEmail.Size = new System.Drawing.Size(161, 20);
-            this.tbEmail.TabIndex = 18;
-            // 
-            // cbbMoney
-            // 
-            this.cbbMoney.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbbMoney.FormattingEnabled = true;
-            this.cbbMoney.Location = new System.Drawing.Point(522, 88);
-            this.cbbMoney.Name = "cbbMoney";
-            this.cbbMoney.Size = new System.Drawing.Size(161, 21);
-            this.cbbMoney.TabIndex = 20;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnDelete.FlatAppearance.BorderSize = 0;
-            this.btnDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(0, 380);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(72, 190);
-            this.btnDelete.TabIndex = 24;
-            this.btnDelete.Text = "Xóa";
-            this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnLock.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLock.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnLock.FlatAppearance.BorderSize = 0;
+            this.btnLock.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnLock.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnLock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLock.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLock.Image = global::DBMS_G15.Properties.Resources._lock;
+            this.btnLock.Location = new System.Drawing.Point(0, 290);
+            this.btnLock.Name = "btnLock";
+            this.btnLock.Size = new System.Drawing.Size(72, 145);
+            this.btnLock.TabIndex = 28;
+            this.btnLock.Text = "Khóa";
+            this.btnLock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnLock.UseVisualStyleBackColor = true;
             // 
             // btnSave
             // 
@@ -402,10 +422,10 @@ namespace DBMS_G15
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
-            this.btnSave.Location = new System.Drawing.Point(0, 190);
+            this.btnSave.Location = new System.Drawing.Point(0, 145);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(72, 190);
-            this.btnSave.TabIndex = 23;
+            this.btnSave.Size = new System.Drawing.Size(72, 145);
+            this.btnSave.TabIndex = 27;
             this.btnSave.Text = "Lưu";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -423,8 +443,8 @@ namespace DBMS_G15
             this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
             this.btnAdd.Location = new System.Drawing.Point(0, 0);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(72, 190);
-            this.btnAdd.TabIndex = 22;
+            this.btnAdd.Size = new System.Drawing.Size(72, 145);
+            this.btnAdd.TabIndex = 26;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -482,7 +502,8 @@ namespace DBMS_G15
         private System.Windows.Forms.Label labelBank;
         private System.Windows.Forms.TextBox tbAddress;
         private System.Windows.Forms.TextBox tbBank;
-        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnUnlock;
+        private System.Windows.Forms.Button btnLock;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnAdd;
     }

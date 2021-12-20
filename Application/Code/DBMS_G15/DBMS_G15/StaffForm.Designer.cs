@@ -213,12 +213,12 @@ namespace DBMS_G15
             this.StaffDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.StaffDGV.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.StaffDGV.GridColor = System.Drawing.Color.Gainsboro;
-            this.StaffDGV.Location = new System.Drawing.Point(0, 145);
+            this.StaffDGV.Location = new System.Drawing.Point(0, 190);
             this.StaffDGV.Name = "StaffDGV";
             this.StaffDGV.ReadOnly = true;
             this.StaffDGV.RowHeadersWidth = 62;
             this.StaffDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.StaffDGV.Size = new System.Drawing.Size(736, 368);
+            this.StaffDGV.Size = new System.Drawing.Size(736, 323);
             this.StaffDGV.TabIndex = 8;
             this.StaffDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.StaffDGV_CellClick);
             // 
@@ -239,7 +239,7 @@ namespace DBMS_G15
             this.panelDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDetails.Location = new System.Drawing.Point(0, 0);
             this.panelDetails.Name = "panelDetails";
-            this.panelDetails.Size = new System.Drawing.Size(736, 145);
+            this.panelDetails.Size = new System.Drawing.Size(736, 190);
             this.panelDetails.TabIndex = 9;
             // 
             // customerEmailLabel

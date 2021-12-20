@@ -143,18 +143,10 @@ begin tran
 	commit tran
 go
 
--- Xóa Đơn hàng
-create procedure Delete_Order
+-- Hủy Đơn hàng
+create or alter procedure Cancel_Order
 	@MaDH int
 as
 begin tran
-	if ((select COUNT(*) from CHITIETDONHANG where MaDH = @MaDH)<0) 
-	begin
-		delete from DONHANG WHERE MaDH=@MaDH
-	end
-	else
-	begin
-		delete from CHITIETDONHANG WHERE MaDH=@MaDH 
-		delete from DONHANG WHERE MaDH=@MaDH
-		commit tran
-	end
+	update DONHANG set TinhTrang = N'Đã hủy' where MaDH = @MaDH
+commit tran
