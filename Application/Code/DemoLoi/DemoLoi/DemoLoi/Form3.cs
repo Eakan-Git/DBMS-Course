@@ -13,6 +13,7 @@ namespace DemoLoi
 {
     public partial class Form3 : Form
     {
+        string defaultText = "Số sản phẩm tìm được: ";
         SqlConnection connection;
         SqlCommand command;
         SqlDataAdapter adapter = new SqlDataAdapter();
@@ -21,6 +22,8 @@ namespace DemoLoi
         public Form3()
         {
             InitializeComponent();
+            connection = new SqlConnection(str);
+            this.dataGridView2.Columns[0].Visible = false;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -68,8 +71,6 @@ namespace DemoLoi
                     cmd.Parameters.AddWithValue("@GiaTieuChuan", GiaTC.Text);
                     con.Open();
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Chạy thành công.");
-                    LoadSP();
                 }
             }
         }
@@ -80,12 +81,15 @@ namespace DemoLoi
             {
                 using (SqlCommand cmd = new SqlCommand("Xem_SP_voigia", con))
                 {
+                    DataSet ds = new DataSet();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Gia", GiaKH.Text);
                     con.Open();
-                    cmd.ExecuteNonQuery();
+                    adapter = new SqlDataAdapter(cmd);
+                    adapter.Fill(ds);
+                    labelQuery.Text = defaultText + ds.Tables[0].Rows[0][0].ToString();
+                    dataGridView2.DataSource = ds.Tables[1].DefaultView;
                     MessageBox.Show("Chạy thành công.");
-                    LoadSP();
                 }
             }
         }
@@ -96,13 +100,23 @@ namespace DemoLoi
             {
                 using (SqlCommand cmd = new SqlCommand("Xem_SP_voigia2", con))
                 {
+                    DataSet ds = new DataSet();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Gia", GiaKH.Text);
                     con.Open();
-                    cmd.ExecuteNonQuery();
+                    adapter = new SqlDataAdapter(cmd);
+                    adapter.Fill(ds);
+                    labelQuery.Text = defaultText + ds.Tables[0].Rows[0][0].ToString();
+                    dataGridView2.DataSource = ds.Tables[1].DefaultView;
                     MessageBox.Show("Chạy thành công.");
                 }
             }
+        }
+
+        private void dataGridView2_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            this.dataGridView2.Columns[0].Visible = true;
+            this.dataGridView2.Rows[e.RowIndex].Cells["STT"].Value = (e.RowIndex + 1).ToString();
         }
     }
 }
