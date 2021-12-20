@@ -295,11 +295,11 @@ namespace DBMS_G15
                         if (!reader2.HasRows)
                         {
                             reader2.Close();
-                            SqlCommand updateCommand = new SqlCommand("exec addSP @TenSP, @Gia, @MoTa", connection);
-                            updateCommand.Parameters.AddWithValue("@TenSP", tbName.Text);
-                            updateCommand.Parameters.AddWithValue("@Gia", tbPrice.Text);
-                            updateCommand.Parameters.AddWithValue("@MoTa", tbDescription.Text);
-                            updateCommand.ExecuteNonQuery();
+                            SqlCommand cmd = new SqlCommand("exec addSP @TenSP, @Gia, @MoTa", connection);
+                            cmd.Parameters.AddWithValue("@TenSP", tbName.Text);
+                            cmd.Parameters.AddWithValue("@Gia", tbPrice.Text);
+                            cmd.Parameters.AddWithValue("@MoTa", tbDescription.Text);
+                            cmd.ExecuteNonQuery();
                             autoLoadProductData();
                             MessageBox.Show("Thêm sản phẩm thành công");
                             loadAfterAdd();

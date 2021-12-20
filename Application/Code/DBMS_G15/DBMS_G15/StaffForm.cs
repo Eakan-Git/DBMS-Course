@@ -146,8 +146,10 @@ namespace DBMS_G15
                                 InsertCommand.ExecuteNonQuery();
                                 autoLoadStaffData();
                                 MessageBox.Show("Nhân viên được thêm thành công.");
-                                SqlDataReader reader2 = checkStaffIfExisted.ExecuteReader();
-                                tbID.Text = reader2.GetString(0);
+                                SqlCommand getStaffID = new SqlCommand("select MaNV from THONGTINCANHAN tt, NHANVIEN nv where tt.ID = nv.ID and tt.SoDienThoai = @SoDienThoai", connection);
+                                getStaffID.Parameters.AddWithValue("@SoDienThoai", tbPhone.Text);
+                                SqlDataReader reader2 = getStaffID.ExecuteReader();
+                                tbID.Text = reader2.GetInt32(0).ToString();
                                 reader2.Close();
                             }
                         }
@@ -230,9 +232,13 @@ namespace DBMS_G15
                     {
                         MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
                     }
+                    else if(tbID.Text == "")
+                    {
+                        MessageBox.Show("Hãy chọn nhân viên để sửa.");
+                    }    
                     else
                     {
-                        DialogResult confirm = MessageBox.Show("Xác nhận thêm nhân viên này?", "Thêm Nhân Viên", MessageBoxButtons.YesNo);
+                        DialogResult confirm = MessageBox.Show("Xác nhận sửa nhân viên này?", "Thêm Nhân Viên", MessageBoxButtons.YesNo);
                         if (confirm == DialogResult.Yes)
                         {
                             connection.Open();
@@ -254,7 +260,6 @@ namespace DBMS_G15
                 }
             }
         }
-
         private void btnNext_Click(object sender, EventArgs e)
         {
             btnPrevious.Enabled = true;
