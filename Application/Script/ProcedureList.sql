@@ -142,3 +142,19 @@ begin tran
 	insert into SANPHAM (TenSP, Gia, MoTa) values (@TenSP, @Gia, @MoTa)
 	commit tran
 go
+
+-- Xóa Đơn hàng
+create procedure Delete_Order
+	@MaDH int
+as
+begin tran
+	if ((select COUNT(*) from CHITIETDONHANG where MaDH = @MaDH)<0) 
+	begin
+		delete from DONHANG WHERE MaDH=@MaDH
+	end
+	else
+	begin
+		delete from CHITIETDONHANG WHERE MaDH=@MaDH 
+		delete from DONHANG WHERE MaDH=@MaDH
+		commit tran
+	end
