@@ -16,11 +16,13 @@ namespace DBMS_G15
         SqlConnection connection;
         SqlCommand command;
         SqlDataAdapter adapter = new SqlDataAdapter();
-        
+        string PhivanChuyen = "25000";
+        string TinhTrang = "Đang xử lí";
+        DateTime now = DateTime.Now;
+
         public OrderForm()
         {
             InitializeComponent();
-            
         }
 
         private void loadProduct()
@@ -126,7 +128,7 @@ namespace DBMS_G15
 
         private void bttADD_CT_Click(object sender, EventArgs e)
         {
-            if (cbbProduct.SelectedValue.ToString() == "" || numericUpDown1.Value==0)
+            if (cbbProduct.SelectedValue.ToString() == "" || numericUpDown1.Value == 0)
             {
                 MessageBox.Show("Vui lòng chọn đủ thông tin.");
             }
@@ -145,7 +147,8 @@ namespace DBMS_G15
                             updateCommand.Parameters.AddWithValue("@MaSP", cbbProduct.SelectedValue);
                             updateCommand.Parameters.AddWithValue("@SL", numericUpDown1.Value);
                             updateCommand.ExecuteNonQuery();
-                            LoadDetailOrder(); 
+                            LoadDetailOrder();
+                            LoadOrder();
                             MessageBox.Show("Thêm Sản phẩm vào giỏ hàng thành công");
                         }
                         catch (Exception ex)
@@ -209,7 +212,7 @@ namespace DBMS_G15
 
         private void btnAddOrder_Click(object sender, EventArgs e)
         {
-            if (cbbIDCustomer.SelectedValue.ToString() == "" || cbbArea.SelectedValue.ToString() == "")
+            if (cbbIDCustomer.SelectedValue == null || cbbArea.SelectedValue == null)
             {
                 MessageBox.Show("Vui lòng chọn đủ thông tin.");
             }
@@ -223,9 +226,11 @@ namespace DBMS_G15
                         try
                         {
                             connection.Open();
-                            SqlCommand updateCommand = new SqlCommand("Insert into DONHANG(MaKH,MaKV) values (@MaKH,@MaKV)", connection);
+                            SqlCommand updateCommand = new SqlCommand("Insert into DONHANG(MaKH,NgayDat,TinhTrang,PhiVanChuyen,MaKV) values (@MaKH,@NgayDat,@TinhTrang,@PhiVanChuyen,@MaKV)", connection);
                             updateCommand.Parameters.AddWithValue("@MaKH", cbbIDCustomer.SelectedValue);
-                            //updateCommand.Parameters.AddWithValue("@TinhTrang", "Đang xử lý");
+                            updateCommand.Parameters.AddWithValue("@NgayDat", now);
+                            updateCommand.Parameters.AddWithValue("@TinhTrang", TinhTrang);
+                            updateCommand.Parameters.AddWithValue("@PhiVanChuyen", PhivanChuyen);
                             updateCommand.Parameters.AddWithValue("@MaKV", cbbArea.SelectedValue);
                             updateCommand.ExecuteNonQuery();
                             LoadOrder();
@@ -268,6 +273,7 @@ namespace DBMS_G15
         private void OrderDGV_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             LoadDetailOrder();
+            checkTinhTrang();
         }
 
         private void btnDeleteProduct_Click(object sender, EventArgs e)
@@ -305,8 +311,8 @@ namespace DBMS_G15
                     try
                     {
                         connection.Open();
-                        SqlCommand DeleteCommand = new SqlCommand("delete from CHITIETDONHANG WHERE MaDH=@MaDH delete from DONHANG WHERE MaDH=@MaDH", connection);
-                        DeleteCommand.Parameters.AddWithValue("@MaDH", DetailOrderDGV.CurrentRow.Cells[0].Value);
+                        SqlCommand DeleteCommand = new SqlCommand("exec Delete_Order @MaDH", connection);
+                        DeleteCommand.Parameters.AddWithValue("@MaDH", OrderDGV.CurrentRow.Cells[0].Value);
                         DeleteCommand.ExecuteNonQuery();
                         LoadDetailOrder();
                         LoadOrder();
@@ -320,6 +326,22 @@ namespace DBMS_G15
             }
         }
 
-
+        void checkTinhTrang()
+        {
+            if (OrderDGV.CurrentRow.Cells[3].Value.ToString() != TinhTrang)
+            {
+                cbbProduct.Enabled = false;
+                numericUpDown1.Enabled = false;
+                btnAddProduct.Enabled = false;
+                btnDeleteProduct.Enabled = false;
+            }
+            else if (OrderDGV.CurrentRow.Cells[3].Value.ToString() == TinhTrang)
+            {
+                cbbProduct.Enabled = true;
+                numericUpDown1.Enabled = true;
+                btnAddProduct.Enabled = true;
+                btnDeleteProduct.Enabled = true;
+            }
+        }
     }
 }
