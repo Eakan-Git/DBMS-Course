@@ -33,23 +33,23 @@ namespace DemoLoi
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panelCustomer = new System.Windows.Forms.Panel();
+            this.btnLoadKH = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.tbChiNhanhKH = new System.Windows.Forms.TextBox();
             this.KHSuaLoi = new System.Windows.Forms.Button();
             this.KHChayLoi = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnLoadNV = new System.Windows.Forms.Button();
             this.NVSuaLoi = new System.Windows.Forms.Button();
             this.NVChayLoi = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.tbChiNhanhNV = new System.Windows.Forms.TextBox();
             this.tbGiaGiam = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnLoadNV = new System.Windows.Forms.Button();
-            this.btnLoadKH = new System.Windows.Forms.Button();
+            this.chiNhanhNV = new System.Windows.Forms.ComboBox();
+            this.chiNhanhKH = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panelCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -89,10 +89,10 @@ namespace DemoLoi
             // 
             // panelCustomer
             // 
+            this.panelCustomer.Controls.Add(this.chiNhanhKH);
             this.panelCustomer.Controls.Add(this.btnLoadKH);
             this.panelCustomer.Controls.Add(this.label5);
             this.panelCustomer.Controls.Add(this.dataGridView2);
-            this.panelCustomer.Controls.Add(this.tbChiNhanhKH);
             this.panelCustomer.Controls.Add(this.KHSuaLoi);
             this.panelCustomer.Controls.Add(this.KHChayLoi);
             this.panelCustomer.Controls.Add(this.label2);
@@ -101,6 +101,16 @@ namespace DemoLoi
             this.panelCustomer.Name = "panelCustomer";
             this.panelCustomer.Size = new System.Drawing.Size(825, 203);
             this.panelCustomer.TabIndex = 1;
+            // 
+            // btnLoadKH
+            // 
+            this.btnLoadKH.Location = new System.Drawing.Point(738, 54);
+            this.btnLoadKH.Name = "btnLoadKH";
+            this.btnLoadKH.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadKH.TabIndex = 9;
+            this.btnLoadKH.Text = "Xem";
+            this.btnLoadKH.UseVisualStyleBackColor = true;
+            this.btnLoadKH.Click += new System.EventHandler(this.btnLoadKH_Click);
             // 
             // label5
             // 
@@ -121,13 +131,6 @@ namespace DemoLoi
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.Size = new System.Drawing.Size(642, 150);
             this.dataGridView2.TabIndex = 8;
-            // 
-            // tbChiNhanhKH
-            // 
-            this.tbChiNhanhKH.Location = new System.Drawing.Point(609, 28);
-            this.tbChiNhanhKH.Name = "tbChiNhanhKH";
-            this.tbChiNhanhKH.Size = new System.Drawing.Size(118, 20);
-            this.tbChiNhanhKH.TabIndex = 8;
             // 
             // KHSuaLoi
             // 
@@ -161,12 +164,12 @@ namespace DemoLoi
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.chiNhanhNV);
             this.panel2.Controls.Add(this.btnLoadNV);
             this.panel2.Controls.Add(this.NVSuaLoi);
             this.panel2.Controls.Add(this.NVChayLoi);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.tbChiNhanhNV);
             this.panel2.Controls.Add(this.tbGiaGiam);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.dataGridView1);
@@ -175,6 +178,16 @@ namespace DemoLoi
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(825, 250);
             this.panel2.TabIndex = 2;
+            // 
+            // btnLoadNV
+            // 
+            this.btnLoadNV.Location = new System.Drawing.Point(738, 100);
+            this.btnLoadNV.Name = "btnLoadNV";
+            this.btnLoadNV.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadNV.TabIndex = 8;
+            this.btnLoadNV.Text = "Xem";
+            this.btnLoadNV.UseVisualStyleBackColor = true;
+            this.btnLoadNV.Click += new System.EventHandler(this.btnLoadNV_Click);
             // 
             // NVSuaLoi
             // 
@@ -214,13 +227,6 @@ namespace DemoLoi
             this.label3.TabIndex = 4;
             this.label3.Text = "Chi Nhánh";
             // 
-            // tbChiNhanhNV
-            // 
-            this.tbChiNhanhNV.Location = new System.Drawing.Point(467, 75);
-            this.tbChiNhanhNV.Name = "tbChiNhanhNV";
-            this.tbChiNhanhNV.Size = new System.Drawing.Size(118, 20);
-            this.tbChiNhanhNV.TabIndex = 3;
-            // 
             // tbGiaGiam
             // 
             this.tbGiaGiam.Location = new System.Drawing.Point(609, 74);
@@ -249,25 +255,23 @@ namespace DemoLoi
             this.dataGridView1.Size = new System.Drawing.Size(642, 150);
             this.dataGridView1.TabIndex = 0;
             // 
-            // btnLoadNV
+            // chiNhanhNV
             // 
-            this.btnLoadNV.Location = new System.Drawing.Point(738, 100);
-            this.btnLoadNV.Name = "btnLoadNV";
-            this.btnLoadNV.Size = new System.Drawing.Size(75, 23);
-            this.btnLoadNV.TabIndex = 8;
-            this.btnLoadNV.Text = "Xem";
-            this.btnLoadNV.UseVisualStyleBackColor = true;
-            this.btnLoadNV.Click += new System.EventHandler(this.btnLoadNV_Click);
+            this.chiNhanhNV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.chiNhanhNV.FormattingEnabled = true;
+            this.chiNhanhNV.Location = new System.Drawing.Point(472, 73);
+            this.chiNhanhNV.Name = "chiNhanhNV";
+            this.chiNhanhNV.Size = new System.Drawing.Size(121, 21);
+            this.chiNhanhNV.TabIndex = 9;
             // 
-            // btnLoadKH
+            // chiNhanhKH
             // 
-            this.btnLoadKH.Location = new System.Drawing.Point(738, 54);
-            this.btnLoadKH.Name = "btnLoadKH";
-            this.btnLoadKH.Size = new System.Drawing.Size(75, 23);
-            this.btnLoadKH.TabIndex = 9;
-            this.btnLoadKH.Text = "Xem";
-            this.btnLoadKH.UseVisualStyleBackColor = true;
-            this.btnLoadKH.Click += new System.EventHandler(this.btnLoadKH_Click);
+            this.chiNhanhKH.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.chiNhanhKH.FormattingEnabled = true;
+            this.chiNhanhKH.Location = new System.Drawing.Point(606, 27);
+            this.chiNhanhKH.Name = "chiNhanhKH";
+            this.chiNhanhKH.Size = new System.Drawing.Size(121, 21);
+            this.chiNhanhKH.TabIndex = 10;
             // 
             // Form1
             // 
@@ -306,7 +310,6 @@ namespace DemoLoi
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tbChiNhanhNV;
         private System.Windows.Forms.TextBox tbGiaGiam;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Button KHSuaLoi;
@@ -314,9 +317,10 @@ namespace DemoLoi
         private System.Windows.Forms.Button NVSuaLoi;
         private System.Windows.Forms.Button NVChayLoi;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox tbChiNhanhKH;
         private System.Windows.Forms.Button btnLoadKH;
         private System.Windows.Forms.Button btnLoadNV;
+        private System.Windows.Forms.ComboBox chiNhanhKH;
+        private System.Windows.Forms.ComboBox chiNhanhNV;
     }
 }
 
