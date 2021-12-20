@@ -22,7 +22,7 @@ namespace DBMS_G15
 
         public OrderForm()
         {
-            InitializeComponent();           
+            InitializeComponent();
         }
 
         private void loadProduct()
@@ -128,7 +128,7 @@ namespace DBMS_G15
 
         private void bttADD_CT_Click(object sender, EventArgs e)
         {
-            if (cbbProduct.SelectedValue.ToString() == "" || numericUpDown1.Value==0)
+            if (cbbProduct.SelectedValue.ToString() == "" || numericUpDown1.Value == 0)
             {
                 MessageBox.Show("Vui lòng chọn đủ thông tin.");
             }
@@ -212,7 +212,7 @@ namespace DBMS_G15
 
         private void btnAddOrder_Click(object sender, EventArgs e)
         {
-            if (cbbIDCustomer.SelectedValue.ToString() == "" || cbbArea.SelectedValue.ToString() == "")
+            if (cbbIDCustomer.SelectedValue == null || cbbArea.SelectedValue == null)
             {
                 MessageBox.Show("Vui lòng chọn đủ thông tin.");
             }
@@ -224,12 +224,12 @@ namespace DBMS_G15
                     using (SqlConnection connection = new SqlConnection(@"Data Source=(local);Initial Catalog=DBMS_ThucHanh_Nhom15;Integrated Security=True"))
                     {
                         try
-                        { 
+                        {
                             connection.Open();
                             SqlCommand updateCommand = new SqlCommand("Insert into DONHANG(MaKH,NgayDat,TinhTrang,PhiVanChuyen,MaKV) values (@MaKH,@NgayDat,@TinhTrang,@PhiVanChuyen,@MaKV)", connection);
                             updateCommand.Parameters.AddWithValue("@MaKH", cbbIDCustomer.SelectedValue);
-                            updateCommand.Parameters.AddWithValue("@NgayDat", now );
-                            updateCommand.Parameters.AddWithValue("@TinhTrang",TinhTrang) ;
+                            updateCommand.Parameters.AddWithValue("@NgayDat", now);
+                            updateCommand.Parameters.AddWithValue("@TinhTrang", TinhTrang);
                             updateCommand.Parameters.AddWithValue("@PhiVanChuyen", PhivanChuyen);
                             updateCommand.Parameters.AddWithValue("@MaKV", cbbArea.SelectedValue);
                             updateCommand.ExecuteNonQuery();
