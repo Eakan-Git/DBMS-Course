@@ -68,7 +68,7 @@ namespace DBMS_G15
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(736, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(72, 512);
+            this.panel2.Size = new System.Drawing.Size(72, 583);
             this.panel2.TabIndex = 5;
             // 
             // btnDelete
@@ -137,7 +137,7 @@ namespace DBMS_G15
             this.panelNavigator.Controls.Add(this.btnNext);
             this.panelNavigator.Controls.Add(this.btnPrevious);
             this.panelNavigator.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelNavigator.Location = new System.Drawing.Point(0, 442);
+            this.panelNavigator.Location = new System.Drawing.Point(0, 513);
             this.panelNavigator.Name = "panelNavigator";
             this.panelNavigator.Size = new System.Drawing.Size(736, 70);
             this.panelNavigator.TabIndex = 7;
@@ -213,12 +213,12 @@ namespace DBMS_G15
             this.StaffDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.StaffDGV.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.StaffDGV.GridColor = System.Drawing.Color.Gainsboro;
-            this.StaffDGV.Location = new System.Drawing.Point(0, 119);
+            this.StaffDGV.Location = new System.Drawing.Point(0, 145);
             this.StaffDGV.Name = "StaffDGV";
             this.StaffDGV.ReadOnly = true;
             this.StaffDGV.RowHeadersWidth = 62;
             this.StaffDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.StaffDGV.Size = new System.Drawing.Size(736, 323);
+            this.StaffDGV.Size = new System.Drawing.Size(736, 368);
             this.StaffDGV.TabIndex = 8;
             this.StaffDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.StaffDGV_CellClick);
             // 
@@ -239,7 +239,7 @@ namespace DBMS_G15
             this.panelDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDetails.Location = new System.Drawing.Point(0, 0);
             this.panelDetails.Name = "panelDetails";
-            this.panelDetails.Size = new System.Drawing.Size(736, 119);
+            this.panelDetails.Size = new System.Drawing.Size(736, 145);
             this.panelDetails.TabIndex = 9;
             // 
             // customerEmailLabel
@@ -313,9 +313,8 @@ namespace DBMS_G15
             // 
             this.tbAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.tbAddress.Location = new System.Drawing.Point(287, 119);
-            this.tbAddress.Multiline = true;
             this.tbAddress.Name = "tbAddress";
-            this.tbAddress.Size = new System.Drawing.Size(161, 0);
+            this.tbAddress.Size = new System.Drawing.Size(161, 20);
             this.tbAddress.TabIndex = 3;
             // 
             // tbPhone
@@ -347,7 +346,7 @@ namespace DBMS_G15
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(808, 512);
+            this.ClientSize = new System.Drawing.Size(808, 583);
             this.Controls.Add(this.panelDetails);
             this.Controls.Add(this.StaffDGV);
             this.Controls.Add(this.panelNavigator);
