@@ -254,6 +254,17 @@ namespace DBMS_G15
             tbAddress.Text = "";
             tbEmail.Text = "";
         }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            tbID.Text = "";
+            tbName.Text = "";
+            tbPhone.Text = "";
+            tbAddress.Text = "";
+            tbEmail.Text = "";
+            offset = 0;
+            autoLoadData();
+        }
     }
 }
 

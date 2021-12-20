@@ -332,5 +332,15 @@ namespace DBMS_G15
         {
             loadDepartment();
         }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            tbID.Text = "";
+            tbName.Text = "";
+            tbDescription.Text = "";
+            tbPrice.Text = "";
+            offset = 0;
+            autoLoadProductData();
+        }
     }
 }
