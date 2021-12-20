@@ -16,9 +16,9 @@ namespace DemoLoi
         SqlConnection connection;
         SqlCommand command;
         SqlDataAdapter adapter = new SqlDataAdapter();
+        SqlDataAdapter adapter2 = new SqlDataAdapter();
         DataTable table = new DataTable();
         DataTable table2 = new DataTable();
-        DataTable tableProduct = new DataTable();
         string str = @"Data Source=(local);Initial Catalog=DBMS_ThucHanh_Nhom15;Integrated Security=True";
         public Form1()
         {
@@ -68,9 +68,9 @@ namespace DemoLoi
                 command.CommandText = "select * from CUNGCAP_SP cc, SANPHAM sp where sp.MaSP = cc.MaSP and cc.MaCN = @MaCN";
                 command.CommandType = CommandType.Text;
                 command.Parameters.AddWithValue("@MaCN", tbChiNhanhKH.Text);
-                adapter.SelectCommand = command;
+                adapter2.SelectCommand = command;
                 table2.Clear();
-                adapter.Fill(table2);
+                adapter2.Fill(table2);
                 dataGridView2.DataSource = table2;
             }
             catch (Exception ex)
@@ -80,61 +80,66 @@ namespace DemoLoi
         }
         private void NVChayLoi_Click(object sender, EventArgs e)
         {
-            command = connection.CreateCommand();
-            command.CommandText = "exec NV_giamgia_SP @MaCN, @GiaGiam";
-            command.CommandType = CommandType.Text;
-            command.Parameters.AddWithValue("@MaCN", tbChiNhanhKH.Text);
-            command.Parameters.AddWithValue("@GiaGiam", tbGiaGiam.Text);
-            adapter.SelectCommand = command;
-
-            using(SqlCommand cmd = new SqlCommand("NV_giamgia_SP", connection))
+            using(SqlConnection con = new SqlConnection(str))
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@MaCN", tbChiNhanhKH.Text);
-                cmd.Parameters.AddWithValue("@GiaGiam", tbGiaGiam.Text);
+                using(SqlCommand cmd = new SqlCommand("NV_giamgia_SP", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@MaCN", tbChiNhanhNV.Text);
+                    cmd.Parameters.AddWithValue("@GiaGiam", tbGiaGiam.Text);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Chạy thành công.");
+                }
             }
-            table.Clear();
-            adapter.Fill(table2);
-            dataGridView1.DataSource = table;
         }
 
         private void NVSuaLoi_Click(object sender, EventArgs e)
         {
-            command = connection.CreateCommand();
-            command.CommandText = "exec NV_giamgia_SP2 @MaCN, @GiaGiam";
-            command.CommandType = CommandType.Text;
-            command.Parameters.AddWithValue("@MaCN", tbChiNhanhKH.Text);
-            command.Parameters.AddWithValue("@GiaGiam", tbGiaGiam.Text);
-            adapter.SelectCommand = command;
-            table.Clear();
-            adapter.Fill(table2);
-            dataGridView1.DataSource = table;
-            LoadNV();
+            using (SqlConnection con = new SqlConnection(str))
+            {
+                using (SqlCommand cmd = new SqlCommand("NV_giamgia_SP2", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@MaCN", tbChiNhanhNV.Text);
+                    cmd.Parameters.AddWithValue("@GiaGiam", tbGiaGiam.Text);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Chạy thành công.");
+                }
+            }
         }
 
         private void KHChayLoi_Click(object sender, EventArgs e)
         {
-            command = connection.CreateCommand();
-            command.CommandText = "exec XemSP_CuaCN @MaCN";
-            command.CommandType = CommandType.Text;
-            command.Parameters.AddWithValue("@MaCN", tbChiNhanhKH.Text);
-            adapter.SelectCommand = command;
-            table2.Clear();
-            adapter.Fill(table2);
-            dataGridView1.DataSource = table2;
-            LoadKH();
+            using (SqlConnection con = new SqlConnection(str))
+            {
+                using (SqlCommand cmd = new SqlCommand("XemSP_CuaCN", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@MaCN", tbChiNhanhKH.Text);
+                    con.Open();
+                    adapter2 = new SqlDataAdapter(cmd);
+                    adapter2.Fill(table2);
+                    dataGridView2.DataSource = table2;
+                    MessageBox.Show("Chạy thành công.");
+                }
+            }
         }
 
         private void KHSuaLoi_Click(object sender, EventArgs e)
         {
-            command = connection.CreateCommand();
-            command.CommandText = "exec XemSP_CuaCN2 @MaCN";
-            command.CommandType = CommandType.Text;
-            command.Parameters.AddWithValue("@MaCN", tbChiNhanhKH.Text);
-            adapter.SelectCommand = command;
-            table2.Clear();
-            adapter.Fill(table2);
-            dataGridView1.DataSource = table2;
+            using (SqlConnection con = new SqlConnection(str))
+            {
+                using (SqlCommand cmd = new SqlCommand("XemSP_CuaCN2", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@MaCN", tbChiNhanhKH.Text);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Chạy thành công.");
+                }
+            }
         }
 
         private void btnLoadNV_Click(object sender, EventArgs e)
