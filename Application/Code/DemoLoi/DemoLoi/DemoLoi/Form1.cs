@@ -23,6 +23,9 @@ namespace DemoLoi
         public Form1()
         {
             InitializeComponent();
+            connection = new SqlConnection(str);
+            connection.Open();
+            loadCN();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -36,11 +39,39 @@ namespace DemoLoi
             form.ShowDialog();
             this.Close();
         }
+        private void loadCN()
+        {
+            using (SqlConnection connection = new SqlConnection(@"Data Source=(local);Initial Catalog=DBMS_ThucHanh_Nhom15;Integrated Security=True"))
+            {
+                try
+                {
+                    string queryStr = "SELECT * FROM CHINHANH";
+                    SqlDataAdapter da = new SqlDataAdapter(queryStr, connection);
+                    connection.Open();
+                    DataSet ds = new DataSet();
+                    da.Fill(ds, "CHINHANH");
+                    chiNhanhNV.DisplayMember = "MaCN";
+                    chiNhanhNV.ValueMember = "MaCN";
+                    chiNhanhNV.DataSource = ds.Tables["CHINHANH"];
+                    chiNhanhNV.SelectedItem = null;
 
+                    SqlDataAdapter da2 = new SqlDataAdapter(queryStr, connection);
+                    DataSet ds2 = new DataSet();
+                    da2.Fill(ds2, "CHINHANH");
+                    chiNhanhKH.DisplayMember = "MaCN";
+                    chiNhanhKH.ValueMember = "MaCN";
+                    chiNhanhKH.DataSource = ds2.Tables["CHINHANH"];
+                    chiNhanhKH.SelectedItem = null;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi kết nối với cơ sở dữ liệu!");
+                }
+            }
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
-            connection = new SqlConnection(str);
-            connection.Open();
+            
         }
         private void LoadNV()
         {
@@ -49,7 +80,7 @@ namespace DemoLoi
                 command = connection.CreateCommand();
                 command.CommandText = "select * from CUNGCAP_SP cc, SANPHAM sp where sp.MaSP = cc.MaSP and cc.MaCN = @MaCN";
                 command.CommandType = CommandType.Text;
-                command.Parameters.AddWithValue("@MaCN", tbChiNhanhNV.Text);
+                command.Parameters.AddWithValue("@MaCN", chiNhanhNV.SelectedValue);
                 adapter.SelectCommand = command;
                 table.Clear();
                 adapter.Fill(table);
@@ -67,7 +98,7 @@ namespace DemoLoi
                 command = connection.CreateCommand();
                 command.CommandText = "select * from CUNGCAP_SP cc, SANPHAM sp where sp.MaSP = cc.MaSP and cc.MaCN = @MaCN";
                 command.CommandType = CommandType.Text;
-                command.Parameters.AddWithValue("@MaCN", tbChiNhanhKH.Text);
+                command.Parameters.AddWithValue("@MaCN", chiNhanhKH.SelectedValue);
                 adapter2.SelectCommand = command;
                 table2.Clear();
                 adapter2.Fill(table2);
@@ -85,7 +116,7 @@ namespace DemoLoi
                 using(SqlCommand cmd = new SqlCommand("NV_giamgia_SP", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@MaCN", tbChiNhanhNV.Text);
+                    cmd.Parameters.AddWithValue("@MaCN", chiNhanhNV.SelectedValue);
                     cmd.Parameters.AddWithValue("@GiaGiam", tbGiaGiam.Text);
                     con.Open();
                     cmd.ExecuteNonQuery();
@@ -101,7 +132,7 @@ namespace DemoLoi
                 using (SqlCommand cmd = new SqlCommand("NV_giamgia_SP2", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@MaCN", tbChiNhanhNV.Text);
+                    cmd.Parameters.AddWithValue("@MaCN", chiNhanhNV.SelectedValue);
                     cmd.Parameters.AddWithValue("@GiaGiam", tbGiaGiam.Text);
                     con.Open();
                     cmd.ExecuteNonQuery();
@@ -117,8 +148,9 @@ namespace DemoLoi
                 using (SqlCommand cmd = new SqlCommand("XemSP_CuaCN", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@MaCN", tbChiNhanhKH.Text);
+                    cmd.Parameters.AddWithValue("@MaCN", chiNhanhKH.SelectedValue);
                     con.Open();
+                    table2.Clear();
                     adapter2 = new SqlDataAdapter(cmd);
                     adapter2.Fill(table2);
                     dataGridView2.DataSource = table2;
@@ -134,9 +166,12 @@ namespace DemoLoi
                 using (SqlCommand cmd = new SqlCommand("XemSP_CuaCN2", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@MaCN", tbChiNhanhKH.Text);
+                    cmd.Parameters.AddWithValue("@MaCN", chiNhanhKH.SelectedValue);
                     con.Open();
-                    cmd.ExecuteNonQuery();
+                    table2.Clear();
+                    adapter2 = new SqlDataAdapter(cmd);
+                    adapter2.Fill(table2);
+                    dataGridView2.DataSource = table2;
                     MessageBox.Show("Chạy thành công.");
                 }
             }
