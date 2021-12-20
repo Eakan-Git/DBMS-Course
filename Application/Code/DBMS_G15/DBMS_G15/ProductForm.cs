@@ -89,7 +89,7 @@ namespace DBMS_G15
             tbName.Text = productDGV.Rows[rowIndex].Cells[1].Value.ToString();
             tbPrice.Text = productDGV.Rows[rowIndex].Cells[2].Value.ToString();
             tbDescription.Text = productDGV.Rows[rowIndex].Cells[3].Value.ToString();
-            loadDepartment();
+            //loadDepartment();
         }
 
         private void searchBox_Enter(object sender, EventArgs e)
@@ -172,7 +172,7 @@ namespace DBMS_G15
                 }
                 else
                 {
-                    MessageBox.Show("Hãy nhập mã sản phẩm.");
+                    MessageBox.Show("Hãy nhập tên sản phẩm.");
                 }
             }
         }
@@ -194,24 +194,32 @@ namespace DBMS_G15
                 try
                 {
                     connection.Open();
-                    SqlCommand checkProductExisted = new SqlCommand("exec lookupSP @MaSP", connection);
-                    checkProductExisted.Parameters.AddWithValue("@MaSP", tbID.Text);
-                    SqlDataReader reader = checkProductExisted.ExecuteReader();
-                    if(reader.HasRows)
+                    if(tbID.Text.Trim() == "")
                     {
-                        reader.Close();
-                        DialogResult confirm = MessageBox.Show("Xác nhận xóa sản phẩm này?", "Xóa Sản Phẩm", MessageBoxButtons.YesNo);
-                        if(confirm == DialogResult.Yes)
-                        {
-                            SqlCommand deleteCommand = new SqlCommand("exec deleteSP @MaSP", connection);
-                            deleteCommand.Parameters.AddWithValue("@MaSP", tbID.Text);
-                            deleteCommand.ExecuteNonQuery();
-                            autoLoadProductData();
-                        }
+                        MessageBox.Show("Hãy chọn sản phẩm để xóa.");
                     }
                     else
                     {
-                        MessageBox.Show("Sản phẩm không tồn tại.");
+                        SqlCommand checkProductExisted = new SqlCommand("exec lookupSP @MaSP", connection);
+                        checkProductExisted.Parameters.AddWithValue("@MaSP", tbID.Text);
+                        SqlDataReader reader = checkProductExisted.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            reader.Close();
+                            DialogResult confirm = MessageBox.Show("Xác nhận xóa sản phẩm này?", "Xóa Sản Phẩm", MessageBoxButtons.YesNo);
+                            if (confirm == DialogResult.Yes)
+                            {
+                                SqlCommand deleteCommand = new SqlCommand("exec deleteSP @MaSP", connection);
+                                deleteCommand.Parameters.AddWithValue("@MaSP", tbID.Text);
+                                deleteCommand.ExecuteNonQuery();
+                                autoLoadProductData();
+                                MessageBox.Show("Xóa sản phẩm thành công.");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Sản phẩm không tồn tại.");
+                        }
                     }
                 }
                 catch(Exception ex)
@@ -250,6 +258,7 @@ namespace DBMS_G15
                     }
                     else
                     {
+                        reader.Close();
                         MessageBox.Show("Sản phẩm không tồn tại.");
                     }
                 }
@@ -273,12 +282,12 @@ namespace DBMS_G15
                 {
                     try
                     {
-                        SqlCommand checkProductExisted = new SqlCommand("exec lookupSP @MaSP", connection);
-                        checkProductExisted.Parameters.AddWithValue("@MaSP", tbID.Text);
-                        SqlDataReader reader = checkProductExisted.ExecuteReader();
-                        if (!reader.HasRows)
+                        SqlCommand checkProductExisted = new SqlCommand("select * from SANPHAM where TenSP = @TenSP", connection);
+                        checkProductExisted.Parameters.AddWithValue("@TenSP", tbName.Text);
+                        SqlDataReader reader2 = checkProductExisted.ExecuteReader();
+                        if (!reader2.HasRows)
                         {
-                            reader.Close();
+                            reader2.Close();
                             SqlCommand updateCommand = new SqlCommand("exec addSP @TenSP, @Gia, @MoTa", connection);
                             updateCommand.Parameters.AddWithValue("@TenSP", tbName.Text);
                             updateCommand.Parameters.AddWithValue("@Gia", tbPrice.Text);
@@ -289,12 +298,13 @@ namespace DBMS_G15
                         }
                         else
                         {
+                            reader2.Close();
                             MessageBox.Show("Sản phẩm đã tồn tại.");
                         }
                     }
-                    catch
+                    catch(Exception ex)
                     {
-                        MessageBox.Show("Lỗi kết nối.");
+                        MessageBox.Show(ex.Message);
                     }
                 }
             }
@@ -308,6 +318,11 @@ namespace DBMS_G15
         private void tbID_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void cbbDepartment_Click(object sender, EventArgs e)
+        {
+            loadDepartment();
         }
     }
 }
