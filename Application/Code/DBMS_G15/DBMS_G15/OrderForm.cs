@@ -16,13 +16,11 @@ namespace DBMS_G15
         SqlConnection connection;
         SqlCommand command;
         SqlDataAdapter adapter = new SqlDataAdapter();
-        DataTable tableProduct = new DataTable();
+        
         public OrderForm()
         {
             InitializeComponent();
-            loadProduct();
-            loadIDCus();
-            loadArea();
+            
         }
 
         private void loadProduct()
@@ -146,6 +144,56 @@ namespace DBMS_G15
         //}
 
         private void bttADD_CT_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbbIDCustomer_Click(object sender, EventArgs e)
+        {
+            loadIDCus();
+        }
+
+        private void cbbProduct_Click(object sender, EventArgs e)
+        {
+            loadProduct();
+        }
+
+        private void cbbArea_Click(object sender, EventArgs e)
+        {
+            loadArea();
+        }
+
+        private void cbbIDCustomer_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(@"Data Source=(local);Initial Catalog=DBMS_ThucHanh_Nhom15;Integrated Security=True"))
+            {
+                try
+                {
+                    connection.Open();
+                    DataTable tbOrder = new DataTable();
+                    command = connection.CreateCommand();
+                    command.CommandText = "select MaDH, NgayDat, NgayGiao, TinhTrang, PhiVanChuyen, TongTien, MaKV from DONHANG where MaKH=@MaKH";
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.AddWithValue("@MaKH", cbbIDCustomer.SelectedValue);
+                    adapter.SelectCommand = command;
+                    tbOrder.Clear();
+                    adapter.Fill(tbOrder);
+                    OrderDGV.DataSource = tbOrder;
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void cbbProduct_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbbArea_SelectionChangeCommitted(object sender, EventArgs e)
         {
 
         }
