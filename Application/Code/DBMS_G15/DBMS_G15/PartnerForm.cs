@@ -63,7 +63,7 @@ namespace DBMS_G15
                     connection.Open();
                     if (tbID.Text.Trim() == "")
                     {
-                        MessageBox.Show("Hãy chọn doi tac để xóa.");
+                        MessageBox.Show("Hãy chọn đối tác để xóa.");
                     }
                     else
                     {
@@ -76,7 +76,7 @@ namespace DBMS_G15
                             DialogResult confirm = MessageBox.Show("Xác nhận xóa đối tác này?", "Xóa Đối tác", MessageBoxButtons.YesNo);
                             if (confirm == DialogResult.Yes)
                             {
-                                SqlCommand deleteCommand = new SqlCommand("delete from DOITAC where MaDT=@MaDT", connection);
+                                SqlCommand deleteCommand = new SqlCommand("exec deleteDT @MaDT", connection);
                                 deleteCommand.Parameters.AddWithValue("@MaDT", tbID.Text);
                                 deleteCommand.ExecuteNonQuery();
                                 tbID.Text = "";
@@ -109,7 +109,42 @@ namespace DBMS_G15
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-
+            //using (SqlConnection connection = new SqlConnection(@"Data Source=(local);Initial Catalog=DBMS_ThucHanh_Nhom15;Integrated Security=True"))
+            //{
+            //    try
+            //    {
+            //        connection.Open();
+            //        SqlCommand checkProductExisted = new SqlCommand("select * from DOITAC where MaDT=@MaDT", connection);
+            //        checkProductExisted.Parameters.AddWithValue("@MaSP", tbID.Text);
+            //        SqlDataReader reader = checkProductExisted.ExecuteReader();
+            //        if (reader.HasRows)
+            //        {
+            //            reader.Close();
+            //            DialogResult confirm = MessageBox.Show("Xác nhận cập nhật thông tin đối tác này?", "Cập Nhật Đối Tác", MessageBoxButtons.YesNo);
+            //            if (confirm == DialogResult.Yes)
+            //            {
+            //                SqlCommand updateCommand = new SqlCommand("exec updateSP @MaSP, @TenSP, @Gia, @MoTa", connection);
+            //                updateCommand.Parameters.AddWithValue("@MaSP", tbID.Text);
+            //                updateCommand.Parameters.AddWithValue("@TenSP", tbName.Text);
+            //                updateCommand.Parameters.AddWithValue("@Gia", tbPrice.Text);
+            //                updateCommand.Parameters.AddWithValue("@MoTa", tbDescription.Text);
+            //                updateCommand.ExecuteNonQuery();
+            //                autoLoadPartnerData();
+            //                MessageBox.Show("Cập nhật sản phẩm thành công");
+            //                //loadAfterSave();
+            //            }
+            //        }
+            //        else
+            //        {
+            //            reader.Close();
+            //            MessageBox.Show("Đối tác không tồn tại.");
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //}
         }
 
         private void rightSideMenuPanel_Paint(object sender, PaintEventArgs e)

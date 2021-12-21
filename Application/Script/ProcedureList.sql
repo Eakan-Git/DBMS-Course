@@ -165,39 +165,51 @@ begin tran
 go
 
 --Them DoiTac
-create procedure addDT
-	@TenDT nvarchar(150),
-	@NguoiDD nvarchar(100),
-	@TP nvarchar(60),
-	@Quan nvarchar(60),
-	@SoCN int,
-	@SLDonHang int,
-	@LoaiHang nvarchar(50),
-	@DIACHIKD nvarchar(150),
-	@SDT nvarchar(12)
+--create Or alter procedure addDT
+--	@TenDT nvarchar(150),
+--	@NguoiDD nvarchar(100),
+--	@TP nvarchar(60),
+--	@Quan nvarchar(60),
+--	@SoCN int,
+--	@SLDonHang int,
+--	@LoaiHang nvarchar(50),
+--	@DIACHIKD nvarchar(150),
+--	@SDT nvarchar(12)
 
+--as
+--begin tran
+--	if exists (select * from DOITAC where SoDienThoai = @SDT) 
+--		begin
+--			raiserror (N'Số điện thoại đã tồn tại', 10, 1)
+--			rollback tran
+--		end
+--	else if exists (select * from DOITAC where DiaChiKinhDoanh = @DIACHIKD) 
+--		begin
+--			raiserror (N'Địa Chỉ kinh doanh đã được đăng ký', 10, 1)
+--			rollback tran
+--		end
+--	else if exists (select * from DOITAC where TenDT = @TenDT) 
+--		begin
+--			raiserror (N'Đối tác đã được đăng ký', 10, 1)
+--			rollback tran
+--		end
+--	else
+--		begin
+--			insert into DOITAC(TenDT,NguoiDaiDien,ThanhPho,Quan,SoChiNhanh,SLDonHang,LoaiHang,DiaChiKinhDoanh,SoDienThoai) values(@TenDT,@NguoiDD,@TP,@Quan,@SoCN,@SLDonHang,@LoaiHang,@DIACHIKD,@SDT)
+--			commit tran
+--		end
+--go
+
+--Xóa Đoi Tác
+create procedure deleteDT
+	@MaDT int
 as
 begin tran
-	if exists (select * from DOITAC where SoDienThoai = @SDT) 
-	begin
-		raiserror (N'Số điện thoại đã tồn tại', 10, 1)
-		rollback tran
-	end
-	else if exists (select * from DOITAC where DiaChiKinhDoanh = @DIACHIKD) 
-	begin
-		raiserror (N'Địa Chỉ kinh doanh đã được đăng ký', 10, 1)
-		rollback tran
-	end
-	else if exists (select * from DOITAC where TenDT = @TenDT) 
-	begin
-		raiserror (N'Đối tác đã được đăng ký', 10, 1)
-		rollback tran
-	end
-	else
-	begin
-		insert into DOITAC(TenDT,NguoiDaiDien,ThanhPho,Quan,SoChiNhanh,SLDonHang,LoaiHang,DiaChiKinhDoanh,SoDienThoai) values(@TenDT,@NguoiDD,@TP,@Quan,@SoCN,@SLDonHang,@LoaiHang,@DIACHIKD,@SDT);
-	end
+	delete from HOPDONG where MaDT = @MaDT
+	delete from DOITAC where MaDT = @MaDT
+commit tran
 go
+
 
 
 
