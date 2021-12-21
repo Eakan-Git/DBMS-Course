@@ -196,6 +196,14 @@ namespace DBMS_G15
             reader.Close();
             return true;
         }
+        private bool checkValidDetail()
+        {
+            if(!anyExistedBank(tbBank.Text) && !anyExistedIDNum(tbIDNum.Text) && !anyExistedNum(tbNum.Text) && !anyExistedPhone(tbPhone.Text))
+            {
+                return true;
+            }
+            return false;
+        }
         private bool checkNotEditedDetail()
         {
             if(oldPhone != tbPhone.Text || oldNum != tbNum.Text || oldBank != tbBank.Text || oldIDNum != tbIDNum.Text)
@@ -247,7 +255,76 @@ namespace DBMS_G15
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if(anyBlankDetail())
+            {
+                MessageBox.Show("Hãy nhập đầy đủ thông tin.");
+            }
+            else if(checkValidDetail())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("insert into THONGTINCANHAN (HoTen, SoDienThoai, DiaChi, Email) values (@HoTen, @SoDienThoai, @DiaChi, @Email)", connection);
+                    SqlCommand cmd2 = new SqlCommand("insert into TAIXE (MaKV, BienSoXe, CMND, SoTaiKhoan, PhiThueChan) values (@MaKV, @BienSoXe, @CMND, @SoTaiKhoan, @PhiThueChan) where ID = (select tt.ID from THONGTINCANHAN tt where tt.SoDienThoai = @SoDienThoai)", connection);
 
+                    cmd.Parameters.AddWithValue("@HoTen", tbName.Text);
+                    cmd.Parameters.AddWithValue("@SoDienThoai", tbPhone.Text);
+                    cmd.Parameters.AddWithValue("@DiaChi", tbAddress.Text);
+                    cmd.Parameters.AddWithValue("@Email", tbEmail.Text);
+
+                    cmd2.Parameters.AddWithValue("@MaKV", cbbArea.SelectedValue);
+                    cmd2.Parameters.AddWithValue("@BienSoXe", tbNum.Text);
+                    cmd2.Parameters.AddWithValue("@CMND", tbIDNum.Text);
+                    cmd2.Parameters.AddWithValue("@SoTaiKhoan", tbBank.Text);
+                    cmd2.Parameters.AddWithValue("@PhiThueChan", cbbMoney.SelectedItem.ToString());
+                    cmd2.Parameters.AddWithValue("@SoDienThoai", tbPhone.Text);
+
+                    cmd.ExecuteNonQuery();
+                    cmd2.ExecuteNonQuery();
+                    loadAfterAdd();
+                    MessageBox.Show("Thêm tài xế thành công.");
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Thông tin bị trùng lắp.");
+            }
+        }
+
+        private void loadAfterAdd()
+        {
+            DataTable tb = new DataTable();
+            command = connection.CreateCommand();
+            command.CommandText = "select tx.MaKV, tx.MaTX, kv.TenKV, tt.HoTen, tx.BienSoXe, tx.CMND, tt.SoDienThoai, tx.SoTaiKhoan, tx.PhiThueChan, tt.DiaChi, tt.Email from THONGTINCANHAN tt, TAIXE tx, KHUVUC kv where tt.ID = tx.ID and kv.MaKV = tx.MaKV and CMND = @CMND";
+            command.CommandType = CommandType.Text;
+            command.Parameters.AddWithValue("@CMND", tbIDNum.Text);
+            adapter.SelectCommand = command;
+            tb.Clear();
+            adapter.Fill(tb);
+
+            tbID.Text = tb.Rows[0]["MaTX"].ToString();
+            cbbArea.DisplayMember = tb.Rows[0]["TenKV"].ToString();
+            cbbArea.SelectedValue = tb.Rows[0]["MaKV"].ToString();
+            if (tb.Rows[0]["PhiThueChan"].ToString() == "0")
+            {
+                cbbMoney.SelectedIndex = 0;
+            }
+            else
+            {
+                cbbMoney.SelectedIndex = 1;
+            }
+            tbName.Text = tb.Rows[0]["HoTen"].ToString();
+            tbNum.Text = tb.Rows[0]["BienSoXe"].ToString();
+            tbIDNum.Text = tb.Rows[0]["CMND"].ToString();
+            tbPhone.Text = tb.Rows[0]["SoDienThoai"].ToString();
+            tbBank.Text = tb.Rows[0]["SoTaiKhoan"].ToString();
+            cbbMoney.SelectedItem = tb.Rows[0]["PhiThueChan"].ToString();
+            tbAddress.Text = tb.Rows[0]["DiaChi"].ToString();
+            tbEmail.Text = tb.Rows[0]["Email"].ToString();
+            autoLoadData();
         }
         private void loadComboBoxMoney()
         {
