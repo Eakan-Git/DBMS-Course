@@ -222,7 +222,7 @@ namespace DBMS_G15
             // 
             this.btnReload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReload.Image = global::DBMS_G15.Properties.Resources.reload;
-            this.btnReload.Location = new System.Drawing.Point(707, 166);
+            this.btnReload.Location = new System.Drawing.Point(707, 168);
             this.btnReload.Name = "btnReload";
             this.btnReload.Size = new System.Drawing.Size(29, 24);
             this.btnReload.TabIndex = 12;

@@ -44,6 +44,7 @@ namespace DBMS_G15
             this.btnPrevious = new System.Windows.Forms.Button();
             this.driverDGV = new System.Windows.Forms.DataGridView();
             this.panelDetails = new System.Windows.Forms.Panel();
+            this.btnReload = new System.Windows.Forms.Button();
             this.cbbMoney = new System.Windows.Forms.ComboBox();
             this.labelEmail = new System.Windows.Forms.Label();
             this.tbEmail = new System.Windows.Forms.TextBox();
@@ -63,7 +64,8 @@ namespace DBMS_G15
             this.tbNum = new System.Windows.Forms.TextBox();
             this.tbName = new System.Windows.Forms.TextBox();
             this.tbID = new System.Windows.Forms.TextBox();
-            this.btnReload = new System.Windows.Forms.Button();
+            this.labelPhone = new System.Windows.Forms.Label();
+            this.tbPhone = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panelNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.driverDGV)).BeginInit();
@@ -137,6 +139,7 @@ namespace DBMS_G15
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnAdd
             // 
@@ -155,6 +158,7 @@ namespace DBMS_G15
             this.btnAdd.Text = "Thêm";
             this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // panelNavigator
             // 
@@ -179,6 +183,7 @@ namespace DBMS_G15
             this.searchBtn.TabIndex = 3;
             this.searchBtn.Text = "Tìm";
             this.searchBtn.UseVisualStyleBackColor = false;
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
             // searchBox
             // 
@@ -187,6 +192,9 @@ namespace DBMS_G15
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(150, 20);
             this.searchBox.TabIndex = 2;
+            this.searchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
+            this.searchBox.Enter += new System.EventHandler(this.searchBox_Enter);
+            this.searchBox.Leave += new System.EventHandler(this.searchBox_Leave);
             // 
             // btnNext
             // 
@@ -200,6 +208,7 @@ namespace DBMS_G15
             this.btnNext.TabIndex = 1;
             this.btnNext.Text = ">";
             this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnPrevious
             // 
@@ -212,6 +221,7 @@ namespace DBMS_G15
             this.btnPrevious.TabIndex = 0;
             this.btnPrevious.Text = "<";
             this.btnPrevious.UseVisualStyleBackColor = false;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // driverDGV
             // 
@@ -220,7 +230,6 @@ namespace DBMS_G15
             this.driverDGV.AllowUserToResizeColumns = false;
             this.driverDGV.AllowUserToResizeRows = false;
             this.driverDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.driverDGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             this.driverDGV.BackgroundColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -242,17 +251,19 @@ namespace DBMS_G15
             this.driverDGV.DefaultCellStyle = dataGridViewCellStyle2;
             this.driverDGV.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.driverDGV.GridColor = System.Drawing.Color.Gainsboro;
-            this.driverDGV.Location = new System.Drawing.Point(0, 190);
+            this.driverDGV.Location = new System.Drawing.Point(0, 224);
             this.driverDGV.Name = "driverDGV";
             this.driverDGV.ReadOnly = true;
             this.driverDGV.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             this.driverDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.driverDGV.Size = new System.Drawing.Size(736, 323);
+            this.driverDGV.Size = new System.Drawing.Size(736, 289);
             this.driverDGV.TabIndex = 10;
             // 
             // panelDetails
             // 
             this.panelDetails.BackColor = System.Drawing.Color.Gainsboro;
+            this.panelDetails.Controls.Add(this.labelPhone);
+            this.panelDetails.Controls.Add(this.tbPhone);
             this.panelDetails.Controls.Add(this.btnReload);
             this.panelDetails.Controls.Add(this.cbbMoney);
             this.panelDetails.Controls.Add(this.labelEmail);
@@ -276,8 +287,19 @@ namespace DBMS_G15
             this.panelDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDetails.Location = new System.Drawing.Point(0, 0);
             this.panelDetails.Name = "panelDetails";
-            this.panelDetails.Size = new System.Drawing.Size(736, 190);
+            this.panelDetails.Size = new System.Drawing.Size(736, 224);
             this.panelDetails.TabIndex = 11;
+            // 
+            // btnReload
+            // 
+            this.btnReload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReload.Image = global::DBMS_G15.Properties.Resources.reload;
+            this.btnReload.Location = new System.Drawing.Point(707, 200);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(29, 24);
+            this.btnReload.TabIndex = 12;
+            this.btnReload.UseVisualStyleBackColor = true;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
             // cbbMoney
             // 
@@ -322,9 +344,9 @@ namespace DBMS_G15
             this.labelMoney.AutoSize = true;
             this.labelMoney.Location = new System.Drawing.Point(522, 71);
             this.labelMoney.Name = "labelMoney";
-            this.labelMoney.Size = new System.Drawing.Size(80, 13);
+            this.labelMoney.Size = new System.Drawing.Size(74, 13);
             this.labelMoney.TabIndex = 16;
-            this.labelMoney.Text = "Phí Thuế Chân";
+            this.labelMoney.Text = "Phí Thế Chân";
             // 
             // labelBank
             // 
@@ -365,7 +387,7 @@ namespace DBMS_G15
             // 
             this.IDNumLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.IDNumLabel.AutoSize = true;
-            this.IDNumLabel.Location = new System.Drawing.Point(281, 150);
+            this.IDNumLabel.Location = new System.Drawing.Point(281, 112);
             this.IDNumLabel.Name = "IDNumLabel";
             this.IDNumLabel.Size = new System.Drawing.Size(39, 13);
             this.IDNumLabel.TabIndex = 10;
@@ -375,7 +397,7 @@ namespace DBMS_G15
             // 
             this.numLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.numLabel.AutoSize = true;
-            this.numLabel.Location = new System.Drawing.Point(281, 99);
+            this.numLabel.Location = new System.Drawing.Point(279, 73);
             this.numLabel.Name = "numLabel";
             this.numLabel.Size = new System.Drawing.Size(60, 13);
             this.numLabel.TabIndex = 9;
@@ -394,7 +416,7 @@ namespace DBMS_G15
             // 
             this.nameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.nameLabel.AutoSize = true;
-            this.nameLabel.Location = new System.Drawing.Point(281, 42);
+            this.nameLabel.Location = new System.Drawing.Point(281, 32);
             this.nameLabel.Name = "nameLabel";
             this.nameLabel.Size = new System.Drawing.Size(59, 13);
             this.nameLabel.TabIndex = 7;
@@ -422,7 +444,7 @@ namespace DBMS_G15
             // tbIDNum
             // 
             this.tbIDNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.tbIDNum.Location = new System.Drawing.Point(281, 169);
+            this.tbIDNum.Location = new System.Drawing.Point(281, 128);
             this.tbIDNum.Name = "tbIDNum";
             this.tbIDNum.Size = new System.Drawing.Size(161, 20);
             this.tbIDNum.TabIndex = 4;
@@ -430,7 +452,7 @@ namespace DBMS_G15
             // tbNum
             // 
             this.tbNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.tbNum.Location = new System.Drawing.Point(281, 118);
+            this.tbNum.Location = new System.Drawing.Point(281, 89);
             this.tbNum.Name = "tbNum";
             this.tbNum.Size = new System.Drawing.Size(161, 20);
             this.tbNum.TabIndex = 2;
@@ -438,7 +460,7 @@ namespace DBMS_G15
             // tbName
             // 
             this.tbName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.tbName.Location = new System.Drawing.Point(281, 59);
+            this.tbName.Location = new System.Drawing.Point(282, 49);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(161, 20);
             this.tbName.TabIndex = 1;
@@ -451,15 +473,23 @@ namespace DBMS_G15
             this.tbID.Size = new System.Drawing.Size(161, 20);
             this.tbID.TabIndex = 0;
             // 
-            // btnReload
+            // labelPhone
             // 
-            this.btnReload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReload.Image = global::DBMS_G15.Properties.Resources.reload;
-            this.btnReload.Location = new System.Drawing.Point(707, 166);
-            this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(29, 24);
-            this.btnReload.TabIndex = 12;
-            this.btnReload.UseVisualStyleBackColor = true;
+            this.labelPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.labelPhone.AutoSize = true;
+            this.labelPhone.Location = new System.Drawing.Point(281, 154);
+            this.labelPhone.Name = "labelPhone";
+            this.labelPhone.Size = new System.Drawing.Size(75, 13);
+            this.labelPhone.TabIndex = 22;
+            this.labelPhone.Text = "Số Điện Thoại";
+            // 
+            // tbPhone
+            // 
+            this.tbPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.tbPhone.Location = new System.Drawing.Point(281, 170);
+            this.tbPhone.Name = "tbPhone";
+            this.tbPhone.Size = new System.Drawing.Size(161, 20);
+            this.tbPhone.TabIndex = 21;
             // 
             // DriverForm
             // 
@@ -519,5 +549,7 @@ namespace DBMS_G15
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnReload;
+        private System.Windows.Forms.Label labelPhone;
+        private System.Windows.Forms.TextBox tbPhone;
     }
 }
