@@ -19,8 +19,7 @@
 ### Profile (As A Customer)
 ![image](https://user-images.githubusercontent.com/58219087/146988697-510d8ea3-36ea-4f8b-8c5d-b1a77f40d69f.png)
 ### Products Manage
-![image](https://user-images.githubusercontent.com/58219087/146988853-610d1d0f-96dc-487d-a083-f60ff7fb235e.png)![146988429-18cbbd6f-4a04-43dc-a862-454b366e5da0](https://user-images.githubusercontent.com/58219087/146989213-7469ab42-ebc9-404f-8fca-5d9410b8b682.png)
-
+![image](https://user-images.githubusercontent.com/58219087/146988853-610d1d0f-96dc-487d-a083-f60ff7fb235e.png)
 ### Orders Manage
 ![image](https://user-images.githubusercontent.com/58219087/146989011-02aba267-80bd-4cd6-a24f-99bf7c90380d.png)
 ### Customer Manage
