@@ -124,10 +124,7 @@ namespace DBMS_G15
 
         private void searchBox_TextChanged(object sender, EventArgs e)
         {
-            if(searchBox.Text == "")
-            {
-                autoLoadProductData();
-            }
+
         }
         private void loadDepartment()
         {
