@@ -15,6 +15,7 @@ namespace DBMS_G15
         string role;
         const int IDStaff = 2259;
         const int IDCustomer = 1349;
+        const int IDDriver = 1311;
         private Form currentChildForm;
         public HomeForm()
         {
@@ -189,7 +190,7 @@ namespace DBMS_G15
             }
             else if(role == "driver")
             {
-                OpenChildForm(new DriverProfile());
+                OpenChildForm(new DriverProfile(IDDriver));
             }
         }
     }

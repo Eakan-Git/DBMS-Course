@@ -55,6 +55,7 @@ namespace DBMS_G15
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.phiThueChan = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -118,13 +119,14 @@ namespace DBMS_G15
             this.panel5.Controls.Add(this.panel4);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(0, 105);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(736, 373);
             this.panel5.TabIndex = 26;
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.phiThueChan);
             this.panel6.Controls.Add(this.cbbArea);
             this.panel6.Controls.Add(this.tbBank);
             this.panel6.Controls.Add(this.labelBank);
@@ -135,7 +137,7 @@ namespace DBMS_G15
             this.panel6.Controls.Add(this.labelCMND);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(368, 0);
-            this.panel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(368, 373);
             this.panel6.TabIndex = 1;
@@ -234,7 +236,7 @@ namespace DBMS_G15
             this.panel4.Controls.Add(this.nameLabel);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(368, 373);
             this.panel4.TabIndex = 0;
@@ -323,7 +325,7 @@ namespace DBMS_G15
             // 
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 478);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(736, 105);
             this.panel3.TabIndex = 25;
@@ -348,6 +350,16 @@ namespace DBMS_G15
             this.label1.TabIndex = 0;
             this.label1.Text = "THÔNG TIN TÀI XẾ";
             // 
+            // phiThueChan
+            // 
+            this.phiThueChan.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.phiThueChan.AutoSize = true;
+            this.phiThueChan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.phiThueChan.Location = new System.Drawing.Point(36, 267);
+            this.phiThueChan.Name = "phiThueChan";
+            this.phiThueChan.Size = new System.Drawing.Size(0, 16);
+            this.phiThueChan.TabIndex = 34;
+            // 
             // DriverProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -358,7 +370,7 @@ namespace DBMS_G15
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "DriverProfile";
             this.Text = "DriverProfile";
             this.panel1.ResumeLayout(false);
@@ -400,5 +412,6 @@ namespace DBMS_G15
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Label phiThueChan;
     }
 }
