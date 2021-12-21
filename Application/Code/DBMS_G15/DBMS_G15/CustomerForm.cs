@@ -96,10 +96,7 @@ namespace DBMS_G15
         }
         private void searchBox_TextChanged(object sender, EventArgs e)
         {
-            if (searchBox.Text == "")
-            {
-                autoLoadData();
-            }
+
         }
 
         private void btnSave_Click(object sender, EventArgs e)
