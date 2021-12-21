@@ -78,7 +78,7 @@ namespace DBMS_G15
             this.rightSideMenuPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.rightSideMenuPanel.Location = new System.Drawing.Point(736, 0);
             this.rightSideMenuPanel.Name = "rightSideMenuPanel";
-            this.rightSideMenuPanel.Size = new System.Drawing.Size(72, 512);
+            this.rightSideMenuPanel.Size = new System.Drawing.Size(72, 583);
             this.rightSideMenuPanel.TabIndex = 4;
             this.rightSideMenuPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.rightSideMenuPanel_Paint);
             // 
@@ -146,7 +146,7 @@ namespace DBMS_G15
             this.panelNavigator.Controls.Add(this.btnNext);
             this.panelNavigator.Controls.Add(this.btnPrevious);
             this.panelNavigator.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelNavigator.Location = new System.Drawing.Point(0, 442);
+            this.panelNavigator.Location = new System.Drawing.Point(0, 513);
             this.panelNavigator.Name = "panelNavigator";
             this.panelNavigator.Size = new System.Drawing.Size(736, 70);
             this.panelNavigator.TabIndex = 6;
@@ -214,7 +214,7 @@ namespace DBMS_G15
             this.panelDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDetails.Location = new System.Drawing.Point(0, 0);
             this.panelDetails.Name = "panelDetails";
-            this.panelDetails.Size = new System.Drawing.Size(736, 442);
+            this.panelDetails.Size = new System.Drawing.Size(736, 513);
             this.panelDetails.TabIndex = 8;
             this.panelDetails.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDetails_Paint);
             // 
@@ -222,7 +222,7 @@ namespace DBMS_G15
             // 
             this.btnReload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReload.Image = global::DBMS_G15.Properties.Resources.reload;
-            this.btnReload.Location = new System.Drawing.Point(707, 97);
+            this.btnReload.Location = new System.Drawing.Point(707, 168);
             this.btnReload.Name = "btnReload";
             this.btnReload.Size = new System.Drawing.Size(29, 24);
             this.btnReload.TabIndex = 12;
@@ -246,7 +246,7 @@ namespace DBMS_G15
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridView1.GridColor = System.Drawing.Color.Gainsboro;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 119);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 190);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 62;
@@ -445,7 +445,7 @@ namespace DBMS_G15
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(808, 512);
+            this.ClientSize = new System.Drawing.Size(808, 583);
             this.Controls.Add(this.panelDetails);
             this.Controls.Add(this.panelNavigator);
             this.Controls.Add(this.rightSideMenuPanel);

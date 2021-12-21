@@ -18,12 +18,15 @@ namespace DBMS_G15
         SqlDataAdapter adapter = new SqlDataAdapter();
         string PhivanChuyen = "25000";
         string DangXuLi = "Đang xử lí";
+        string KhongXacDinh = "Không xác định";
         string DaHuy = "Đã hủy";
+        string str = @"Data Source=(local);Initial Catalog=DBMS_ThucHanh_Nhom15;Integrated Security=True";
         DateTime now = DateTime.Now;
 
         public OrderForm()
         {
             InitializeComponent();
+            connection = new SqlConnection(str);
         }
 
         private void loadProduct()
@@ -271,6 +274,14 @@ namespace DBMS_G15
                     tbDetailOrder.Clear();
                     adapter.Fill(tbDetailOrder);
                     DetailOrderDGV.DataSource = tbDetailOrder;
+                    if(DetailOrderDGV.Rows.Count == 0)
+                    {
+                        btnDeleteProduct.Enabled = false;
+                    }
+                    else
+                    {
+                        btnDeleteProduct.Enabled = true;
+                    }
                     connection.Close();
                 }
                 catch (Exception ex)
@@ -290,27 +301,25 @@ namespace DBMS_G15
 
         private void btnDeleteProduct_Click(object sender, EventArgs e)
         {
-            DialogResult confirm = MessageBox.Show("Xác nhận xóa sản phẩm khỏi đơn hàng?", "Xóa Sản phẩm", MessageBoxButtons.YesNo);
-            if (confirm == DialogResult.Yes)
+            using (SqlConnection connection = new SqlConnection(@"Data Source=(local);Initial Catalog=DBMS_ThucHanh_Nhom15;Integrated Security=True"))
             {
-                using (SqlConnection connection = new SqlConnection(@"Data Source=(local);Initial Catalog=DBMS_ThucHanh_Nhom15;Integrated Security=True"))
+                try
                 {
-                    try
-                    {
-                        connection.Open();
-                        SqlCommand DeleteCommand = new SqlCommand("delete from CHITIETDONHANG WHERE MaDH=@MaDH and MaSP=@MaSP", connection);
-                        DeleteCommand.Parameters.AddWithValue("@MaDH", DetailOrderDGV.CurrentRow.Cells[0].Value);
-                        DeleteCommand.Parameters.AddWithValue("@MaSP", DetailOrderDGV.CurrentRow.Cells[1].Value);
-                        DeleteCommand.ExecuteNonQuery();
-                        LoadDetailOrder();
-                        MessageBox.Show("Xóa sản phẩm khỏi đơn hàng thành công");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
+                    connection.Open();
+                    SqlCommand DeleteCommand = new SqlCommand("delete from CHITIETDONHANG WHERE MaDH=@MaDH and MaSP=@MaSP", connection);
+                    DeleteCommand.Parameters.AddWithValue("@MaDH", DetailOrderDGV.CurrentRow.Cells[0].Value);
+                    DeleteCommand.Parameters.AddWithValue("@MaSP", DetailOrderDGV.CurrentRow.Cells[1].Value);
+                    DeleteCommand.ExecuteNonQuery();
+                    LoadDetailOrder();
+                    LoadOrder();
+                    MessageBox.Show("Xóa sản phẩm khỏi đơn hàng thành công");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
+
         }
 
         private void btnCancelOrder_Click(object sender, EventArgs e)
