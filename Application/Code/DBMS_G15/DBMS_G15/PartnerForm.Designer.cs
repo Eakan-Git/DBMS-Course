@@ -30,12 +30,13 @@ namespace DBMS_G15
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PartnerForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.rightSideMenuPanel = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panelNavigator = new System.Windows.Forms.Panel();
+            this.searchBtn = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPrevious = new System.Windows.Forms.Button();
@@ -63,7 +64,6 @@ namespace DBMS_G15
             this.tbChiNhanh = new System.Windows.Forms.TextBox();
             this.tbRepresentative = new System.Windows.Forms.TextBox();
             this.tbID = new System.Windows.Forms.TextBox();
-            this.searchBtn = new System.Windows.Forms.Button();
             this.rightSideMenuPanel.SuspendLayout();
             this.panelNavigator.SuspendLayout();
             this.panelDetails.SuspendLayout();
@@ -160,6 +160,19 @@ namespace DBMS_G15
             this.panelNavigator.TabIndex = 6;
             this.panelNavigator.Paint += new System.Windows.Forms.PaintEventHandler(this.panelNavigator_Paint);
             // 
+            // searchBtn
+            // 
+            this.searchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.searchBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.searchBtn.Location = new System.Drawing.Point(496, 68);
+            this.searchBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.searchBtn.Name = "searchBtn";
+            this.searchBtn.Size = new System.Drawing.Size(112, 35);
+            this.searchBtn.TabIndex = 4;
+            this.searchBtn.Text = "Tìm";
+            this.searchBtn.UseVisualStyleBackColor = false;
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
+            // 
             // searchBox
             // 
             this.searchBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
@@ -253,14 +266,14 @@ namespace DBMS_G15
             this.PartnerDGV.AllowUserToResizeColumns = false;
             this.PartnerDGV.AllowUserToResizeRows = false;
             this.PartnerDGV.BackgroundColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.PartnerDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.PartnerDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.PartnerDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.PartnerDGV.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.PartnerDGV.GridColor = System.Drawing.Color.Gainsboro;
@@ -481,19 +494,6 @@ namespace DBMS_G15
             this.tbID.ReadOnly = true;
             this.tbID.Size = new System.Drawing.Size(240, 26);
             this.tbID.TabIndex = 0;
-            // 
-            // searchBtn
-            // 
-            this.searchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.searchBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.searchBtn.Location = new System.Drawing.Point(496, 68);
-            this.searchBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(112, 35);
-            this.searchBtn.TabIndex = 4;
-            this.searchBtn.Text = "Tìm";
-            this.searchBtn.UseVisualStyleBackColor = false;
-            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
             // PartnerForm
             // 
