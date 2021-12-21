@@ -261,31 +261,39 @@ namespace DBMS_G15
             }
             else if(checkValidDetail())
             {
-                try
+                DialogResult confirm = MessageBox.Show("Xác nhận thêm tài xế này?", "Thêm Tài Xế", MessageBoxButtons.YesNo);
+                if (confirm == DialogResult.Yes)
                 {
-                    SqlCommand cmd = new SqlCommand("insert into THONGTINCANHAN (HoTen, SoDienThoai, DiaChi, Email) values (@HoTen, @SoDienThoai, @DiaChi, @Email)", connection);
-                    SqlCommand cmd2 = new SqlCommand("insert into TAIXE (MaKV, BienSoXe, CMND, SoTaiKhoan, PhiThueChan) values (@MaKV, @BienSoXe, @CMND, @SoTaiKhoan, @PhiThueChan) where ID = (select tt.ID from THONGTINCANHAN tt where tt.SoDienThoai = @SoDienThoai)", connection);
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("insert into THONGTINCANHAN (HoTen, SoDienThoai, DiaChi, Email) values (@HoTen, @SoDienThoai, @DiaChi, @Email)", connection);
+                        SqlCommand cmd2 = new SqlCommand("insert into TAIXE(ID) select tt.ID from THONGTINCANHAN tt where tt.SoDienThoai = @SoDienThoai", connection);
+                        SqlCommand cmd3 = new SqlCommand("update TAIXE set MaKV = @MaKV, BienSoXe = @BienSoXe, CMND = @CMND, SoTaiKhoan = @SoTaiKhoan, PhiThueChan = @PhiThueChan where ID = (select ID from THONGTINCANHAN where SoDienThoai = @SoDienThoai)", connection);
 
-                    cmd.Parameters.AddWithValue("@HoTen", tbName.Text);
-                    cmd.Parameters.AddWithValue("@SoDienThoai", tbPhone.Text);
-                    cmd.Parameters.AddWithValue("@DiaChi", tbAddress.Text);
-                    cmd.Parameters.AddWithValue("@Email", tbEmail.Text);
+                        cmd.Parameters.AddWithValue("@HoTen", tbName.Text);
+                        cmd.Parameters.AddWithValue("@SoDienThoai", tbPhone.Text);
+                        cmd.Parameters.AddWithValue("@DiaChi", tbAddress.Text);
+                        cmd.Parameters.AddWithValue("@Email", tbEmail.Text);
 
-                    cmd2.Parameters.AddWithValue("@MaKV", cbbArea.SelectedValue);
-                    cmd2.Parameters.AddWithValue("@BienSoXe", tbNum.Text);
-                    cmd2.Parameters.AddWithValue("@CMND", tbIDNum.Text);
-                    cmd2.Parameters.AddWithValue("@SoTaiKhoan", tbBank.Text);
-                    cmd2.Parameters.AddWithValue("@PhiThueChan", cbbMoney.SelectedItem.ToString());
-                    cmd2.Parameters.AddWithValue("@SoDienThoai", tbPhone.Text);
+                        cmd2.Parameters.AddWithValue("@SoDienThoai", tbPhone.Text);
 
-                    cmd.ExecuteNonQuery();
-                    cmd2.ExecuteNonQuery();
-                    loadAfterAdd();
-                    MessageBox.Show("Thêm tài xế thành công.");
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
+                        cmd3.Parameters.AddWithValue("@MaKV", cbbArea.SelectedValue);
+                        cmd3.Parameters.AddWithValue("@BienSoXe", tbNum.Text);
+                        cmd3.Parameters.AddWithValue("@CMND", tbIDNum.Text);
+                        cmd3.Parameters.AddWithValue("@SoTaiKhoan", tbBank.Text);
+                        cmd3.Parameters.AddWithValue("@PhiThueChan", cbbMoney.SelectedItem.ToString());
+                        cmd3.Parameters.AddWithValue("@SoDienThoai", tbPhone.Text);
+
+                        cmd.ExecuteNonQuery();
+                        cmd2.ExecuteNonQuery();
+                        cmd3.ExecuteNonQuery();
+                        loadAfterAdd();
+                        MessageBox.Show("Thêm tài xế thành công.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi dữ liệu");
+                    }
                 }
             }
             else
