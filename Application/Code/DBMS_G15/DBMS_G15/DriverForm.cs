@@ -18,7 +18,10 @@ namespace DBMS_G15
         DataTable tableProduct = new DataTable();
         string str = @"Data Source=(local);Initial Catalog=DBMS_ThucHanh_Nhom15;Integrated Security=True";
         string placeholder = "Nhập mã CMND...";
-
+        string oldBank = "";
+        string oldNum = "";
+        string oldIDNum = "";
+        string oldPhone = "";
         private int offset;
         const int maxRowsPerPage = 12;
         public DriverForm()
@@ -30,7 +33,11 @@ namespace DBMS_G15
         {
             connection = new SqlConnection(str);
             offset = 0;
+            searchBox.Text = placeholder;
+            loadComboBoxArea();
+            loadComboBoxMoney();
             autoLoadData();
+            connection.Open();
         }
         private void autoLoadData()
         {
@@ -90,36 +97,245 @@ namespace DBMS_G15
         }
         private void searchBox_TextChanged(object sender, EventArgs e)
         {
-            if (searchBox.Text == "")
-            {
-                autoLoadData();
-            }
+
         }
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
+            DataTable table = new DataTable();
+            command = connection.CreateCommand();
+            command.CommandText = "select tx.MaTX, tt.HoTen, tt.SoDienThoai, kv.TenKV, tx.CMND, tx.PhiThueChan from THONGTINCANHAN tt, TAIXE tx, KHUVUC kv where tt.ID = tx.ID and kv.MaKV = tx.MaKV and CMND = @CMND";
+            command.CommandType = CommandType.Text;
+            command.Parameters.AddWithValue("@CMND", searchBox.Text);
+            adapter.SelectCommand = command;
+            table.Clear();
+            adapter.Fill(table);
+            driverDGV.DataSource = table;
+            searchBox.Text = placeholder;
 
+            refreshDetail();
         }
 
         private void btnReload_Click(object sender, EventArgs e)
+        {
+            offset = 0;
+            refreshDetail();
+            autoLoadData();
+        }
+        private void refreshDetail()
         {
             tbID.Text = "";
             tbName.Text = "";
             tbPhone.Text = "";
             tbAddress.Text = "";
             tbEmail.Text = "";
-            offset = 0;
-            autoLoadData();
+            tbBank.Text = "";
+            tbIDNum.Text = "";
+            tbNum.Text = "";
+            tbBank.Text = "";
+            cbbArea.SelectedIndex = 0;
+            cbbMoney.SelectedIndex = 0;
         }
-
+        private bool anyBlankDetail()
+        {
+            if(tbID.Text == "" || tbName.Text == "" || tbPhone.Text == "" || tbAddress.Text == "" || tbEmail.Text == "" || tbBank.Text == "" || tbIDNum.Text == "" || tbNum.Text == "" || tbBank.Text == "")
+            {
+                return true;
+            }
+            return false;
+        }
+        private bool anyExistedIDNum(string CMND)
+        {
+            SqlCommand checkDriverIfExisted = new SqlCommand("select tx.MaTX from THONGTINCANHAN tt, TAIXE tx where tt.ID = tx.ID and tx.CMND = @CMND", connection);
+            checkDriverIfExisted.Parameters.AddWithValue("@CMND", CMND);
+            SqlDataReader reader = checkDriverIfExisted.ExecuteReader();
+            if (!reader.HasRows)
+            {
+                reader.Close();
+                return false;
+            }
+            reader.Close();
+            return true;
+        }
+        private bool anyExistedNum(string num)
+        {
+            SqlCommand checkDriverIfExisted = new SqlCommand("select tx.MaTX from THONGTINCANHAN tt, TAIXE tx where tt.ID = tx.ID and tx.BienSoXe = @BienSoXe", connection);
+            checkDriverIfExisted.Parameters.AddWithValue("@BienSoXe", num);
+            SqlDataReader reader = checkDriverIfExisted.ExecuteReader();
+            if (!reader.HasRows)
+            {
+                reader.Close();
+                return false;
+            }
+            reader.Close();
+            return true;
+        }
+        private bool anyExistedBank(string bank)
+        {
+            SqlCommand checkDriverIfExisted = new SqlCommand("select tx.MaTX from THONGTINCANHAN tt, TAIXE tx where tt.ID = tx.ID and tx.SoTaiKhoan = @SoTaiKhoan", connection);
+            checkDriverIfExisted.Parameters.AddWithValue("@SoTaiKhoan", bank);
+            SqlDataReader reader = checkDriverIfExisted.ExecuteReader();
+            if (!reader.HasRows)
+            {
+                reader.Close();
+                return false;
+            }
+            reader.Close();
+            return true;
+        }
+        private bool anyExistedPhone(string phone)
+        {
+            SqlCommand checkDriverIfExisted = new SqlCommand("select tx.MaTX from THONGTINCANHAN tt, TAIXE tx where tt.ID = tx.ID and tt.SoDienThoai = @SoDienThoai", connection);
+            checkDriverIfExisted.Parameters.AddWithValue("@SoDienThoai", phone);
+            SqlDataReader reader = checkDriverIfExisted.ExecuteReader();
+            if (!reader.HasRows)
+            {
+                reader.Close();
+                return false;
+            }
+            reader.Close();
+            return true;
+        }
+        private bool checkNotEditedDetail()
+        {
+            if(oldPhone != tbPhone.Text || oldNum != tbNum.Text || oldBank != tbBank.Text || oldIDNum != tbIDNum.Text)
+            {
+                return false;
+            }
+            return true;
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (anyBlankDetail())
+            {
+                MessageBox.Show("Hãy điền đầy đủ thông tin.");
+            }
+            else
+            {
+                DialogResult confirm = MessageBox.Show("Xác nhận cập nhật thông tin tài xế này?", "Cập Nhật Thông Tin Tài Xế", MessageBoxButtons.YesNo);
+                if (confirm == DialogResult.Yes)
+                {
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("update TAIXE set MaKV = @MaKV, BienSoXe = @BienSoXe, CMND = @CMND, SoTaiKhoan = @SoTaiKhoan, PhiThueChan = @PhiThueChan where MaTX = @MaTX", connection);
+                        SqlCommand cmd2 = new SqlCommand("update THONGTINCANHAN set HoTen = @HoTen, SoDienThoai = @SoDienThoai, DiaChi = @DiaChi, Email = @Email where ID = (select ID from TAIXE where MaTX = @MaTX)", connection);
+                        cmd.Parameters.AddWithValue("@MaKV", cbbArea.SelectedValue);
+                        cmd.Parameters.AddWithValue("@BienSoXe", tbNum.Text);
+                        cmd.Parameters.AddWithValue("@CMND", tbIDNum.Text);
+                        cmd.Parameters.AddWithValue("@SoTaiKhoan", tbBank.Text);
+                        cmd.Parameters.AddWithValue("@PhiThueChan", cbbMoney.SelectedItem.ToString());
+                        cmd.Parameters.AddWithValue("@MaTX", tbID.Text);
 
+                        cmd2.Parameters.AddWithValue("@HoTen", tbName.Text);
+                        cmd2.Parameters.AddWithValue("@SoDienThoai", tbPhone.Text);
+                        cmd2.Parameters.AddWithValue("@DiaChi", tbAddress.Text);
+                        cmd2.Parameters.AddWithValue("@Email", tbEmail.Text);
+                        cmd2.Parameters.AddWithValue("@MaTX", tbID.Text);
+
+                        cmd.ExecuteNonQuery();
+                        cmd2.ExecuteNonQuery();
+                        autoLoadData();
+                        MessageBox.Show("Cập nhật thông tin thành công.");
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
 
+        }
+        private void loadComboBoxMoney()
+        {
+            cbbMoney.Items.Insert(0, 0);
+            cbbMoney.Items.Insert(1, 500000);
+            cbbMoney.SelectedIndex = 0;
+        }
+        private void loadComboBoxArea()
+        {
+            try
+            {
+                command = connection.CreateCommand();
+                command.CommandText = "select * from KHUVUC";
+                command.CommandType = CommandType.Text;
+                adapter.SelectCommand = command;
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                cbbArea.DisplayMember = "TenKV";
+                cbbArea.ValueMember = "MaKV";
+                cbbArea.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi kết nối với cơ sở dữ liệu!");
+            }
+        }
+        private void fillCurrentDriverData()
+        {
+            int rowIndex = driverDGV.CurrentCell.RowIndex;
+            DataTable tb = new DataTable();
+            command = connection.CreateCommand();
+            command.CommandText = "select tx.MaKV, tx.MaTX, kv.TenKV, tt.HoTen, tx.BienSoXe, tx.CMND, tt.SoDienThoai, tx.SoTaiKhoan, tx.PhiThueChan, tt.DiaChi, tt.Email from THONGTINCANHAN tt, TAIXE tx, KHUVUC kv where tt.ID = tx.ID and kv.MaKV = tx.MaKV and CMND = @CMND";
+            command.CommandType = CommandType.Text;
+            command.Parameters.AddWithValue("@CMND", driverDGV.Rows[rowIndex].Cells[4].Value.ToString());
+            adapter.SelectCommand = command;
+            tb.Clear();
+            adapter.Fill(tb);
+
+            tbID.Text = tb.Rows[0]["MaTX"].ToString();
+            cbbArea.DisplayMember = tb.Rows[0]["TenKV"].ToString();
+            cbbArea.SelectedValue = tb.Rows[0]["MaKV"].ToString();
+            if(tb.Rows[0]["PhiThueChan"].ToString() == "0")
+            {
+                cbbMoney.SelectedIndex = 0;
+            }
+            else
+            {
+                cbbMoney.SelectedIndex = 1;
+            }
+            tbName.Text = tb.Rows[0]["HoTen"].ToString();
+            tbNum.Text = tb.Rows[0]["BienSoXe"].ToString();
+            tbIDNum.Text = tb.Rows[0]["CMND"].ToString();
+            tbPhone.Text = tb.Rows[0]["SoDienThoai"].ToString();
+            tbBank.Text = tb.Rows[0]["SoTaiKhoan"].ToString();
+            cbbMoney.SelectedItem = tb.Rows[0]["PhiThueChan"].ToString();
+            tbAddress.Text = tb.Rows[0]["DiaChi"].ToString();
+            tbEmail.Text = tb.Rows[0]["Email"].ToString();
+        }
+        private void saveOldDetail()
+        {
+            oldBank = tbBank.Text;
+            oldIDNum = tbIDNum.Text;
+            oldNum = tbNum.Text;
+            oldPhone = tbPhone.Text;
+        }
+        private void driverDGV_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            fillCurrentDriverData();
+            saveOldDetail();
+        }
+
+        private void searchBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                DataTable table = new DataTable();
+                command = connection.CreateCommand();
+                command.CommandText = "select tx.MaTX, tt.HoTen, tt.SoDienThoai, kv.TenKV, tx.CMND, tx.PhiThueChan from THONGTINCANHAN tt, TAIXE tx, KHUVUC kv where tt.ID = tx.ID and kv.MaKV = tx.MaKV and CMND = @CMND";
+                command.CommandType = CommandType.Text;
+                command.Parameters.AddWithValue("@CMND", searchBox.Text);
+                adapter.SelectCommand = command;
+                table.Clear();
+                adapter.Fill(table);
+                driverDGV.DataSource = table;
+                searchBox.Text = placeholder;
+
+                refreshDetail();
+            }
         }
     }
 }

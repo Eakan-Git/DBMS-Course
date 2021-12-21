@@ -30,8 +30,8 @@ namespace DBMS_G15
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DriverForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnUnlock = new System.Windows.Forms.Button();
             this.btnLock = new System.Windows.Forms.Button();
@@ -44,6 +44,8 @@ namespace DBMS_G15
             this.btnPrevious = new System.Windows.Forms.Button();
             this.driverDGV = new System.Windows.Forms.DataGridView();
             this.panelDetails = new System.Windows.Forms.Panel();
+            this.labelPhone = new System.Windows.Forms.Label();
+            this.tbPhone = new System.Windows.Forms.TextBox();
             this.btnReload = new System.Windows.Forms.Button();
             this.cbbMoney = new System.Windows.Forms.ComboBox();
             this.labelEmail = new System.Windows.Forms.Label();
@@ -53,7 +55,7 @@ namespace DBMS_G15
             this.labelBank = new System.Windows.Forms.Label();
             this.tbAddress = new System.Windows.Forms.TextBox();
             this.tbBank = new System.Windows.Forms.TextBox();
-            this.cbbDepartment = new System.Windows.Forms.ComboBox();
+            this.cbbArea = new System.Windows.Forms.ComboBox();
             this.IDNumLabel = new System.Windows.Forms.Label();
             this.numLabel = new System.Windows.Forms.Label();
             this.areaLabel = new System.Windows.Forms.Label();
@@ -64,8 +66,6 @@ namespace DBMS_G15
             this.tbNum = new System.Windows.Forms.TextBox();
             this.tbName = new System.Windows.Forms.TextBox();
             this.tbID = new System.Windows.Forms.TextBox();
-            this.labelPhone = new System.Windows.Forms.Label();
-            this.tbPhone = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panelNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.driverDGV)).BeginInit();
@@ -194,6 +194,7 @@ namespace DBMS_G15
             this.searchBox.TabIndex = 2;
             this.searchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
             this.searchBox.Enter += new System.EventHandler(this.searchBox_Enter);
+            this.searchBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchBox_KeyPress);
             this.searchBox.Leave += new System.EventHandler(this.searchBox_Leave);
             // 
             // btnNext
@@ -231,33 +232,34 @@ namespace DBMS_G15
             this.driverDGV.AllowUserToResizeRows = false;
             this.driverDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.driverDGV.BackgroundColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.NullValue = "Không xác định";
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.driverDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.NullValue = "Không xác định";
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.driverDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.driverDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.driverDGV.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.driverDGV.DefaultCellStyle = dataGridViewCellStyle4;
             this.driverDGV.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.driverDGV.GridColor = System.Drawing.Color.Gainsboro;
             this.driverDGV.Location = new System.Drawing.Point(0, 224);
             this.driverDGV.Name = "driverDGV";
             this.driverDGV.ReadOnly = true;
             this.driverDGV.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
-            this.driverDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.driverDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.driverDGV.Size = new System.Drawing.Size(736, 289);
             this.driverDGV.TabIndex = 10;
+            this.driverDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.driverDGV_CellClick);
             // 
             // panelDetails
             // 
@@ -273,7 +275,7 @@ namespace DBMS_G15
             this.panelDetails.Controls.Add(this.labelBank);
             this.panelDetails.Controls.Add(this.tbAddress);
             this.panelDetails.Controls.Add(this.tbBank);
-            this.panelDetails.Controls.Add(this.cbbDepartment);
+            this.panelDetails.Controls.Add(this.cbbArea);
             this.panelDetails.Controls.Add(this.IDNumLabel);
             this.panelDetails.Controls.Add(this.numLabel);
             this.panelDetails.Controls.Add(this.areaLabel);
@@ -290,6 +292,24 @@ namespace DBMS_G15
             this.panelDetails.Size = new System.Drawing.Size(736, 224);
             this.panelDetails.TabIndex = 11;
             // 
+            // labelPhone
+            // 
+            this.labelPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.labelPhone.AutoSize = true;
+            this.labelPhone.Location = new System.Drawing.Point(281, 154);
+            this.labelPhone.Name = "labelPhone";
+            this.labelPhone.Size = new System.Drawing.Size(75, 13);
+            this.labelPhone.TabIndex = 22;
+            this.labelPhone.Text = "Số Điện Thoại";
+            // 
+            // tbPhone
+            // 
+            this.tbPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.tbPhone.Location = new System.Drawing.Point(281, 170);
+            this.tbPhone.Name = "tbPhone";
+            this.tbPhone.Size = new System.Drawing.Size(161, 20);
+            this.tbPhone.TabIndex = 21;
+            // 
             // btnReload
             // 
             this.btnReload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -304,6 +324,7 @@ namespace DBMS_G15
             // cbbMoney
             // 
             this.cbbMoney.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbbMoney.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbMoney.FormattingEnabled = true;
             this.cbbMoney.Location = new System.Drawing.Point(522, 88);
             this.cbbMoney.Name = "cbbMoney";
@@ -374,14 +395,14 @@ namespace DBMS_G15
             this.tbBank.Size = new System.Drawing.Size(161, 20);
             this.tbBank.TabIndex = 12;
             // 
-            // cbbDepartment
+            // cbbArea
             // 
-            this.cbbDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbbDepartment.FormattingEnabled = true;
-            this.cbbDepartment.Location = new System.Drawing.Point(53, 169);
-            this.cbbDepartment.Name = "cbbDepartment";
-            this.cbbDepartment.Size = new System.Drawing.Size(161, 21);
-            this.cbbDepartment.TabIndex = 11;
+            this.cbbArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbArea.FormattingEnabled = true;
+            this.cbbArea.Location = new System.Drawing.Point(53, 169);
+            this.cbbArea.Name = "cbbArea";
+            this.cbbArea.Size = new System.Drawing.Size(161, 21);
+            this.cbbArea.TabIndex = 11;
             // 
             // IDNumLabel
             // 
@@ -473,24 +494,6 @@ namespace DBMS_G15
             this.tbID.Size = new System.Drawing.Size(161, 20);
             this.tbID.TabIndex = 0;
             // 
-            // labelPhone
-            // 
-            this.labelPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.labelPhone.AutoSize = true;
-            this.labelPhone.Location = new System.Drawing.Point(281, 154);
-            this.labelPhone.Name = "labelPhone";
-            this.labelPhone.Size = new System.Drawing.Size(75, 13);
-            this.labelPhone.TabIndex = 22;
-            this.labelPhone.Text = "Số Điện Thoại";
-            // 
-            // tbPhone
-            // 
-            this.tbPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.tbPhone.Location = new System.Drawing.Point(281, 170);
-            this.tbPhone.Name = "tbPhone";
-            this.tbPhone.Size = new System.Drawing.Size(161, 20);
-            this.tbPhone.TabIndex = 21;
-            // 
             // DriverForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -525,7 +528,7 @@ namespace DBMS_G15
         private System.Windows.Forms.Button btnPrevious;
         private System.Windows.Forms.DataGridView driverDGV;
         private System.Windows.Forms.Panel panelDetails;
-        private System.Windows.Forms.ComboBox cbbDepartment;
+        private System.Windows.Forms.ComboBox cbbArea;
         private System.Windows.Forms.Label IDNumLabel;
         private System.Windows.Forms.Label numLabel;
         private System.Windows.Forms.Label areaLabel;
