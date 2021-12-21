@@ -15,7 +15,6 @@ namespace DBMS_G15
         SqlConnection connection;
         SqlCommand command;
         SqlDataAdapter adapter = new SqlDataAdapter();
-        DataTable tableProduct = new DataTable();
         string str = @"Data Source=(local);Initial Catalog=DBMS_ThucHanh_Nhom15;Integrated Security=True";
         string placeholder = "Nhập mã CMND...";
         string oldBank = "";
