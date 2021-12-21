@@ -95,7 +95,7 @@ namespace DemoLoi
                     cmd.Parameters.AddWithValue("@MaSP", SPKH.SelectedValue);
                     cmd.Parameters.AddWithValue("@SoLuong", soLuong.Value);
                     con.Open();
-                    adapter = new SqlDataAdapter(cmd);
+                    cmd.ExecuteNonQuery();
                     MessageBox.Show("Cập nhật thành công.");
                 }
             }
@@ -108,14 +108,16 @@ namespace DemoLoi
             {
                 using (SqlCommand cmd = new SqlCommand("TX_xem_CTDH", con))
                 {
+                    DataSet ds = new DataSet();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@MaDH", DHTX.SelectedValue);
                     cmd.Parameters.AddWithValue("@MaSP", SPTX.SelectedValue);
                     con.Open();
-                    table.Clear();
+                    ds.Clear();
                     adapter = new SqlDataAdapter(cmd);
-                    adapter.Fill(table);
-                    dataGridView2.DataSource = table;
+                    adapter.Fill(ds);
+                    dataGridView2.DataSource = ds.Tables[0];
+                    dataGridView1.DataSource = ds.Tables[1];
                     MessageBox.Show("Chạy thành công.");
                 }
             }
@@ -174,8 +176,23 @@ namespace DemoLoi
         }
         private void suaLoi_Click(object sender, EventArgs e)
         {
-
-            updateSoLuong();
+            using (SqlConnection con = new SqlConnection(str))
+            {
+                using (SqlCommand cmd = new SqlCommand("TX_xem_CTDH2", con))
+                {
+                    DataSet ds = new DataSet();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@MaDH", DHTX.SelectedValue);
+                    cmd.Parameters.AddWithValue("@MaSP", SPTX.SelectedValue);
+                    con.Open();
+                    table.Clear();
+                    adapter2 = new SqlDataAdapter(cmd);
+                    adapter2.Fill(ds);
+                    dataGridView2.DataSource = ds.Tables[0];
+                    dataGridView1.DataSource = ds.Tables[1];
+                    MessageBox.Show("Chạy thành công.");
+                }
+            }
         }
 
         private void DHKH_SelectionChangeCommitted(object sender, EventArgs e)
@@ -211,6 +228,24 @@ namespace DemoLoi
         }
         private void SPKH_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            updateSoLuong();
+        }
+
+        private void suaLoiKH_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection con = new SqlConnection(str))
+            {
+                using (SqlCommand cmd = new SqlCommand("KH_capnhat_SL2", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@MaDH", DHKH.SelectedValue);
+                    cmd.Parameters.AddWithValue("@MaSP", SPKH.SelectedValue);
+                    cmd.Parameters.AddWithValue("@SoLuong", soLuong.Value);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Cập nhật thành công.");
+                }
+            }
             updateSoLuong();
         }
     }

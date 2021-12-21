@@ -33,28 +33,31 @@ namespace DemoLoi
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.soLuong = new System.Windows.Forms.NumericUpDown();
+            this.SPKH = new System.Windows.Forms.ComboBox();
+            this.DHKH = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.capNhat = new System.Windows.Forms.Button();
+            this.chayLoiKH = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panelCustomer = new System.Windows.Forms.Panel();
+            this.SPTX = new System.Windows.Forms.ComboBox();
+            this.DHTX = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.suaLoi = new System.Windows.Forms.Button();
             this.chayLoi = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.DHTX = new System.Windows.Forms.ComboBox();
-            this.SPTX = new System.Windows.Forms.ComboBox();
-            this.DHKH = new System.Windows.Forms.ComboBox();
-            this.SPKH = new System.Windows.Forms.ComboBox();
-            this.soLuong = new System.Windows.Forms.NumericUpDown();
+            this.suaLoiKH = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.soLuong)).BeginInit();
             this.panelCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.soLuong)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -89,11 +92,12 @@ namespace DemoLoi
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.suaLoiKH);
             this.panel2.Controls.Add(this.soLuong);
             this.panel2.Controls.Add(this.SPKH);
             this.panel2.Controls.Add(this.DHKH);
             this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.capNhat);
+            this.panel2.Controls.Add(this.chayLoiKH);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label1);
@@ -102,6 +106,36 @@ namespace DemoLoi
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(825, 154);
             this.panel2.TabIndex = 4;
+            // 
+            // soLuong
+            // 
+            this.soLuong.Location = new System.Drawing.Point(596, 71);
+            this.soLuong.Name = "soLuong";
+            this.soLuong.Size = new System.Drawing.Size(75, 20);
+            this.soLuong.TabIndex = 17;
+            this.soLuong.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // SPKH
+            // 
+            this.SPKH.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SPKH.FormattingEnabled = true;
+            this.SPKH.Location = new System.Drawing.Point(436, 71);
+            this.SPKH.Name = "SPKH";
+            this.SPKH.Size = new System.Drawing.Size(118, 21);
+            this.SPKH.TabIndex = 16;
+            this.SPKH.SelectionChangeCommitted += new System.EventHandler(this.SPKH_SelectionChangeCommitted);
+            this.SPKH.Click += new System.EventHandler(this.SPKH_Click);
+            // 
+            // DHKH
+            // 
+            this.DHKH.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DHKH.FormattingEnabled = true;
+            this.DHKH.Location = new System.Drawing.Point(281, 71);
+            this.DHKH.Name = "DHKH";
+            this.DHKH.Size = new System.Drawing.Size(118, 21);
+            this.DHKH.TabIndex = 15;
+            this.DHKH.SelectionChangeCommitted += new System.EventHandler(this.DHKH_SelectionChangeCommitted);
+            this.DHKH.Click += new System.EventHandler(this.DHKH_Click);
             // 
             // label5
             // 
@@ -112,15 +146,15 @@ namespace DemoLoi
             this.label5.TabIndex = 9;
             this.label5.Text = "Số Lượng";
             // 
-            // capNhat
+            // chayLoiKH
             // 
-            this.capNhat.Location = new System.Drawing.Point(596, 97);
-            this.capNhat.Name = "capNhat";
-            this.capNhat.Size = new System.Drawing.Size(75, 23);
-            this.capNhat.TabIndex = 6;
-            this.capNhat.Text = "Cập Nhật";
-            this.capNhat.UseVisualStyleBackColor = true;
-            this.capNhat.Click += new System.EventHandler(this.capNhat_Click);
+            this.chayLoiKH.Location = new System.Drawing.Point(571, 97);
+            this.chayLoiKH.Name = "chayLoiKH";
+            this.chayLoiKH.Size = new System.Drawing.Size(75, 23);
+            this.chayLoiKH.TabIndex = 6;
+            this.chayLoiKH.Text = "Chạy Lỗi";
+            this.chayLoiKH.UseVisualStyleBackColor = true;
+            this.chayLoiKH.Click += new System.EventHandler(this.capNhat_Click);
             // 
             // label4
             // 
@@ -152,6 +186,7 @@ namespace DemoLoi
             // 
             // panelCustomer
             // 
+            this.panelCustomer.Controls.Add(this.dataGridView1);
             this.panelCustomer.Controls.Add(this.SPTX);
             this.panelCustomer.Controls.Add(this.DHTX);
             this.panelCustomer.Controls.Add(this.label6);
@@ -165,6 +200,25 @@ namespace DemoLoi
             this.panelCustomer.Name = "panelCustomer";
             this.panelCustomer.Size = new System.Drawing.Size(825, 299);
             this.panelCustomer.TabIndex = 3;
+            // 
+            // SPTX
+            // 
+            this.SPTX.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SPTX.FormattingEnabled = true;
+            this.SPTX.Location = new System.Drawing.Point(436, 28);
+            this.SPTX.Name = "SPTX";
+            this.SPTX.Size = new System.Drawing.Size(118, 21);
+            this.SPTX.TabIndex = 14;
+            // 
+            // DHTX
+            // 
+            this.DHTX.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DHTX.FormattingEnabled = true;
+            this.DHTX.Location = new System.Drawing.Point(281, 28);
+            this.DHTX.Name = "DHTX";
+            this.DHTX.Size = new System.Drawing.Size(118, 21);
+            this.DHTX.TabIndex = 10;
+            this.DHTX.SelectionChangeCommitted += new System.EventHandler(this.DHTX_SelectionChangeCommitted);
             // 
             // label6
             // 
@@ -181,10 +235,10 @@ namespace DemoLoi
             this.dataGridView2.AllowUserToDeleteRows = false;
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(85, 54);
+            this.dataGridView2.Location = new System.Drawing.Point(86, 56);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.Size = new System.Drawing.Size(642, 245);
+            this.dataGridView2.Size = new System.Drawing.Size(642, 119);
             this.dataGridView2.TabIndex = 8;
             // 
             // label7
@@ -226,54 +280,27 @@ namespace DemoLoi
             this.label2.TabIndex = 2;
             this.label2.Text = "Thao Tác Tài Xế";
             // 
-            // DHTX
+            // suaLoiKH
             // 
-            this.DHTX.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.DHTX.FormattingEnabled = true;
-            this.DHTX.Location = new System.Drawing.Point(281, 28);
-            this.DHTX.Name = "DHTX";
-            this.DHTX.Size = new System.Drawing.Size(118, 21);
-            this.DHTX.TabIndex = 10;
-            this.DHTX.SelectionChangeCommitted += new System.EventHandler(this.DHTX_SelectionChangeCommitted);
+            this.suaLoiKH.Location = new System.Drawing.Point(652, 97);
+            this.suaLoiKH.Name = "suaLoiKH";
+            this.suaLoiKH.Size = new System.Drawing.Size(75, 23);
+            this.suaLoiKH.TabIndex = 18;
+            this.suaLoiKH.Text = "Sửa Lỗi";
+            this.suaLoiKH.UseVisualStyleBackColor = true;
+            this.suaLoiKH.Click += new System.EventHandler(this.suaLoiKH_Click);
             // 
-            // SPTX
+            // dataGridView1
             // 
-            this.SPTX.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.SPTX.FormattingEnabled = true;
-            this.SPTX.Location = new System.Drawing.Point(436, 28);
-            this.SPTX.Name = "SPTX";
-            this.SPTX.Size = new System.Drawing.Size(118, 21);
-            this.SPTX.TabIndex = 14;
-            // 
-            // DHKH
-            // 
-            this.DHKH.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.DHKH.FormattingEnabled = true;
-            this.DHKH.Location = new System.Drawing.Point(281, 71);
-            this.DHKH.Name = "DHKH";
-            this.DHKH.Size = new System.Drawing.Size(118, 21);
-            this.DHKH.TabIndex = 15;
-            this.DHKH.SelectionChangeCommitted += new System.EventHandler(this.DHKH_SelectionChangeCommitted);
-            this.DHKH.Click += new System.EventHandler(this.DHKH_Click);
-            // 
-            // SPKH
-            // 
-            this.SPKH.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.SPKH.FormattingEnabled = true;
-            this.SPKH.Location = new System.Drawing.Point(436, 71);
-            this.SPKH.Name = "SPKH";
-            this.SPKH.Size = new System.Drawing.Size(118, 21);
-            this.SPKH.TabIndex = 16;
-            this.SPKH.SelectionChangeCommitted += new System.EventHandler(this.SPKH_SelectionChangeCommitted);
-            this.SPKH.Click += new System.EventHandler(this.SPKH_Click);
-            // 
-            // soLuong
-            // 
-            this.soLuong.Location = new System.Drawing.Point(596, 71);
-            this.soLuong.Name = "soLuong";
-            this.soLuong.Size = new System.Drawing.Size(75, 20);
-            this.soLuong.TabIndex = 17;
-            this.soLuong.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(85, 181);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(642, 119);
+            this.dataGridView1.TabIndex = 15;
             // 
             // Form2
             // 
@@ -292,10 +319,11 @@ namespace DemoLoi
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.soLuong)).EndInit();
             this.panelCustomer.ResumeLayout(false);
             this.panelCustomer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.soLuong)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -307,7 +335,7 @@ namespace DemoLoi
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button capNhat;
+        private System.Windows.Forms.Button chayLoiKH;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
@@ -323,5 +351,7 @@ namespace DemoLoi
         private System.Windows.Forms.ComboBox DHKH;
         private System.Windows.Forms.ComboBox SPTX;
         private System.Windows.Forms.ComboBox DHTX;
+        private System.Windows.Forms.Button suaLoiKH;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

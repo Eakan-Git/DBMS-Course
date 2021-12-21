@@ -303,20 +303,24 @@ namespace DBMS_G15
         {
             using (SqlConnection connection = new SqlConnection(@"Data Source=(local);Initial Catalog=DBMS_ThucHanh_Nhom15;Integrated Security=True"))
             {
-                try
+                DialogResult confirm = MessageBox.Show("Xác nhận xóa sản phẩm khỏi đơn hàng?", "Xóa Khỏi Đơn Hàng", MessageBoxButtons.YesNo);
+                if (confirm == DialogResult.Yes)
                 {
-                    connection.Open();
-                    SqlCommand DeleteCommand = new SqlCommand("delete from CHITIETDONHANG WHERE MaDH=@MaDH and MaSP=@MaSP", connection);
-                    DeleteCommand.Parameters.AddWithValue("@MaDH", DetailOrderDGV.CurrentRow.Cells[0].Value);
-                    DeleteCommand.Parameters.AddWithValue("@MaSP", DetailOrderDGV.CurrentRow.Cells[1].Value);
-                    DeleteCommand.ExecuteNonQuery();
-                    LoadDetailOrder();
-                    LoadOrder();
-                    MessageBox.Show("Xóa sản phẩm khỏi đơn hàng thành công");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
+                    try
+                    {
+                        connection.Open();
+                        SqlCommand DeleteCommand = new SqlCommand("delete from CHITIETDONHANG WHERE MaDH=@MaDH and MaSP=@MaSP", connection);
+                        DeleteCommand.Parameters.AddWithValue("@MaDH", DetailOrderDGV.CurrentRow.Cells[0].Value);
+                        DeleteCommand.Parameters.AddWithValue("@MaSP", DetailOrderDGV.CurrentRow.Cells[1].Value);
+                        DeleteCommand.ExecuteNonQuery();
+                        LoadDetailOrder();
+                        LoadOrder();
+                        MessageBox.Show("Xóa sản phẩm khỏi đơn hàng thành công");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
 
@@ -338,6 +342,7 @@ namespace DBMS_G15
                         LoadDetailOrder();
                         LoadOrder();
                         MessageBox.Show("Hủy đơn hàng thành công");
+                        checkTinhTrang();
                     }
                     catch (Exception ex)
                     {
