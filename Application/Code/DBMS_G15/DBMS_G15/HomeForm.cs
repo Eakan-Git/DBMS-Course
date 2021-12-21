@@ -13,6 +13,8 @@ namespace DBMS_G15
     public partial class HomeForm : Form
     {
         string role;
+        const int IDStaff = 2259;
+        const int IDCustomer = 1349;
         private Form currentChildForm;
         public HomeForm()
         {
@@ -179,11 +181,11 @@ namespace DBMS_G15
             navMenu.BringToFront();
             if (role == "customer")
             {
-                OpenChildForm(new CustomerProfile());
+                OpenChildForm(new StaffAndCustomerProfile(role, IDCustomer));
             }
             else if(role == "staff" || role == "developer")
             {
-                OpenChildForm(new StaffProfile());
+                OpenChildForm(new StaffAndCustomerProfile(role, IDStaff));
             }
             else if(role == "driver")
             {

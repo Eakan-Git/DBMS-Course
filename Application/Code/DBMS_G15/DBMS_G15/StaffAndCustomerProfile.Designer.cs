@@ -1,7 +1,7 @@
 ﻿
 namespace DBMS_G15
 {
-    partial class StaffProfile
+    partial class StaffAndCustomerProfile
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace DBMS_G15
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffProfile));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffAndCustomerProfile));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -56,7 +56,7 @@ namespace DBMS_G15
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(736, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(72, 583);
             this.panel1.TabIndex = 0;
@@ -132,7 +132,7 @@ namespace DBMS_G15
             this.panel5.Controls.Add(this.nameLabel);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(0, 105);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(736, 373);
             this.panel5.TabIndex = 27;
@@ -175,7 +175,7 @@ namespace DBMS_G15
             // 
             // phoneNumTb
             // 
-            this.phoneNumTb.Location = new System.Drawing.Point(353, 143);
+            this.phoneNumTb.Location = new System.Drawing.Point(353, 141);
             this.phoneNumTb.Name = "phoneNumTb";
             this.phoneNumTb.ReadOnly = true;
             this.phoneNumTb.Size = new System.Drawing.Size(142, 20);
@@ -213,12 +213,12 @@ namespace DBMS_G15
             // 
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 478);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(736, 105);
             this.panel3.TabIndex = 26;
             // 
-            // StaffProfile
+            // StaffAndCustomerProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -228,9 +228,10 @@ namespace DBMS_G15
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "StaffProfile";
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Name = "StaffAndCustomerProfile";
             this.Text = "StaffProfile";
+            this.Load += new System.EventHandler(this.StaffAndCustomerProfile_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
