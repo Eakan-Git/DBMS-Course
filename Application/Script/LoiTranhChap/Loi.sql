@@ -3,7 +3,7 @@ go
 ------------------------------------------------------------------------------
 ---- Tinh Huong 1 - Dirty Read
 -- Transaction 1:  Nhân viên giảm giá cho các sản phẩm được cung cấp bởi chi nhánh A
-create procedure NV_giamgia_SP
+create or alter procedure NV_giamgia_SP
 	@MaCN nvarchar(10),
 	@GiaGiam int
 as
@@ -42,7 +42,7 @@ begin tran
 go
 
 -- Transaction 2: Khách hàng xem các sản phẩm được cung cấp bởi chi nhánh A 
-create procedure XemSP_CuaCN
+create or alter procedure XemSP_CuaCN
 	@MaCN nvarchar(10)
 as
 begin tran
@@ -65,7 +65,7 @@ go
 -----------------------------------------
 -- Tinh Huong 2 - Dirty Read 
 --Transaction 1: Nhân viên giảm giá phí vận chuyển cho các đơn hàng ở khu vực A
-create procedure PhiShipDH 
+create or alter procedure PhiShipDH 
 	@MaKV nvarchar(10),
 	@PhiShipGiamGia int
 as
@@ -95,7 +95,7 @@ begin tran
 go
 
 --Transaction 2: Khách hàng có đơn hàng ở khu vực A xem phí vận chuyển
-create procedure XemDH_TaiKV
+create or alter procedure XemDH_TaiKV
 	@MaDH nvarchar(10)
 as
 begin tran
@@ -118,7 +118,7 @@ go
 -----------------------------------------
 -- Tinh Huong 3 - Lost update
 --Transaction 1: Tài xế cập nhật trạng thái đơn hàng “Đã nhận”
-create procedure TX_danhan_DH 
+create or alter procedure TX_danhan_DH 
 	@MaDH nvarchar(10),
 	@TinhTrang nvarchar(20)
 as
@@ -161,7 +161,7 @@ begin tran
 go
 
 --Transaction 2: Khách hủy đơn hàng đó
-create procedure KH_huyDH
+create or alter procedure KH_huyDH
 	@MaDH nvarchar(10),
 	@TinhTrang nvarchar(20)
 as
@@ -208,7 +208,7 @@ go
 --Tình huống 4: - Unrepeatable Read
 --Lúc đầu số lượng của sản phẩm A trong chi tiết đơn hàng B thành 20
 --Transaction 1: Tài xế xem lại chi tiết đơn hàng thì thấy số lượng sản phẩm là 10. 
-create procedure TX_xem_CTDH
+create or alter procedure TX_xem_CTDH
 	@MaDH nvarchar(10),
 	@MaSP nvarchar(10)
 as
@@ -238,7 +238,7 @@ begin tran
 go
 
 --Transaction 2: Khách hàng sửa số lượng của sản phẩm A trong chi tiết đơn hàng B thành 10
-create procedure KH_capnhat_SL
+create or alter procedure KH_capnhat_SL
 	@MaDH nvarchar(10),
 	@MaSP nvarchar(10),
 	@SoLuong int
@@ -272,7 +272,7 @@ go
 -----------------------------------------
 --Tình huống 5 - Phantom Read
 --Transaction 1: Khách hàng xem danh sách các sản phẩm giá lớn hơn 9tr đồng. (n sản phẩm)
-alter procedure Xem_SP_voigia
+create or alter procedure Xem_SP_voigia
 	@Gia int
 as
 begin tran 
@@ -295,7 +295,7 @@ begin tran
 go
 
 --Transaction 2: Nhân viên thêm một sản phẩm có giá 1tr đồng 
-alter procedure NV_themSP
+create or alter procedure NV_themSP
     @TenSP nvarchar(150),
 	@Gia bigint,
     @MoTa nvarchar(200),
@@ -317,7 +317,7 @@ go
 -----------------------------------------
 --Tình huống 6 - Phantom Read
 --Transaction 1: Nhân viên A xem danh sách các hợp đồng có ngày bắt đầu trễ hơn 05/08/2020. (n hợp đồng)
-create procedure Xem_DanhSachHD
+create or alter procedure Xem_DanhSachHD
 	@NgayBD date
 as
 begin tran 
@@ -340,7 +340,7 @@ begin tran
 go
 
 --Transaction 2: Nhân viên B thêm một hợp đồng có ngày bắt đầu là 12/04/2021
-create procedure NV_themHD
+create or alter procedure NV_themHD
     @MaDT nvarchar(10),
 	@MaSoThue nvarchar(20),
 	@NguoiDaiDien nvarchar(100),
