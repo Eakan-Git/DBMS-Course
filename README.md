@@ -24,6 +24,8 @@
 ![image](https://user-images.githubusercontent.com/58219087/146989011-02aba267-80bd-4cd6-a24f-99bf7c90380d.png)
 ### Customer Manage
 ![image](https://user-images.githubusercontent.com/58219087/146989079-a7752c33-1804-462c-8060-c2007d7fbe86.png)
+### Staff Manage
+![image](https://user-images.githubusercontent.com/58219087/147130277-4d3fee7e-d2e0-495c-a9a0-32d7d4196a9f.png)
 ### Shipper Manage
 ![image](https://user-images.githubusercontent.com/58219087/146989131-3aee443f-2870-48e9-ab40-bc1c76babcb2.png)
 ### Partner Manage
