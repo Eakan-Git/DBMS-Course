@@ -3,7 +3,7 @@
 # WinForms Application
 ## Final version (Uncompleted)
 - This application requires local database to be loaded, as well as triggers, procedures,...
-- This application is not finished yet, but has no plans to be develop in the future. Well, stepped on ours deadline.
+- This application is not completed yet, but has no plans to be develop in the future. Well, we stepped on ours deadline.
 - Open source for education purpose.
 ### Login
 ![image](https://user-images.githubusercontent.com/58219087/146988226-063f78bf-5296-4fd5-98a4-983031efdf9a.png)
